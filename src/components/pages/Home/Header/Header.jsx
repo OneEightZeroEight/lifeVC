@@ -21,6 +21,7 @@ class Header extends React.Component {
             sel: Number(sessionStorage.getItem('sel')) || 0
         }
     }
+//首页轮播图部分 在componentDidMount(){}生命周期中写轮播js
     componentDidMount() {
         var mySwiper = new Swiper('.swiper-container', {
             freeMode: true,

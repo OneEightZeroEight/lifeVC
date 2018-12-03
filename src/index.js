@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// 路由
+import { HashRouter as Router} from "react-router-dom";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import axios from 'axios';
 React.axios = axios;
 ReactDOM.render(
-    <App />,
+    <Router>
+        <App />
+    </Router>,
     document.getElementById('root')
 );
 
