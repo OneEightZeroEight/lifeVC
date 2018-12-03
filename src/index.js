@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// 路由
+import { HashRouter as Router} from "react-router-dom";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import axios from 'axios';
-import { HashRouter as Router} from "react-router-dom";
 React.axios = axios;
 ReactDOM.render(
     <Router>

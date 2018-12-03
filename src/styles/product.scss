@@ -1,0 +1,61 @@
+@import './reset.scss';
+.header1{
+	width:rem(375px);
+	height:rem(48px);;
+	background: #89be48;
+    text-align: center;
+    p.a{
+    	margin:0 auto;
+    	line-height: rem(48px);
+	    font-size: rem(18px);
+	    color: #fff;
+	    width: 80%;
+	    height: 100%;
+	    white-space: nowrap;
+	    text-overflow: ellipsis;
+	    overflow: hidden;
+    }
+}
+.math1{
+	width:rem(375px);
+	height:rem(48px);;
+	background: #f2f2f2;
+    text-align: center;
+    position: relative;
+    .searchinput{
+		width:rem(353px);
+		height:rem(36px);
+		line-height:rem(36px);
+		font-size:rem(16px);
+		text-align: center;
+		border-radius: rem(6px);
+		z-index: 5;
+		position: fixed;
+		left:rem(11px);
+		top:rem(53px);
+		background: #fff;
+		color: #1f5350;
+		border: 0;
+    }
+    .searchinput.changeStyle{
+    	width:rem(310px);
+	    text-align: left;
+	    z-index: 5
+    }
+    #btnCancel{
+    	position: fixed;
+    	right:rem(7px);
+		top:rem(53px);
+    	width: rem(50px);
+	    height: rem(36px);
+	    display: block;
+	    float: right;
+	    background: none;
+	    background-color: transparent;
+	    border: 0;
+	    text-align: center;
+	    font-size: rem(16px);
+	    color: #83b842;
+	    line-height: rem(36px);
+    }
+}
