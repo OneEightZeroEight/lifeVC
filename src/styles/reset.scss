@@ -1,0 +1,7 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+@function rem($px){
+    @return $px / 37.5px * 1rem;
+}
