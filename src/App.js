@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import Footer from './components/commons/footer/Footer.jsx';
 import './styles/reset.scss';
 import { Route,Redirect,Switch} from "react-router-dom";

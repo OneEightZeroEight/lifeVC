@@ -1,6 +1,6 @@
 import React from 'react';
 import Swiper from 'swiper';
-import '../../../../../node_modules/swiper/dist/css/swiper.min.css';
+import '../../../../styles/index.scss';
 class Index extends React.Component {
     constructor(props) {
         super(props);
@@ -11,6 +11,19 @@ class Index extends React.Component {
     }
     componentDidMount() {
         this.getBannerList();
+        var bannerSwiper = new Swiper('#banner', {
+            pagination: {
+                el: '.swiper-pagination'
+            },
+            paginationClickable: true,
+            observer: true,
+            observeParents: false,
+            onSlideChangeEnd: function (swiper) {
+                swiper.update();
+                bannerSwiper.startAutoplay();
+                bannerSwiper.reLoop();
+            }
+        })
     }
     getBannerList() {
         React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/contents/home_v2?o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
@@ -22,7 +35,7 @@ class Index extends React.Component {
                         let picUrl = 'http://i.lifevccdn.com/' + picList[i].ImageUrl;
                         banner.push(picUrl);
                     }
-                    this.setState({bannerList:banner});
+                    this.setState({ bannerList: banner });
                 }
             })
             .catch((err) => {
@@ -33,14 +46,15 @@ class Index extends React.Component {
         return (
             <div className='index'>
                 <div className="banner">
-                    <div className="swiper-container">
+                    <div className="swiper-container" id='banner'>
                         <div className="swiper-wrapper">
                             {
                                 this.state.bannerList.map((item, index) => {
-                                    return <div className='siwper-slide' key={index}><img src={item} alt="" /></div>
+                                    return <div className='swiper-slide' key={index}><img src={item} alt="" /></div>
                                 })
                             }
                         </div>
+                        <div className="swiper-pagination"></div>
                     </div>
 
                 </div>

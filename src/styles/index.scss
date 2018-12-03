@@ -1,0 +1,13 @@
+@import './reset.scss';
+#banner{
+    margin-top: rem(96px);
+    width: 100%;
+    img{
+        width: 100%;
+        height: rem(250px);
+    }
+    .swiper-pagination-bullet-active{
+        background-color: #80b532;
+    }
+}
+
