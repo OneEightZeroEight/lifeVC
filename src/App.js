@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
-import { Route } from "react-router-dom";
 import Home from './components/pages/Home/Home';
-// <<<<<<< HEAD
-import GoFree from './components/pages/GoFree/GoFree.jsx'
-// =======
+// import GoFree from './components/pages/GoFree/GoFree.jsx'
+import All from './components/pages/All/All';
+import Cart from './components/pages/Cart/Cart';
+import Stroll from './components/pages/Stroll/Stroll';
+import User from './components/pages/User/User';
 import Footer from './components/commons/footer/Footer.jsx';
-// >>>>>>> 7cae58304fbd3febd56c1afc02ad15dc0caaa400
 import './styles/reset.scss';
+import {Route,Redirect} from "react-router-dom";
 class App extends Component {
   render() {
     return (
         <div className='app'>
-// <<<<<<< HEAD
-        // <Route path="/home/" component={Home} />
-        // <Route path="/gofree/" component={GoFree}/>
-// =======
-          <Home></Home>
+         {/*<Redirect exact from='/' to='/home/'/>*/ }
+          <Route path="/home/" component={Home}></Route>
+          <Route path="/all/" component={All}></Route>
+          <Route path="/stroll/" component={Stroll}></Route>
+          <Route path="/cart/" component={Cart}></Route>
+          <Route path="/user/" component={User}></Route>
           <Footer></Footer>
-// >>>>>>> 7cae58304fbd3febd56c1afc02ad15dc0caaa400
         </div> 
     )
   }

@@ -5,19 +5,21 @@ header {
     background: #89be48;
     position: fixed;
     top: 0;
+    height:rem(48px);
     z-index: 999;
     min-width: rem(320px);
     max-width: rem(640px);
     margin: auto;
 .header-content {
     width: 100%;
+    height:rem(48px);
     margin: 0 auto;
     position: relative;
 }
 .header-title {
     margin: 0 auto;
-    line-height: 4rem;
-    font-size: 2rem;
+    line-height:rem(48px);
+    font-size: rem(32px);
     text-align: center;
     color: #fff;
     width: 80%;

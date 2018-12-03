@@ -8,7 +8,7 @@ import axios from 'axios';
 React.axios = axios;
 ReactDOM.render(
     <Router>
-    <App />
+        <App />
     </Router>,
     document.getElementById('root')
 );
