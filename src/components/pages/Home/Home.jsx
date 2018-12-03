@@ -1,12 +1,15 @@
 import React from 'react';
-import Header from './Header/Header';
+import Header from './Header/Header.jsx';
 class Home extends React.Component{
     // componentDidMount(){
     //     this.getInfo();
     // }
     render(){
         return (
-            <Header></Header>
+            <div>
+                <Header></Header>
+            </div>
+            
         )
     }
     // getInfo(){
