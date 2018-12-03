@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Footer from './components/commons/footer/Footer.jsx';
+import List from './components/pages/List/List.jsx';
 import './styles/reset.scss';
 import { Route,Redirect,Switch} from "react-router-dom";
 class App extends Component {
@@ -8,6 +9,7 @@ class App extends Component {
       <div className='app'>
           <Switch>
             <Route path="/footer/" component={Footer} />
+            <Route path="/list/:ItemIndexId/:filter" component={List} />
             <Redirect from='/' to='/footer/home/'/>
           </Switch>
       </div> 

@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../../styles/product.scss';
+import { Link } from 'react-router-dom';
 class Product extends React.Component{
     constructor(props) {
         super(props);
@@ -50,11 +51,26 @@ class Product extends React.Component{
                      onClick={this.toggleSou.bind(this)} />
                     <input id="btnCancel" type="button" value="取消" className="sch-cancel" onClick={this.toggleSou1.bind(this)} />
                 </div>
-                <div>
+                <div className="wuYong"></div>
+                <div className="xunHuan1">
                     {(() => {
                         return this.state.list.map((item, index) => {
                             return (
-                                <div key={index}>{item.Name}</div>
+                                <div key={index}>
+                                	<div className="NAME">{item.Name}</div>
+                                	<ul>
+                                		{(() => {
+                    						return item.Children.map((item1, index1) => {
+                                				return <li key={index1}>
+	                                						<Link className="LINK" to={'/list/'+item.ItemIndexId+'/'+item1.ItemIndexId} >
+	                                							<div className="Img1"><img src={"http://i.lifevccdn.com"+item1.Icon} alt={item1.Name}/></div>
+	                                							<div className="Name1">{item1.Name}</div>
+	                                						</Link>
+                                						</li>
+                                			})
+                                		})()}
+                                	</ul>
+                                </div>
                             )
                         })
 
