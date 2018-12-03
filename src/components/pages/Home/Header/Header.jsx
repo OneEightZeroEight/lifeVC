@@ -18,7 +18,7 @@ class Header extends React.Component {
                 { title: '沐浴洗漱' },
                 { title: '了解lifeVC' },
             ],
-            sel: Number(localStorage.getItem('sel')) || 0
+            sel: Number(sessionStorage.getItem('sel')) || 0
         }
     }
 //首页轮播图部分 在componentDidMount(){}生命周期中写轮播js
@@ -28,7 +28,7 @@ class Header extends React.Component {
             slidesPerView: 4.5,
             on: {
                 click: function () {
-                    mySwiper.slideTo(Number(localStorage.getItem('sel')) - 1,300);
+                    mySwiper.slideTo(Number(sessionStorage.getItem('sel')) - 1,300);
                 }
             }
         })
@@ -40,7 +40,7 @@ class Header extends React.Component {
         this.setState({
             sel: index
         });
-        window.localStorage.setItem('sel', index);
+        window.sessionStorage.setItem('sel', index);
     }
     render() {
         return (
