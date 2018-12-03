@@ -11,18 +11,17 @@ class Index extends React.Component {
     }
     componentDidMount() {
         this.getBannerList();
+    }
+    componentDidUpdate() {
         var bannerSwiper = new Swiper('#banner', {
             pagination: {
                 el: '.swiper-pagination'
             },
-            paginationClickable: true,
-            observer: true,
-            observeParents: false,
-            onSlideChangeEnd: function (swiper) {
-                swiper.update();
-                bannerSwiper.startAutoplay();
-                bannerSwiper.reLoop();
-            }
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction:false
+            },
+            loop: true,
         })
     }
     getBannerList() {
