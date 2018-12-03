@@ -1,5 +1,7 @@
 @import './reset.scss';
 .header{
+    position: fixed;
+    top: 0;
     .top{
         width: rem(375px);
         height: rem(48px);
