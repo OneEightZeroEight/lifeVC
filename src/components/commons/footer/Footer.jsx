@@ -13,7 +13,7 @@ class Header extends React.Component {
                 { title: '购物车',pic:'fa fa-shopping-cart' },
                 { title: '账户中心',pic:'fa fa-user' },
             ],
-            sele:Number(sessionStorage.getItem('sel')) || 0
+            sele:Number(sessionStorage.getItem('sele')) || 0
         }
     }
     changeSele(index){
