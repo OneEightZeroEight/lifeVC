@@ -49,7 +49,9 @@ class Index extends React.Component {
                         <div className="swiper-wrapper">
                             {
                                 this.state.bannerList.map((item, index) => {
-                                    return <div className='swiper-slide' key={index}><img src={item} alt="" /></div>
+                                    return <div className='swiper-slide' key={index}>
+                                    <img src={item} alt="" />
+                                    </div>
                                 })
                             }
                         </div>

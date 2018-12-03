@@ -1,5 +1,5 @@
 @import './reset.scss';
-header {
+.stop {
     padding: 0;
     width: 100%;
     background: #89be48;
@@ -19,7 +19,7 @@ header {
 .header-title {
     margin: 0 auto;
     line-height:rem(48px);
-    font-size: rem(32px);
+    font-size: rem(20px);
     text-align: center;
     color: #fff;
     width: 80%;
@@ -28,4 +28,17 @@ header {
     overflow: hidden;
 }
 }
+.list {  
+    margin-top:rem(34px);
+    li {width:rem(176px);height:rem(288px);float:left;margin-right:rem(6px);padding-left:rem(5px);
+    .tp{width:rem(172px);height:rem(223.55px);}
+   p{font-size:rem(14px);height:rem(16px);width:rem(178px);line-height:rem(16px);}
+   .desc{line-height:rem(18px);.price{color:red;font-size:rem(14px);margin-right:rem(20px);em{padding-left:rem(5px);}}
+   .qty{color:black;font-size:rem(16px);em{padding-left:rem(5px);}}
+
+}
+    }
+}
+
+
 
