@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../../styles/product.scss';
+import { Link } from 'react-router-dom';
 class Product extends React.Component{
     constructor(props) {
         super(props);
@@ -61,8 +62,10 @@ class Product extends React.Component{
                                 		{(() => {
                     						return item.Children.map((item1, index1) => {
                                 				return <li key={index1}>
-                                							<div className="Img1"><img src={"http://i.lifevccdn.com"+item1.Icon} alt={item1.Name}/></div>
-                                							<div className="Name1">{item1.Name}</div>
+	                                						<Link className="LINK" to={'/list/'+item.ItemIndexId+'/'+item1.ItemIndexId} >
+	                                							<div className="Img1"><img src={"http://i.lifevccdn.com"+item1.Icon} alt={item1.Name}/></div>
+	                                							<div className="Name1">{item1.Name}</div>
+	                                						</Link>
                                 						</li>
                                 			})
                                 		})()}
