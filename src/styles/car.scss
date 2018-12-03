@@ -1,0 +1,91 @@
+@import './reset.scss';
+.Top{
+    width:100%;
+    height:rem(50px);
+    background-color:#89be48;
+i{float:left;
+    position:absolute;
+    top:rem(12px);
+    left:rem(12px);
+    font-size:rem(22px);
+    line-height:rem(32px);
+    color:#fff;
+}
+.header-title{
+    margin: 0 auto;
+     line-height:rem(50px);
+    font-size:rem(22px);
+    text-align: center;
+    color: #fff;
+    width: 80%;
+    height:rem(50px);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+}
+.login-wrap{
+    width: 100%;
+    height:rem(51.59px);
+    background-color: #f0fae6;
+    margin: 0;
+    font-size:rem(12px);
+    padding:rem(12px),rem(14px);
+ .login{
+    width: 100%;
+    height:rem(48px);
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+    color: #333;
+    line-height: 1.5rem;
+   }
+   .logins{
+    color:#88c13e;;
+    display:block;
+    float:left;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #8bc146;
+    width:rem(65px);
+    height:rem(33px);
+    font-size: rem(16px);
+    line-height: rem(33px);
+    margin-left: rem(13px);
+    margin-top:rem(10px);
+   }
+   .tips{
+    display:block;
+    float:left;
+    padding-left:14px;
+    font-size:rem(16px);
+    line-height: rem(26px);
+     color: #333;
+    width:rem(277px);
+    height:rem(36px);
+   }
+}
+.change{
+    padding-left:rem(12px);
+.ipts{
+     padding-left:rem(10px);
+    width:rem(261px);
+    height:rem(35.59px);
+    line-height:rem(35.59px);
+    display: inline-block;
+    border-radius: 0;
+    border: 1px solid #e7e7e7;
+    background: #fff;
+    text-align:center;
+    font-size: rem(14px);
+}
+.exch-btn{
+    width:rem(69px);
+    height:rem(36px);
+    color: #6fbd00;
+    text-align: center;
+    border-radius: 0;
+    border: 1px solid #6fbd00;
+    background: #fff;
+}
+}

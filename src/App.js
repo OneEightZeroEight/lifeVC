@@ -8,6 +8,7 @@ class App extends Component {
       <div className='app'>
           <Switch>
             <Route path="/footer/" component={Footer} />
+            
             <Redirect from='/' to='/footer/home/'/>
           </Switch>
       </div> 
