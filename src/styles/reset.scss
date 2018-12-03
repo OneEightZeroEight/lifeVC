@@ -3,6 +3,15 @@
     padding: 0;
     text-decoration: none;
 }
+ul{
+    list-style: none;
+}
 @function rem($px){
     @return $px / 37.5px * 1rem;
+}
+li{
+	list-style: none;
+}
+a{
+	color:#333;
 }

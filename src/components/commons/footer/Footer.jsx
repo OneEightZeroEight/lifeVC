@@ -1,46 +1,28 @@
 import React from 'react';
 import '../../../static/css/font-awesome.css';
 import '../../../styles/footer.scss';
-import {Link} from 'react-router-dom';
-class Header extends React.Component {
-    constructor(props) {
-        super(props);
-        this.props = props;
-        this.state = {
-            footerList: [
-                // { title: '首页',pic:'fa fa-home', },
-                // { title: '全部商品',pic:'fa fa-list-ul'},
-                // { title: '闲逛',pic:'fa fa-paw' },
-                // { title: '购物车',pic:'fa fa-shopping-cart' },
-                // { title: '账户中心',pic:'fa fa-user' },
-                { title: '首页',pic:'fa fa-home' ,path:'/home'},
-                { title: '全部商品',pic:'fa fa-list-ul',path:'/all'},
-                { title: '闲逛',pic:'fa fa-paw',path:'/stroll'},
-                { title: '购物车',pic:'fa fa-shopping-cart',path:'/cart'},
-                { title: '账户中心',pic:'fa fa-user',path:'user'},
-
-            ],
-            sele:Number(sessionStorage.getItem('sele')) || 0
-        }
-    }
-    changeSele(index){
-        this.setState({
-            sele: index
-        });
-        window.sessionStorage.setItem('sele',index);
-    }
+import Xiao from './xiao.jsx';
+import Home from '../../pages/Home/Home';
+import Cart from '../../pages/Cart/Cart';
+import All from '../../pages/All/All';
+import Stroll from '../../pages/Stroll/Stroll';
+import User from '../../pages/User/User';
+import {Route} from 'react-router-dom';
+class Footer extends React.Component {
     render(){
         return(
-            <footer>
-                {
-                    this.state.footerList.map((item,index)=>{
-                        return <Link to={item.path} key={index} onClick={this.changeSele.bind(this, index)} className={this.state.sele === index?'sele box':'box'}><i className={item.pic} aria-hidden="true"></i><span>{item.title}</span></Link>
-                    })
-                }
-            </footer>
+            <div>
+                <Xiao></Xiao>
+                <Route path="/footer/home/" component={Home} />
+                <Route path="/footer/all/" component={All} />
+                
+                <Route path="/footer/stroll/" component={Stroll} />
+                <Route path="/footer/cart/" component={Cart} />
+                <Route path="/footer/user/" component={User} />
+            </div>
         )
         
     }
    
 }
-export default Header;
+export default Footer;

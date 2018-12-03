@@ -7,11 +7,12 @@ class Cart extends React.Component{
         return (
             <div className='cart'>
             <div className="Top">
-            <Link to="/Stroll/"><i className="fa fa-chevron-left" aria-hidden="true"></i></Link>
+
+            <Link to="/footer/stroll/"><i className="fa fa-chevron-left" aria-hidden="true"></i></Link>
             <p className="header-title">购物车</p>
             </div>
             <div  className="login-wrap">
-            <div className="login"><Link to="/user/" className="logins">登录</Link>
+            <div className="login"><Link to="/footer/user/" className="logins">登录</Link>
              <span className="tips">你可以在登录后同步电脑与手机购物车中的商品</span>
             </div>
             </div>
@@ -20,7 +21,6 @@ class Cart extends React.Component{
               <input type="button" value="兑换" className="exch-btn"/>
             </div>
             </div>
-
         )
     }
 }

@@ -23,17 +23,17 @@ class Header extends React.Component {
     }
 //首页轮播图部分 在componentDidMount(){}生命周期中写轮播js
     componentDidMount() {
-        var mySwiper = new Swiper('.swiper-container', {
+        var headerSwiper = new Swiper('#header', {
             freeMode: true,
             slidesPerView: 4.5,
             on: {
                 click: function () {
-                    mySwiper.slideTo(Number(sessionStorage.getItem('sel')) - 1,300);
+                    headerSwiper.slideTo(Number(sessionStorage.getItem('sel')) - 1,300);
                 }
             }
         })
         if (this.state.sel !== 0) {
-            mySwiper.slideTo(this.state.sel - 1);
+            headerSwiper.slideTo(this.state.sel - 1);
         }
     }
     changeSel(index) {
@@ -51,7 +51,7 @@ class Header extends React.Component {
                     </div>
                 </div>
                 <div className="nav">
-                    <div className="swiper-container">
+                    <div className="swiper-container" id='header'>
                         <div className="swiper-wrapper">
                             {
                                 this.state.navList.map((item, index) => {

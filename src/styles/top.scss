@@ -2,6 +2,7 @@
 .header{
     position: fixed;
     top: 0;
+    z-index:999;
     .top{
         width: rem(375px);
         height: rem(48px);
@@ -30,6 +31,7 @@
         width:rem(375px);
         height: rem(48px);
         color:#333;
+        background-color: #fff;
     }
     .swiper-slide{
         line-height: rem(45px);
