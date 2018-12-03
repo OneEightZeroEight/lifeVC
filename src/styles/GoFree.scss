@@ -1,0 +1,29 @@
+@import './reset.scss';
+header {
+    padding: 0;
+    width: 100%;
+    background: #89be48;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    min-width: rem(320px);
+    max-width: rem(640px);
+    margin: auto;
+.header-content {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+.header-title {
+    margin: 0 auto;
+    line-height: 4rem;
+    font-size: 2rem;
+    text-align: center;
+    color: #fff;
+    width: 80%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+}
+
