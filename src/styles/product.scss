@@ -4,6 +4,10 @@
 	height:rem(48px);;
 	background: #89be48;
     text-align: center;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 5;
     p.a{
     	margin:0 auto;
     	line-height: rem(48px);
@@ -21,7 +25,10 @@
 	height:rem(48px);;
 	background: #f2f2f2;
     text-align: center;
-    position: relative;
+    position:fixed;
+    left:0;
+    top:rem(48px);
+    border:rem(0.05px) solid #ddd;
     .searchinput{
 		width:rem(353px);
 		height:rem(36px);
@@ -40,7 +47,9 @@
     .searchinput.changeStyle{
     	width:rem(310px);
 	    text-align: left;
-	    z-index: 5
+	    z-index: 5;
+
+		outline: none;
     }
     #btnCancel{
     	position: fixed;
@@ -57,5 +66,54 @@
 	    font-size: rem(16px);
 	    color: #83b842;
 	    line-height: rem(36px);
+		outline: none;
     }
+}
+.wuYong{
+	width:rem(375px);
+	height:rem(96px);
+}
+.xunHuan1{
+	background: #f2f2f2;
+	margin-bottom: rem(55px);
+	.NAME{
+		height:rem(36px);
+		line-height:rem(36px);
+		font-size:rem(18px);
+		padding-top:rem(20px);
+		text-align: center;
+	}
+	ul{
+		background: #fff;
+		display: flex;
+		flex-wrap: wrap;
+		li:nth-of-type(3n){
+			border-right:rem(0px) solid #ddd;
+		}
+		li{
+			height:rem(140px);
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+			justify-content: space-around;
+			align-items: center;
+			border-right:rem(1px) solid #ddd;
+			border-bottom:rem(1px) solid #ddd;
+			.Img1{
+				width:rem(74.25px);
+				height:rem(74.25px);
+				text-align: center;
+				img{
+					width:rem(74.25px);
+					height:rem(74.25px);
+				}
+			}
+			.Name1{
+				width:rem(123.75px);
+				height:rem(42px);
+				margin-top:rem(12px);
+				font-size: rem(14px);
+			}
+		}
+	}
 }
