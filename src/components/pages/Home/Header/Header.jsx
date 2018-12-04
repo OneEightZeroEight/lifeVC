@@ -22,6 +22,16 @@ class Header extends React.Component {
             sel: Number(sessionStorage.getItem('sel')) || 0
         }
     }
+    bianhua(nextProps){
+        this.setState({
+            sel: nextProps.sel
+        });
+        window.sessionStorage.setItem('sel', nextProps.sel);
+        console.log(nextProps.sel)
+    }
+    componentWillReceiveProps(nextProps){
+        this.bianhua(nextProps);
+    }
 //首页轮播图部分 在componentDidMount(){}生命周期中写轮播js
     componentDidMount() {
         var headerSwiper = new Swiper('#header', {
@@ -38,12 +48,7 @@ class Header extends React.Component {
         }
          this.props.changeSele();
     }
-    changeSel(index) {
-        this.setState({
-            sel: index
-        });
-        window.sessionStorage.setItem('sel', index);
-    }
+    
     render() {
         return (
             <div className="header">
@@ -57,7 +62,7 @@ class Header extends React.Component {
                         <div className="swiper-wrapper">
                             {
                                 this.state.navList.map((item, index) => {
-                                    return <Link to={item.path} key={index} onClick={this.changeSel.bind(this, index)} className={this.state.sel === index ? "sel swiper-slide" : "swiper-slide"}>
+                                    return <Link to={item.path} key={index} onClick={this.props.changeSel.bind(this, index)} className={this.state.sel === index ? "sel swiper-slide" : "swiper-slide"}>
                                         {item.title}
                                     </Link>
                                 })
@@ -71,6 +76,8 @@ class Header extends React.Component {
     }
 }
 export default connect((state)=>{
+    console.log(state)
+    
     return state
 },(dispatch=>{
     return {
@@ -78,6 +85,16 @@ export default connect((state)=>{
             dispatch({
                 type:"toggleGallery",
                 sele:0
+            })
+        },
+        changeSel(index) {
+            this.setState({
+                sel: index
+            });
+            window.sessionStorage.setItem('sel', index);
+            dispatch({
+                type:"toggleNav",
+                sel:index
             })
         }
     }

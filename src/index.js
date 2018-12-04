@@ -15,14 +15,15 @@ React.axios = axios;
 
 const store = createStore((state = {
     title:"lifeVC",
-   	sele:0
+   	sele:0,
+   	sel:0
 
 }, action) => {
     switch (action.type) {
         case 'toggleNav':
             return {
                 ...state,
-                isShowNav:action.isShowNav
+                sel:action.sel
             }
         case 'toggleGallery':
             return {
