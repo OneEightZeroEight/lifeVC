@@ -42,12 +42,15 @@ class Header extends React.Component {
         });
         window.sessionStorage.setItem('sel', index);
     }
+    toAll(){
+        window.sessionStorage.setItem('sele', 1);
+    }
     render() {
         return (
             <div className="header">
                 <div className="top">
                     <div className="headInfo">
-                        <div className="toSearch"></div>
+                        <Link to='/footer/all/' className="toSearch" onClick={this.toAll}></Link>
                     </div>
                 </div>
                 <div className="nav">
