@@ -40,7 +40,11 @@ class List extends React.Component{
       //获取传过来的id
       let itemindexid = this.props.match.params.ItemIndexId;
       let filter = this.props.match.params.filter;
-
+      if(this.state.sort==xin&&this.state.sort==3){
+        xin=4;
+      }else if(this.state.sort==4){
+        xin=3;
+      }
       React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/Categories/Category?itemindexid='+itemindexid+'&filter='+filter+'&sort='+xin+'&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
         .then((res)=>{
             console.log(res)
