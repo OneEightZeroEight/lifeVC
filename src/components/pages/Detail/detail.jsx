@@ -12,6 +12,8 @@ class Detail extends React.Component{
             price:""
         }
     }
+    // componentDidUpdate
+    // 组件初始化时不调用，组件更新完成后调用，此时可以获取dom节点.由于初始时数据由ajax请求,初始可能没获取到数据，只有等数据获取到后，才调用
     componentDidUpdate(){
           // <!-- Initialize Swiper -->
     var swiper = new Swiper('#detail', {
@@ -25,6 +27,7 @@ class Detail extends React.Component{
     componentDidMount(){
     	//获取传过来的id
     	let ItemInfoId = this.props.match.params.ItemInfoId
+        let ItemInfoIdS = this.props.match.params.ItemInfoID
     	console.log(ItemInfoId)
          React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/items/itemview?Iteminfoid='+ItemInfoId+'&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
         .then((res)=>{
@@ -32,7 +35,7 @@ class Detail extends React.Component{
             this.setState({
                details:res.data.InnerData.Headers,
                name:res.data.InnerData.Name,
-               price:res.data.InnerData.MarketPrice
+               price:res.data.InnerData.SalePrice
             });
             console.log(res.data.InnerData.Name)
         })
@@ -59,8 +62,7 @@ class Detail extends React.Component{
                  this.state.details.map((item,index)=>{
                     return <div className="swiper-slide"key={index}>
                     <img src={'http://i.lifevc.com'+item.ImageUrl}/>
-                     </div>
-
+                    </div>
                  })
             }
 
@@ -71,7 +73,8 @@ class Detail extends React.Component{
          <h4>￥{this.state.price}</h4>
          <div  className="promo-item">
              <span className="tag-promo bgred">优惠</span> 
-             <span  className="m-txt red">登录查看你的积分和优惠券</span>
+             <Link to="/footer/user/"><span  className="m-txt red">登录查看你的积分和优惠券</span>
+             </Link>
          </div>
         </div>
         )

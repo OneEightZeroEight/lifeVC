@@ -8,7 +8,7 @@ constructor(props){
             title:"闲逛",
             pageNo:0,
             lists:[]
-// pageNo=1&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true
+
         }
     }
      componentDidMount(){
@@ -30,6 +30,7 @@ constructor(props){
                         lists:Res,
                         pageNo:res.data.InnerData.CurPage
                     });
+            // console.log(Res)
           })
           .catch((err)=>{
             console.log(err);
@@ -44,7 +45,7 @@ constructor(props){
                 {
                   this.state.lists.map((item,index)=>{
                     // 注意:拿到的图片需要进行字符串拼接才可以显示
-                    return <Link to={'/detail/'+item.ItemInfoId}>
+                    return <Link to={'/detail/'+item.ItemInfoID}>
                     <li key={index}><img src={"http://i.lifevccdn.com"+item.ImageUrl} className="tp" alt=""/><p>{item.Name}</p>
                     <div className="desc">
                     <span className="price">￥<em>{item.SalePrice}</em></span><span className="qty">月销<em>{item.SaleQty}</em>
