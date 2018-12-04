@@ -1,6 +1,7 @@
 import React from 'react';
 import "../../../styles/GoFree.scss"
 import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
 class Stroll extends React.Component{
 constructor(props){
         super(props)
@@ -35,6 +36,7 @@ constructor(props){
           .catch((err)=>{
             console.log(err);
         })
+        this.props.changeSele();
      }
     render(){
         return (
@@ -60,4 +62,15 @@ constructor(props){
         )
     }
 }
-export default Stroll;
+export default connect((state)=>{
+    return state
+},(dispatch=>{
+    return {
+        changeSele() {
+            dispatch({
+                type:"toggleGallery",
+                sele:2
+            })
+        }
+    }
+}))(Stroll);

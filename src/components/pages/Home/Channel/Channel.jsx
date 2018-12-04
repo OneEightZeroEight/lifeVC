@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../../../../styles/channel.scss';
 class Channel extends React.Component {
     constructor(props) {
@@ -14,9 +15,25 @@ class Channel extends React.Component {
     }
     componentDidMount(){
         this.getchanList(this.props);
+
     }
     componentWillReceiveProps(nextProps){
         this.getchanList(nextProps);
+        let index = 3;
+        if(nextProps.match.params.pageId==2860){
+            index=2;
+        }else if(nextProps.match.params.pageId==2859){
+            index=3;
+        }else if(nextProps.match.params.pageId==2861){
+            index=4;
+        }else if(nextProps.match.params.pageId==2865){
+            index=5;
+        }else if(nextProps.match.params.pageId==2862){
+            index=6;
+        }else if(nextProps.match.params.pageId==3526){
+            index=7;
+        }
+        this.props.changeSel(index);
     }
     getchanList(nextProps){
         React.axios.get(`http://app.lifevc.com/1.0/v_h5_5.1.2_33/Categories/Category?itemIndexId=${nextProps.match.params.pageId}&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true`)
@@ -72,4 +89,15 @@ class Channel extends React.Component {
         )
     }
 }
-export default Channel;
+export default connect((state)=>{
+    return state
+},(dispatch=>{
+    return {
+        changeSel(index) {
+            dispatch({
+                type:"toggleNav",
+                sel:index
+            })
+        }
+    }
+}))(Channel);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../../../styles/product.scss';
 import { Link } from 'react-router-dom';
 class Product extends React.Component{
@@ -23,6 +24,7 @@ class Product extends React.Component{
                 // }
             // }.bind(this), 100);
             // console.log(this.state.list)
+            this.props.changeSele();
             
         })
         .catch((err)=>{
@@ -82,4 +84,15 @@ class Product extends React.Component{
     // http://i.lifevccdn.com/upload/AppIndexIcon/8214c5e1af0b4bf2ae09d46d3c1e610e.jpg
     //                      "/upload/AppIndexIcon/8214c5e1af0b4bf2ae09d46d3c1e610e.jpg"
 }
-export default Product;
+export default connect((state)=>{
+    return state
+},(dispatch=>{
+    return {
+        changeSele() {
+            dispatch({
+                type:"toggleGallery",
+                sele:1
+            })
+        }
+    }
+}))(Product);
