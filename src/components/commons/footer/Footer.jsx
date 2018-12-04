@@ -15,7 +15,6 @@ class Footer extends React.Component {
                 <Xiao></Xiao>
                 <Route path="/footer/home/" component={Home} />
                 <Route path="/footer/all/" component={All} />
-                
                 <Route path="/footer/stroll/" component={Stroll} />
                 <Route path="/footer/cart/" component={Cart} />
                 <Route path="/footer/user/" component={User} />

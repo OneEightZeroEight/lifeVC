@@ -1,0 +1,45 @@
+@import './reset.scss';
+.newArrive{
+    background-color: #eee;
+    color:#333;
+    margin-top: rem(96px);
+    .newTitle{
+        font-size: rem(18px);
+        text-align: center;
+        color:#000;
+        line-height: rem(42px);
+    }
+    .newArrMonth{
+        width: rem(360px);
+        height: rem(237px);
+        font-size: rem(14px);
+        box-sizing: border-box;
+        padding-bottom: rem(15px);
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin:0 auto rem(20px);
+        img{
+            width: 100%;
+            height: rem(163px);
+        }
+        p{
+            margin-left: rem(10px);
+        }
+        .newPrice{
+            .newIcon{
+                background-color:#c00;
+                color:#fff;
+                margin-left: rem(8px);
+                padding:0 rem(7px);
+                text-align: center;
+                line-height: rem(22px);
+            }
+            .newComment{
+                float:right;
+                margin-right: rem(10px);
+            }
+        }
+    }
+}
