@@ -12,11 +12,11 @@ class List extends React.Component{
             	{name:'新品',sort:2},
             	{name:'畅销',sort:1},
             	{name:'价格',sort:3}
-            ]
+            ],
+            sort:2
         }
     }
     componentDidMount(){
-
     	//获取传过来的id
     	let itemindexid = this.props.match.params.ItemIndexId;
     	let filter = this.props.match.params.filter;
@@ -34,11 +34,33 @@ class List extends React.Component{
             console.log(err);
         })
         
-    } 
+    }
+    chongxin(xin){
+      // console.log(xin);
+      //获取传过来的id
+      let itemindexid = this.props.match.params.ItemIndexId;
+      let filter = this.props.match.params.filter;
+
+      React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/Categories/Category?itemindexid='+itemindexid+'&filter='+filter+'&sort='+xin+'&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
+        .then((res)=>{
+            console.log(res)
+          this.setState({
+              list: res.data.InnerData.GoodsItems,
+              List:res.data.InnerData,
+              sort:xin
+
+          });
+            // console.log(this.state.list,itemindexid,filter)
+            
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
     
     render(){
         return (
-           <div>
+           <div className="Llist">
            		<div className="Topp1">
            			<div className="TLeft">
            				<Link to="/footer/all/" >
@@ -55,30 +77,38 @@ class List extends React.Component{
            			{(()=>{
            				return this.state.qieHuan.map((item,index)=>{
            					return (
-           						<li key={index}><a href="#">{item.name}</a></li>
+           						<li key={index} 
+                      onClick={this.chongxin.bind(this,item.sort)}
+                      className={this.state.sort==item.sort?"HeiHei":""} >
+                        <span>{item.name}</span>
+                      </li>
            					)
            				})
            			})()}
            			</ul>
            		</div>
 
+              <div className="KongKong"></div>
            		<div className="XunH">
            			{(()=>{
            				return this.state.list.map((item,index)=>{
            					return (
-           						<div key={index} className="danDu">
+                      <Link key={index} className="danDu" to={'/detail/'+item.ItemInfoId} >
+           						
            							<div className="Zp"><img src={"http://i.lifevccdn.com"+item.ImageUrl} alt={item.Name}/></div>
 	           						<div className="PPP"><p>{item.Appeal}</p></div>
 	           						<div className="PriCt">
 	           							<div className="PriCt-Left">￥<span>{item.SalePrice}</span></div>
 	           							<div className="PriCt-Right">评论：<span>{item.CommentCount}</span></div>
 	           						</div>
-           						</div>
+           						</Link>
            						
            					)
            				})
            			})()}
            		</div>
+
+              <div className="KongKong"></div>
            		
            </div>
         )
