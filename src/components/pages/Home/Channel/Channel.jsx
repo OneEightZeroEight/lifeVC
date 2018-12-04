@@ -45,7 +45,6 @@ class Channel extends React.Component {
                     mainText:res.data.InnerData.CEORecommendTitle.Text,
                     recoList:res.data.InnerData.CEORecommends
                 });
-                console.log(this.state.chanTopList);
             }
         })
         .catch((err)=>{

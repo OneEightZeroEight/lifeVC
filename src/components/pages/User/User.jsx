@@ -12,7 +12,12 @@ class User extends React.Component{
     }
     render(){
         return (
-            <div className='user'></div>
+            <div className='user'>
+                <div className="userTop">
+                    <span className='countCenter'>账户中心</span>
+                    <span className='userOptions'>设置</span>
+                </div>
+            </div>
         )
     }
 }

@@ -18,9 +18,7 @@ constructor(props){
           }}
          )
           .then((res)=>{
-            console.log(res)
             let Res=res.data.InnerData.StrollList;
-            console.log(Res)
             for(let i=0;i<Res.length;i++){
               if(Res[i].ImageUrl==null){
                 Res.splice(i,1);
@@ -47,12 +45,11 @@ constructor(props){
                 {
                   this.state.lists.map((item,index)=>{
                     // 注意:拿到的图片需要进行字符串拼接才可以显示
-                    return <Link to={'/detail/'+item.ItemInfoID}>
-                    <li key={index}><img src={"http://i.lifevccdn.com"+item.ImageUrl} className="tp" alt=""/><p>{item.Name}</p>
-                    <div className="desc">
+             return <Link to={'/detail/'+item.ItemInfoId} key={index}>
+                    <li><img src={"http://i.lifevccdn.com"+item.ImageUrl} className="tp" alt=""/><p>{item.Name}</p>
                     <span className="price">￥<em>{item.SalePrice}</em></span><span className="qty">月销<em>{item.SaleQty}</em>
                     </span>
-                    </div>
+
                     </li>
                     </Link>
                   })  

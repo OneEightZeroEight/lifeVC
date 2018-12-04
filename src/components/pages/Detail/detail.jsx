@@ -89,8 +89,9 @@ class Detail extends React.Component{
             {
                  this.state.details.map((item,index)=>{
                     return <div className="swiper-slide"key={index}>
-                    <img src={'http://i.lifevc.com'+item.ImageUrl}/>
-                    </div>
+
+                    <img src={'http://i.lifevc.com'+item.ImageUrl} alt=''/>
+                     </div>
                  })
             }
 

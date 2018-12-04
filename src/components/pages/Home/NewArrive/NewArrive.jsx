@@ -1,13 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import '../../../../styles/newArrive.scss';
+import '../../../../../node_modules/antd/dist/antd.min.css';
+// import InfiniteScroll from 'react-infinite-scroller';
+// import { Spin,Icon } from 'antd';
 class NewArrive extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
         this.state = {
             weekList:[],
-            monthList:[],
             showList:[],
             nowIndex:0,
             rootPath:'http://i.lifevccdn.com'
@@ -24,7 +26,7 @@ class NewArrive extends React.Component {
                 this.setState({
                     weekList:res.data.InnerData
                 });
-                console.log(this.state.weekList);
+                // console.log(this.state.weekList);
             }
         })
         .catch((err)=>{
@@ -34,8 +36,9 @@ class NewArrive extends React.Component {
         .then((res)=>{
             if(res.statusText === 'OK'){
                 this.setState({
-                    allList:res.data.InnerData
+                    allList:JSON.stringify(res.data.InnerData)
                 });
+                window.sessionStorage.setItem('monthList',this.state.allList);
                 this.getShowList();
             }
         })
@@ -44,19 +47,25 @@ class NewArrive extends React.Component {
         })
     }
     getShowList(){
-        let all = this.state.allList;
-        let show = this.state.showList;
-        if (all.length >= 3){
-            for(let i = this.state.nowIndex;i<this.state.nowIndex + 3;i++){
-                show.push(all[i]);
-            }
-            this.setState({
-                showList:show,
-                nowIndex:this.state.nowIndex + 3
-            })
-        }
-        
+        this.setState({
+            showList:JSON.parse(window.sessionStorage.getItem('monthList')).slice(0,20)
+        })
     }
+    // getShowList(){
+    //     console.log(this);
+    //     let all = this.state.allList;
+    //     let show = this.state.showList;
+    //     if (all.length >= 3){
+    //         for(let i = this.state.nowIndex;i<this.state.nowIndex + 3;i++){
+    //             show.push(all[i]);
+    //         }
+    //         this.setState({
+    //             showList:show,
+    //             nowIndex:this.state.nowIndex + 3
+    //         })
+    //     }
+        
+    // }
     render() {
         return(
             <div className='newArrive'>
@@ -75,6 +84,12 @@ class NewArrive extends React.Component {
                     })
                 }
                 <p className='newTitle'>最近一月新品</p>
+                {/* <InfiniteScroll
+                    pageStart={0}
+                    loadMore={this.getShowList}
+                    hasMore={true || false}
+                    loader={<div className="loader" key={0}>Loading ...</div>}
+                > */}
                 {
                     this.state.showList.map((item,index)=>{
                         return <div className='newArrMonth' key={index}>
@@ -88,6 +103,7 @@ class NewArrive extends React.Component {
                         </div>
                     })
                 }
+                {/* </InfiniteScroll> */}
             </div>
         )
     }
