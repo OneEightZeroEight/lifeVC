@@ -58,15 +58,15 @@ class User extends React.Component{
                 <div className="userBottom">
                     {
                         this.state.bottomList.map((item,index)=>{
-                            return <div className='btmBox'>
+                            return <div className='btmBox' key={index}>
                                 {
                                     item.Menus.map((itm,idx)=>{
-                                        return <div className='userList'>
+                                        return <div className='userList' key={idx}>
                                             <img src={this.state.rootPath + itm.Icon} alt=""/>
                                             <span className="itemTitle">
                                                 {itm.Title}
                                             </span>
-                                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            <i className="fa fa-angle-right" aria-hidden="true"></i>
                                         </div>
                                     })
                                 }

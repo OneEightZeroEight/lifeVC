@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import '../../../../styles/newArrive.scss';
 class NewArrive extends React.Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class NewArrive extends React.Component {
             if(res.statusText === 'OK'){
                 this.setState({
                     weekList:res.data.InnerData
-                });
+                })
             }
         })
         .catch((err)=>{
@@ -37,6 +38,7 @@ class NewArrive extends React.Component {
                 window.sessionStorage.setItem('monthList',this.state.allList);
                 this.getShowList();
             }
+            
         })
         .catch((err)=>{
             console.log(err);
@@ -47,21 +49,6 @@ class NewArrive extends React.Component {
             showList:JSON.parse(window.sessionStorage.getItem('monthList')).slice(0,20)
         })
     }
-    // getShowList(){
-    //     console.log(this);
-    //     let all = this.state.allList;
-    //     let show = this.state.showList;
-    //     if (all.length >= 3){
-    //         for(let i = this.state.nowIndex;i<this.state.nowIndex + 3;i++){
-    //             show.push(all[i]);
-    //         }
-    //         this.setState({
-    //             showList:show,
-    //             nowIndex:this.state.nowIndex + 3
-    //         })
-    //     }
-        
-    // }
     render() {
         return(
             <div className='newArrive'>
@@ -69,6 +56,7 @@ class NewArrive extends React.Component {
                 {
                      this.state.weekList.map((item,index)=>{
                         return <div className='newArrMonth' key={index}>
+                        <Link to={'/detail/'+item.ItemInfoId} >
                             <img src={this.state.rootPath + item.ImageUrl} alt=""/>
                             <p className="newName">{item.Name}</p>
                             <p className="newPrice">
@@ -76,26 +64,23 @@ class NewArrive extends React.Component {
                                 <span className="newIcon">{item.PriceTag}</span>
                                 <span className="newComment">评论：  {item.CommentCount}</span>
                             </p>
+                        </Link>
                         </div>
                     })
                 }
                 <p className='newTitle'>最近一月新品</p>
-                {/* <InfiniteScroll
-                    pageStart={0}
-                    loadMore={this.getShowList}
-                    hasMore={true || false}
-                    loader={<div className="loader" key={0}>Loading ...</div>}
-                > */}
                 {
                     this.state.showList.map((item,index)=>{
                         return <div className='newArrMonth' key={index}>
-                            <img src={this.state.rootPath + item.ImageUrl} alt=""/>
-                            <p className="newName">{item.Name}</p>
-                            <p className="newPrice">
-                                <span className="left">￥{item.SalePrice}</span>
-                                <span className="newIcon">新</span>
-                                <span className="newComment">评论：  {item.CommentCount}</span>
-                            </p>
+                            <Link to={'/detail/'+item.ItemInfoId} >
+                                <img src={this.state.rootPath + item.ImageUrl} alt=""/>
+                                <p className="newName">{item.Name}</p>
+                                <p className="newPrice">
+                                    <span className="left">￥{item.SalePrice}</span>
+                                    <span className="newIcon">新</span>
+                                    <span className="newComment">评论：  {item.CommentCount}</span>
+                                </p>
+                            </Link>
                         </div>
                     })
                 }

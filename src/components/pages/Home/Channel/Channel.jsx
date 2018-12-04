@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import '../../../../styles/channel.scss';
 class Channel extends React.Component {
     constructor(props) {
@@ -10,7 +11,8 @@ class Channel extends React.Component {
             mainPic:'',
             mainText:'',
             recoList:[],
-            rootPath:'http://i.lifevccdn.com'
+            rootPath:'http://i.lifevccdn.com',
+            pageId:''
         }
     }
     componentDidMount(){
@@ -43,7 +45,8 @@ class Channel extends React.Component {
                     chanTopList:res.data.InnerData.Categories,
                     mainPic:'http://i.lifevccdn.com' + res.data.InnerData.DesignerMessageImg,
                     mainText:res.data.InnerData.CEORecommendTitle.Text,
-                    recoList:res.data.InnerData.CEORecommends
+                    recoList:res.data.InnerData.CEORecommends,
+                    pageId:nextProps.match.params.pageId
                 });
             }
         })
@@ -59,8 +62,10 @@ class Channel extends React.Component {
                     {
                         this.state.chanTopList.map((item,index)=>{
                             return <div className="chanTopBox" key={index}>
+                            <Link to={'/list/'+this.state.pageId+'/'+item.ItemIndexId} >
                                 <img src={'http://i.lifevccdn.com' + item.CategoryImageUrl} alt=""/>
                                 <p>{item.Title}</p>
+                            </Link>
                             </div>
                         })
                     }
@@ -73,6 +78,7 @@ class Channel extends React.Component {
                     {
                         this.state.recoList.map((item,index)=>{
                             return <div className='newArrMonth' key={index}>
+                            <Link to={'/detail/'+item.ItemInfoId} >
                                 <img src={this.state.rootPath + item.ImageUrl} alt=""/>
                                 <p className="newName">{item.Name}</p>
                                 <p className="newPrice">
@@ -80,6 +86,7 @@ class Channel extends React.Component {
                                     <span className="newIcon">{item.PriceTag}</span>
                                     <span className="newComment">评论：  {item.CommentCount}</span>
                                 </p>
+                            </Link>
                             </div>
                         })
                     }
