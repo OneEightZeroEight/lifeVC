@@ -25,8 +25,8 @@ class Cart extends React.Component{
              <span className="tips">你可以在登录后同步电脑与手机购物车中的商品</span>
             </div>
             </div>
-            <div className="change"><a href="javascript:void();" id="hideAclick"></a>
-              <input type="text" maxlength="15" placeholder="礼品兑换处，请输入兑换码" className="ipts"/>
+            <div className="change"><a href="javascript:;" id="hideAclick"></a>
+              <input type="text" maxLength="15" placeholder="礼品兑换处，请输入兑换码" className="ipts"/>
               <input type="button" value="兑换" className="exch-btn"/>
             </div>
             </div>

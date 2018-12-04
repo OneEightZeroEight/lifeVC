@@ -48,7 +48,6 @@ class Channel extends React.Component {
                     recoList:res.data.InnerData.CEORecommends,
                     pageId:nextProps.match.params.pageId
                 });
-                // console.log(this.state.recoList);
             }
         })
         .catch((err)=>{

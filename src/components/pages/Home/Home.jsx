@@ -6,18 +6,19 @@
     import Channel from './Channel/Channel';
     import {Route,Switch,Redirect} from 'react-router-dom';
     class Home extends React.Component{
+        componentDidMount(){
+            window.sessionStorage.setItem('sele', 0);
+        }
         render(){
             return (
                 <div className='home'>
                     <Header></Header>
                     <Switch>
-                        
                         <Route path='/footer/home/index/' component={Index}/>
                         <Route path='/footer/home/newArrive/' component={NewArrive}/>
                         <Route path='/footer/home/channel/:pageId' component={Channel}/>
                         <Redirect from='/footer/home/' to='/footer/home/index/' />
                     </Switch>
-                    
                 </div>
             )
         }

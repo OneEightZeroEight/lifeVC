@@ -31,13 +31,13 @@ class Xiao extends React.Component {
     }
     render() {
         return (
-            <footer>
+            <footer className='commonFooter'>
                 {
                     this.state.footerList.map((item, index) => {
                         return <Link to={item.path}
                             key={index}
                             onClick={this.props.changeSele.bind(this, index)}
-                            className={this.state.sele === index ? 'sele box' : 'box'}>
+                            className={this.state.sele === index ? 'selectedOne box' : 'box'}>
                             <i className={item.pic} aria-hidden="true"></i>
                             <span>{item.title}</span>
                         </Link>

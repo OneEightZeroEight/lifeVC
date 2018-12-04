@@ -27,7 +27,7 @@ class Header extends React.Component {
             sel: nextProps.sel
         });
         window.sessionStorage.setItem('sel', nextProps.sel);
-        // console.log(nextProps.sel)
+
     }
     componentWillReceiveProps(nextProps){
         this.bianhua(nextProps);
@@ -75,7 +75,8 @@ class Header extends React.Component {
         )
     }
 }
-export default connect((state)=>{    
+
+export default connect((state)=>{
     return state
 },(dispatch=>{
     return {
