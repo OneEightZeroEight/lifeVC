@@ -9,7 +9,9 @@ class Detail extends React.Component{
         this.state = {
             details:[],
             name:"",
-            price:""
+            price:"",
+            nums:1,
+            center:[]
         }
     }
     // componentDidUpdate
@@ -23,11 +25,18 @@ class Detail extends React.Component{
         clickable: true,
       },
     });
+    var swiper = new Swiper('#center', {
+      slidesPerView: 3,
+      spaceBetween: 30,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
     }
     componentDidMount(){
     	//获取传过来的id
     	let ItemInfoId = this.props.match.params.ItemInfoId
-        let ItemInfoIdS = this.props.match.params.ItemInfoID
     	console.log(ItemInfoId)
          React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/items/itemview?Iteminfoid='+ItemInfoId+'&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
         .then((res)=>{
@@ -35,15 +44,34 @@ class Detail extends React.Component{
             this.setState({
                details:res.data.InnerData.Headers,
                name:res.data.InnerData.Name,
-               price:res.data.InnerData.SalePrice
+               price:res.data.InnerData.SalePrice,
+               center:res.data.InnerData.BuyWith
             });
             console.log(res.data.InnerData.Name)
         })
         .catch((err)=>{
             console.log(err);
         })
-        
+
     }
+    adds(){
+           this.setState({
+                 nums:this.state.nums+1
+            })    
+         }
+     jian(){
+            if(this.state.nums==0){
+                    this.setState({
+                        nums:0
+                    })
+                }else{
+               this.setState({
+                nums:this.state.nums-1
+            })
+           }
+              
+            
+        }
         
     render(){
         return (
@@ -76,6 +104,36 @@ class Detail extends React.Component{
              <Link to="/footer/user/"><span  className="m-txt red">登录查看你的积分和优惠券</span>
              </Link>
          </div>
+         {/*修改数量部分*/}
+          <div className="numbers">
+          <span className="shul">数量 :</span>
+          <span className="wrap">
+          <button className="jian"onClick={this.jian.bind(this)}>-</button>
+          <span className="qtys">{this.state.nums}</span>
+          <button className="add" onClick={this.adds.bind(this)}>+</button>
+          </span>
+         </div>
+         <h6>新会员首单,满{this.state.price}元免运费</h6>
+        <div className="mattop">
+             <h3 className="tit">&nbsp;&nbsp;&nbsp;&nbsp;还有更多可选</h3>
+            <div className="swiper-container" id="center">
+             <div className="swiper-wrapper">
+            {
+                 this.state.center.map((item,index)=>{
+                    return <div className="swiper-slide"key={index}>
+                    <img src={'http://i.lifevc.com'+item.ImageUrl}/>
+                    {item.Name}
+                    <p>￥{item.SalePrice}</p>
+                    </div>
+                 })
+            }
+
+            </div>
+        </div>
+         </div>
+            <div className="ts">
+            <img src="http://i.lifevccdn.com/upload/combinationchart/bbfd6535985949fe8bbd9b9eaad5909e.jpg"/>
+           </div>
         </div>
         )
     }
