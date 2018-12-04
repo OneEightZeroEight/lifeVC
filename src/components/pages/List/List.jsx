@@ -26,7 +26,7 @@ class List extends React.Component{
 	            list: res.data.InnerData.GoodsItems,
 	            List:res.data.InnerData
 	        });
-            console.log(this.state.list,itemindexid,filter)
+            // console.log(this.state.list,itemindexid,filter)
             
         })
         .catch((err)=>{
@@ -46,7 +46,7 @@ class List extends React.Component{
       }
       React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/Categories/Category?itemindexid='+itemindexid+'&filter='+filter+'&sort='+xin+'&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
         .then((res)=>{
-            console.log(res)
+            // console.log(res)
           this.setState({
               list: res.data.InnerData.GoodsItems,
               List:res.data.InnerData,
