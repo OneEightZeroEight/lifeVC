@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import '../../../../styles/newArrive.scss';
-// import InfiniteScroll from 'react-infinite-scroller';
-// import { Spin,Icon } from 'antd';
 class NewArrive extends React.Component {
     constructor(props) {
         super(props);
@@ -25,7 +23,6 @@ class NewArrive extends React.Component {
                 this.setState({
                     weekList:res.data.InnerData
                 });
-                // console.log(this.state.weekList);
             }
         })
         .catch((err)=>{
