@@ -1,5 +1,6 @@
 import React from 'react';
 import Swiper from 'swiper';
+import {Link} from 'react-router-dom';
 import '../../../../../node_modules/swiper/dist/css/swiper.min.css';
 import '../../../../styles/top.scss';
 class Header extends React.Component {
@@ -8,15 +9,14 @@ class Header extends React.Component {
         this.props = props;
         this.state = {
             navList: [
-                { title: '首页' },
-                { title: '新品' },
-                { title: '家务' },
-                { title: '下厨' },
-                { title: '生活' },
-                { title: '家居服' },
-                { title: '床品' },
-                { title: '沐浴洗漱' },
-                { title: '了解lifeVC' },
+                { title: '首页' ,path:'/footer/home/index/'},
+                { title: '新品' ,path:'/footer/home/newArrive/'},
+                { title: '家务' ,path:'/footer/home/channel/2860'},
+                { title: '下厨' ,path:'/footer/home/channel/2859'},
+                { title: '生活' ,path:'/footer/home/channel/2861'},
+                { title: '家居服' ,path:'/footer/home/channel/2865'},
+                { title: '床品' ,path:'/footer/home/channel/2862'},
+                { title: '沐浴洗漱' ,path:'/footer/home/channel/3526'}
             ],
             sel: Number(sessionStorage.getItem('sel')) || 0
         }
@@ -55,11 +55,12 @@ class Header extends React.Component {
                         <div className="swiper-wrapper">
                             {
                                 this.state.navList.map((item, index) => {
-                                    return <div key={index} onClick={this.changeSel.bind(this, index)} className={this.state.sel === index ? "sel swiper-slide" : "swiper-slide"}>
+                                    return <Link to={item.path} key={index} onClick={this.changeSel.bind(this, index)} className={this.state.sel === index ? "sel swiper-slide" : "swiper-slide"}>
                                         {item.title}
-                                    </div>
+                                    </Link>
                                 })
                             }
+                            <div className='swiper-slide'>了解lifeVC</div>
                         </div>
                     </div>
                 </div>

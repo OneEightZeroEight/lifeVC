@@ -1,0 +1,81 @@
+@import './reset.scss';
+.channel{
+    background-color: #eee;
+    padding-top: rem(100px);
+    margin-bottom: rem(60px);
+    .chanTop{
+        width: 100%;
+        background-color: #fff;
+        display: flex;
+        flex-wrap: wrap;
+        .chanTopBox{
+            width: 25%;
+            height: rem(99px);
+            font-size: rem(12px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding:rem(10px) 0;
+            img{
+                width: rem(75px);
+                height: rem(75px);
+            }
+        }
+    }
+    .chanCenter{
+        width: 100%;
+        margin-top: rem(15px);
+        img{
+            width: 100%;
+        }
+    }
+    .chanBottom{
+        .reco{
+            text-align: center;
+            font-size: rem(18px);
+            line-height: rem(46px);
+        }
+        color:#333;
+        .newTitle{
+            font-size: rem(18px);
+            text-align: center;
+            color:#000;
+            line-height: rem(42px);
+        }
+        .newArrMonth{
+            width: rem(360px);
+            height: rem(237px);
+            font-size: rem(14px);
+            box-sizing: border-box;
+            padding-bottom: rem(15px);
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin:0 auto rem(20px);
+            img{
+                width: 100%;
+                height: rem(163px);
+            }
+            p{
+                margin-left: rem(10px);
+            }
+            .newPrice{
+                .newIcon{
+                    background-color:#c00;
+                    color:#fff;
+                    display: inline-block;
+                    margin-left: rem(8px);
+                    padding:0 rem(7px);
+                    text-align: center;
+                    line-height: rem(22px);
+                }
+                .newComment{
+                    float:right;
+                    margin-right: rem(10px);
+                }
+            }
+        }
+    }
+}
