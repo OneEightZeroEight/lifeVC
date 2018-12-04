@@ -22,7 +22,7 @@ class Product extends React.Component{
                     });
                 // }
             // }.bind(this), 100);
-            console.log(this.state.list)
+            // console.log(this.state.list)
             
         })
         .catch((err)=>{
