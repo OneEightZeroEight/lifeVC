@@ -1,8 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../../../../styles/newArrive.scss';
 import '../../../../../node_modules/antd/dist/antd.min.css';
 // import InfiniteScroll from 'react-infinite-scroller';
-import { Spin,Icon } from 'antd';
+// import { Spin,Icon } from 'antd';
 class NewArrive extends React.Component {
     constructor(props) {
         super(props);
@@ -16,6 +17,7 @@ class NewArrive extends React.Component {
     }
     componentDidMount(){
         this.getList();
+        this.props.changeSel();
     }
     getList(){
         React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/contents/newarrival?code=weekly&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
@@ -106,4 +108,15 @@ class NewArrive extends React.Component {
         )
     }
 }
-export default NewArrive;
+export default connect((state)=>{
+    return state
+},(dispatch=>{
+    return {
+        changeSel() {
+            dispatch({
+                type:"toggleNav",
+                sel:1
+            })
+        }
+    }
+}))(NewArrive);

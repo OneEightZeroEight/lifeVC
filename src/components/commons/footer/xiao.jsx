@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../../../static/css/font-awesome.css';
 import '../../../styles/footer.scss';
 
@@ -19,21 +20,24 @@ class Xiao extends React.Component {
             sele: Number(sessionStorage.getItem('sele')) || 0
         }
     }
-    changeSele(index) {
+    bianhua(nextProps){
         this.setState({
-            sele: index
+            sele: nextProps.sele
         });
-        window.sessionStorage.setItem('sele', index);
+        window.sessionStorage.setItem('sele', nextProps.sele);
+    }
+    componentWillReceiveProps(nextProps){
+        this.bianhua(nextProps);
     }
     render() {
         return (
-            <footer>
+            <footer className='commonFooter'>
                 {
                     this.state.footerList.map((item, index) => {
                         return <Link to={item.path}
                             key={index}
-                            onClick={this.changeSele.bind(this, index)}
-                            className={this.state.sele === index ? 'sele box' : 'box'}>
+                            onClick={this.props.changeSele.bind(this, index)}
+                            className={this.state.sele === index ? 'selectedOne box' : 'box'}>
                             <i className={item.pic} aria-hidden="true"></i>
                             <span>{item.title}</span>
                         </Link>
@@ -46,4 +50,20 @@ class Xiao extends React.Component {
     }
 
 }
-export default Xiao;
+export default connect((state)=>{
+    return state
+},(dispatch=>{
+    return {
+        changeSele(index) {
+            this.setState({
+                sele: index
+            });
+            window.sessionStorage.setItem('sele', index);
+
+            dispatch({
+                type:"toggleGallery",
+                sele:index
+            })
+        }
+    }
+}))(Xiao);

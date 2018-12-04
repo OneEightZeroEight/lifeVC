@@ -1,5 +1,6 @@
 import React from 'react';
 import Swiper from 'swiper';
+import { connect } from 'react-redux';
 import '../../../../styles/index.scss';
 class Index extends React.Component {
     constructor(props) {
@@ -13,6 +14,7 @@ class Index extends React.Component {
     }
     componentDidMount() {
         this.getMainData();
+        this.props.changeSel();
     }
     componentDidUpdate() {
         var bannerSwiper = new Swiper('#banner', {
@@ -89,4 +91,15 @@ class Index extends React.Component {
         )
     }
 }
-export default Index;
+export default connect((state)=>{
+    return state
+},(dispatch=>{
+    return {
+        changeSel() {
+            dispatch({
+                type:"toggleNav",
+                sel:0
+            })
+        }
+    }
+}))(Index);

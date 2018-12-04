@@ -1,5 +1,5 @@
 @import './reset.scss';
-footer{
+.commonFooter{
     width: rem(375px);
     height: rem(55px);
     background: #fff;
@@ -21,7 +21,7 @@ footer{
             font-size:rem(24px) !important;
         }
     }
-    .sele{
+    .selectedOne{
         color:#009c42;
     }
 }
