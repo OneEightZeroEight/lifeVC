@@ -20,17 +20,17 @@ class Channel extends React.Component {
     componentWillReceiveProps(nextProps){
         this.getchanList(nextProps);
         let index = 3;
-        if(nextProps.match.params.pageId===2860){
+        if(nextProps.match.params.pageId==2860){
             index=2;
-        }else if(nextProps.match.params.pageId===2859){
+        }else if(nextProps.match.params.pageId==2859){
             index=3;
-        }else if(nextProps.match.params.pageId===2861){
+        }else if(nextProps.match.params.pageId==2861){
             index=4;
-        }else if(nextProps.match.params.pageId===2865){
+        }else if(nextProps.match.params.pageId==2865){
             index=5;
-        }else if(nextProps.match.params.pageId===2862){
+        }else if(nextProps.match.params.pageId==2862){
             index=6;
-        }else if(nextProps.match.params.pageId===3526){
+        }else if(nextProps.match.params.pageId==3526){
             index=7;
         }
         this.props.changeSel(index);
