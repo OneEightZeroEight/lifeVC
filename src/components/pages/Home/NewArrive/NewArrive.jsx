@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import '../../../../styles/newArrive.scss';
-import '../../../../../node_modules/antd/dist/antd.min.css';
 // import InfiniteScroll from 'react-infinite-scroller';
 // import { Spin,Icon } from 'antd';
 class NewArrive extends React.Component {
