@@ -17,7 +17,6 @@ class Cart extends React.Component{
         return (
             <div className='cart'>
             <div className="Top">
-
             <Link to="/footer/stroll/"><i className="fa fa-chevron-left" aria-hidden="true"></i></Link>
             <p className="header-title">购物车</p>
             </div>

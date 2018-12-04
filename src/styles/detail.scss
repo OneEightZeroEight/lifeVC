@@ -1,0 +1,53 @@
+@import './reset.scss';
+#tops{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+    height:rem(50px);
+    background-color:#89be48;
+    // 固定定位:position:fixed;top:XXX;必需写。才知道固定定位在哪里
+    position:fixed;
+    top:0;
+    color:#fff;
+    font-size:rem(18px);
+}
+.fa.fa-chevron-left{
+    color:#fff;
+}
+#detail{
+    margin-top: rem(45px);
+    padding-bottom: rem(6px);
+    background-color: #eee;
+     height: rem(250px);
+    width: 100%;
+    img{
+        width: 100%;
+        height: rem(250px);
+    }
+    .swiper-pagination-bullet-active{
+        background-color: #80b532;
+    }
+}
+h3,h4{text-align:center;font-size:rem(16px);line-height:rem(22px);margin-top:rem(3px);}
+.promo-item{
+    width:rem(368px);
+    height:rem(40px);
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+    text-align:center;
+    font-size:rem(14px);
+.tag-promo {
+    color:#fff;
+    display:block;
+    float:left;
+    width:rem(54px);
+    height:rem(32px);
+    background-color:#cd060f;
+    line-height:rem(32px);
+    margin-top:rem(4px);
+    margin-left:rem(16px);
+}
+.m-txt{color:#cd060f;line-height:rem(40px);}
+
+}
