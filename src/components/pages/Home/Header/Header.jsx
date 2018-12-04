@@ -1,6 +1,7 @@
 import React from 'react';
 import Swiper from 'swiper';
 import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
 import '../../../../../node_modules/swiper/dist/css/swiper.min.css';
 import '../../../../styles/top.scss';
 class Header extends React.Component {
@@ -35,6 +36,7 @@ class Header extends React.Component {
         if (this.state.sel !== 0) {
             headerSwiper.slideTo(this.state.sel - 1);
         }
+         this.props.changeSele();
     }
     changeSel(index) {
         this.setState({
@@ -68,4 +70,15 @@ class Header extends React.Component {
         )
     }
 }
-export default Header;
+export default connect((state)=>{
+    return state
+},(dispatch=>{
+    return {
+        changeSele() {
+            dispatch({
+                type:"toggleGallery",
+                sele:0
+            })
+        }
+    }
+}))(Header);

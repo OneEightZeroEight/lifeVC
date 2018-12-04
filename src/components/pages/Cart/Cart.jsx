@@ -1,8 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import "../../../styles/car.scss"
 import '../../../static/css/font-awesome.css';
 import {Link} from 'react-router-dom';
 class Cart extends React.Component{
+    constructor(props) {
+        super(props);
+        this.props = props;
+        this.state = {
+        }
+    }
+    componentDidMount(){
+        this.props.changeSele();
+    }
     render(){
         return (
             <div className='cart'>
@@ -24,4 +34,15 @@ class Cart extends React.Component{
         )
     }
 }
-export default Cart;
+export default connect((state)=>{
+    return state
+},(dispatch=>{
+    return {
+        changeSele() {
+            dispatch({
+                type:"toggleGallery",
+                sele:3
+            })
+        }
+    }
+}))(Cart);
