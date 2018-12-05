@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../../styles/list.scss';
 import { Link } from 'react-router-dom';
-class List extends React.Component{
+class Fuzzy extends React.Component{
     constructor(props) {
         super(props);
         this.props = props;
@@ -26,9 +26,10 @@ class List extends React.Component{
       });
         React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/contents/search?keywords='+keywords+'&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
         .then((res)=>{
+          let Bian = res.data.InnerData;
             this.setState({
-                list:res.data.InnerData,
-                Llist:res.data.InnerData
+                list:Bian,
+                Llist:Bian
             });
 
             
@@ -39,6 +40,7 @@ class List extends React.Component{
         
     }
     chongxin(xin){
+      console.log(xin)
       function compare(property){
           return function(a,b){
               var value1 = a[property];
@@ -48,18 +50,32 @@ class List extends React.Component{
       }
       let zhi;
       if(xin==1){
-        zhi=this.state.Llist
+        var Obj = {};
+        Obj.name = this.state.Llist;
+        var newObj = Object.assign({},JSON.parse(JSON.stringify(Obj)));
+        zhi=newObj.name;
+        //zhi=this.state.Llist错误。由于浅拷贝的原因，点击其它值时this.state.Llist
+        // 跟着改变了,解决方法：赋值格式都改为深拷贝，但由于数据是数组格式，即要转为对象进行
+        // 深拷贝，方法如上
       }else if(xin==2){
-        zhi=this.state.list;//this.state.Llist跟着改变了,不知道什么原因
+        var Obj = {};
+        Obj.name = this.state.list;
+        var newObj = Object.assign({},JSON.parse(JSON.stringify(Obj)));
+        zhi=newObj.name;
         zhi.sort(compare('ItemInfoId'))
       }else if(xin==3){
-        zhi=this.state.list
+        var Obj = {};
+        Obj.name = this.state.list;
+        var newObj = Object.assign({},JSON.parse(JSON.stringify(Obj)));
+        zhi=newObj.name;
         zhi.sort(compare('CommentCount'))
       }else if(xin==4){
-        zhi=this.state.list
+        var Obj = {};
+        Obj.name = this.state.list;
+        var newObj = Object.assign({},JSON.parse(JSON.stringify(Obj)));
+        zhi=newObj.name;
         zhi.sort(compare('SalePrice'))
       }
-      console.log(this.state.Llist)
       this.setState({
           sort: xin,
           list:zhi
@@ -122,4 +138,4 @@ class List extends React.Component{
         )
     }
 }
-export default List;
+export default Fuzzy;
