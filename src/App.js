@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Footer from './components/commons/footer/Footer.jsx';
 import List from './components/pages/List/List.jsx';
+import Fuzzy from './components/pages/List/Fuzzy.jsx';
 import Detail from './components/pages/Detail/detail.jsx';
 import './styles/reset.scss';
 import { Route,Redirect,Switch} from "react-router-dom";
@@ -11,6 +12,7 @@ class App extends Component {
           <Switch>
             <Route path="/footer/" component={Footer} />
             <Route path="/list/:ItemIndexId/:filter" component={List} />
+            <Route path="/list/:keywords" component={Fuzzy} />
             <Route path="/detail/:ItemInfoId" component={Detail} />
             <Redirect from='/' to='/footer/home/index/'/>
           </Switch>
