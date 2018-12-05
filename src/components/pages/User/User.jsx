@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
 import '../../../styles/user.scss';
 class User extends React.Component{
 	constructor(props) {
@@ -39,8 +40,8 @@ class User extends React.Component{
                 <div className="userStatus">
                     <p className='noLogin'>您还未登录</p>
                     <div className="userBox">
-                        <span className='userLogin'>登录</span>
-                        <span className='userReg'>注册</span>
+                        <Link className='userLogin' to='/login/'>登录</Link>
+                        <Link className='userReg' to='/login/' onClick={this.props.changeToReg}>注册</Link>
                     </div>
                 </div>
                 <div className="userOperate">
@@ -86,6 +87,12 @@ export default connect((state)=>{
             dispatch({
                 type:"toggleGallery",
                 sele:4
+            })
+        },
+        changeToReg() {
+            dispatch({
+                type: "changeToReg",
+                status: 'register'
             })
         }
     }
