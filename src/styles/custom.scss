@@ -1,0 +1,23 @@
+@import './reset.scss';
+#custom{
+     width:100%;
+    height:rem(50px);
+    background-color:#89be48;
+    .fa.fa-chevron-left{
+    color:#fff;
+    margin-left:rem(15px);
+}
+    .custom{
+     margin: 0 auto;
+     line-height:rem(50px);
+    font-size:rem(22px);
+    text-align: center;
+    color: #fff;
+    width: 80%;
+    height:rem(50px);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+}
