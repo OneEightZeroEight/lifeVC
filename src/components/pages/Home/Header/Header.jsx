@@ -27,6 +27,7 @@ class Header extends React.Component {
             sel: nextProps.sel
         });
         window.sessionStorage.setItem('sel', nextProps.sel);
+
     }
     componentWillReceiveProps(nextProps){
         this.bianhua(nextProps);
@@ -53,7 +54,7 @@ class Header extends React.Component {
             <div className="header">
                 <div className="top">
                     <div className="headInfo">
-                        <Link to='/footer/all/' className="toSearch" onClick={this.toAll}></Link>
+                        <Link to={'/footer/all'} ><div className="toSearch"></div></Link>
                     </div>
                 </div>
                 <div className="nav">
@@ -74,6 +75,7 @@ class Header extends React.Component {
         )
     }
 }
+
 export default connect((state)=>{
     return state
 },(dispatch=>{

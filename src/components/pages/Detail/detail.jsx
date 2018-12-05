@@ -11,7 +11,12 @@ class Detail extends React.Component{
             name:"",
             price:"",
             nums:1,
-            center:[]
+            center:[{ImageUrl: "/upload/AppItemHeaders/503bd2cd7084496194bd9bc410c79d65.jpg",Name: "加拿大原生木浆抽纸(3包装)",SalePrice:29},
+            {ImageUrl: "/upload/AppItemHeaders/503bd2cd7084496194bd9bc410c79d65.jpg",Name: "加拿大原生木浆抽纸(3包装)",SalePrice:29},
+            {ImageUrl: "/upload/AppItemHeaders/503bd2cd7084496194bd9bc410c79d65.jpg",Name: "加拿大原生木浆抽纸(3包装)",SalePrice:29},
+            {ImageUrl: "/upload/AppItemHeaders/503bd2cd7084496194bd9bc410c79d65.jpg",Name: "加拿大原生木浆抽纸(3包装)",SalePrice:29},
+            {ImageUrl: "/upload/AppItemHeaders/503bd2cd7084496194bd9bc410c79d65.jpg",Name: "加拿大原生木浆抽纸(3包装)",SalePrice:29},
+            ]
         }
     }
     // componentDidUpdate
@@ -40,14 +45,22 @@ class Detail extends React.Component{
     	console.log(ItemInfoId)
          React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/items/itemview?Iteminfoid='+ItemInfoId+'&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
         .then((res)=>{
-            console.log(res);
-            this.setState({
-               details:res.data.InnerData.Headers,
-               name:res.data.InnerData.Name,
-               price:res.data.InnerData.SalePrice,
-               center:res.data.InnerData.BuyWith
-            });
-            console.log(res.data.InnerData.Name)
+            if(res.data.InnerData.BuyWith==null){
+                this.setState({
+                   details:res.data.InnerData.Headers,
+                   name:res.data.InnerData.Name,
+                   price:res.data.InnerData.SalePrice,
+                });
+            }else{
+                this.setState({
+                   details:res.data.InnerData.Headers,
+                   name:res.data.InnerData.Name,
+                   price:res.data.InnerData.SalePrice,
+                   center:res.data.InnerData.BuyWith
+                });
+            }
+            console.log(res)
+            
         })
         .catch((err)=>{
             console.log(err);
@@ -88,7 +101,7 @@ class Detail extends React.Component{
             <div className="swiper-wrapper">
             {
                  this.state.details.map((item,index)=>{
-                    return <div className="swiper-slide"key={index}>
+                    return <div className="swiper-slide" key={index}>
 
                     <img src={'http://i.lifevc.com'+item.ImageUrl} alt=''/>
                      </div>
@@ -121,7 +134,7 @@ class Detail extends React.Component{
              <div className="swiper-wrapper">
             {
                  this.state.center.map((item,index)=>{
-                    return <div className="swiper-slide"key={index}>
+                    return <div className="swiper-slide" key={index}>
                     <img src={'http://i.lifevc.com'+item.ImageUrl}/>
                     {item.Name}
                     <p>￥{item.SalePrice}</p>

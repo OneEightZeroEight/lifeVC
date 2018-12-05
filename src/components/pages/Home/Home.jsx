@@ -17,7 +17,7 @@
                         <Route path='/footer/home/index/' component={Index}/>
                         <Route path='/footer/home/newArrive/' component={NewArrive}/>
                         <Route path='/footer/home/channel/:pageId' component={Channel}/>
-                        <Redirect from='/footer/home/' to='/footer/home/index'/>
+                        <Redirect from='/footer/home/' to='/footer/home/index/' />
                     </Switch>
                 </div>
             )

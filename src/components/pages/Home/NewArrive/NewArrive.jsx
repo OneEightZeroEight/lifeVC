@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import '../../../../styles/newArrive.scss';
-import '../../../../../node_modules/antd/dist/antd.min.css';
 // import InfiniteScroll from 'react-infinite-scroller';
 // import { Spin,Icon } from 'antd';
 class NewArrive extends React.Component {
@@ -26,8 +26,9 @@ class NewArrive extends React.Component {
                 this.setState({
                     weekList:res.data.InnerData
                 });
-                // console.log(this.state.weekList);
+
             }
+            // console.log(this.state.weekList);
         })
         .catch((err)=>{
             console.log(err);
@@ -41,6 +42,7 @@ class NewArrive extends React.Component {
                 window.sessionStorage.setItem('monthList',this.state.allList);
                 this.getShowList();
             }
+            
         })
         .catch((err)=>{
             console.log(err);
@@ -73,6 +75,7 @@ class NewArrive extends React.Component {
                 {
                      this.state.weekList.map((item,index)=>{
                         return <div className='newArrMonth' key={index}>
+                        <Link to={'/detail/'+item.ItemInfoId} >
                             <img src={this.state.rootPath + item.ImageUrl} alt=""/>
                             <p className="newName">{item.Name}</p>
                             <p className="newPrice">
@@ -80,6 +83,7 @@ class NewArrive extends React.Component {
                                 <span className="newIcon">{item.PriceTag}</span>
                                 <span className="newComment">评论：  {item.CommentCount}</span>
                             </p>
+                        </Link>
                         </div>
                     })
                 }
@@ -93,13 +97,15 @@ class NewArrive extends React.Component {
                 {
                     this.state.showList.map((item,index)=>{
                         return <div className='newArrMonth' key={index}>
-                            <img src={this.state.rootPath + item.ImageUrl} alt=""/>
-                            <p className="newName">{item.Name}</p>
-                            <p className="newPrice">
-                                <span className="left">￥{item.SalePrice}</span>
-                                <span className="newIcon">新</span>
-                                <span className="newComment">评论：  {item.CommentCount}</span>
-                            </p>
+                            <Link to={'/detail/'+item.ItemInfoId} >
+                                <img src={this.state.rootPath + item.ImageUrl} alt=""/>
+                                <p className="newName">{item.Name}</p>
+                                <p className="newPrice">
+                                    <span className="left">￥{item.SalePrice}</span>
+                                    <span className="newIcon">新</span>
+                                    <span className="newComment">评论：  {item.CommentCount}</span>
+                                </p>
+                            </Link>
                         </div>
                     })
                 }

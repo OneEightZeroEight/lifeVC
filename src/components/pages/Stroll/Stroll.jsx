@@ -29,7 +29,6 @@ constructor(props){
                         lists:Res,
                         pageNo:res.data.InnerData.CurPage
                     });
-            // console.log(Res)
           })
           .catch((err)=>{
             console.log(err);
@@ -45,13 +44,14 @@ constructor(props){
                 {
                   this.state.lists.map((item,index)=>{
                     // 注意:拿到的图片需要进行字符串拼接才可以显示
-             return <Link to={'/detail/'+item.ItemInfoId} key={index}>
-                    <li><img src={"http://i.lifevccdn.com"+item.ImageUrl} className="tp" alt=""/><p>{item.Name}</p>
-                    <span className="price">￥<em>{item.SalePrice}</em></span><span className="qty">月销<em>{item.SaleQty}</em>
-                    </span>
-
-                    </li>
-                    </Link>
+             return (<li key={index}>
+                      <Link to={'/detail/'+item.ItemInfoID}>
+                        <img src={"http://i.lifevccdn.com"+item.ImageUrl} className="tp" alt=""/><p>{item.Name}</p>
+                        <span className="price">￥<em>{item.SalePrice}</em></span><span className="qty">月销<em>{item.SaleQty}</em>
+                        </span>
+                        </Link>
+                    </li>)
+                    
                   })  
                 }
             </ul>

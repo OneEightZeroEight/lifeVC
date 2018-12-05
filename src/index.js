@@ -7,6 +7,8 @@ import { createStore } from 'redux'
 // 把上面配置好的store和react进行关联
 import { Provider } from 'react-redux';
 
+import { Toast } from 'antd-mobile';
+import '../node_modules/antd-mobile/dist/antd-mobile.css'
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -34,6 +36,20 @@ const store = createStore((state = {
             return state
     }
 })
+axios.interceptors.request.use((config) => {
+  Toast.loading('', 3,true);
+    return config;
+}, (err) => {
+    return Promise.reject(err)
+
+})
+axios.interceptors.response.use((response) => {
+    Toast.hide(); //关闭loading
+    return response;
+}, (err) => {
+    return Promise.reject(err);
+
+})
 
 ReactDOM.render(
     <Provider store={store}>
@@ -42,7 +58,6 @@ ReactDOM.render(
         </Router>
     </Provider>
 , document.getElementById('root'));
-
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
