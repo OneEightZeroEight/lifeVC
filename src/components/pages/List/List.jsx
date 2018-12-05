@@ -99,7 +99,7 @@ class List extends React.Component{
                       <Link key={index} className="danDu" to={'/detail/'+item.ItemInfoId} >
            						
            							<div className="Zp"><img src={"http://i.lifevccdn.com"+item.ImageUrl} alt={item.Name}/></div>
-	           						<div className="PPP"><p>{item.Appeal}</p></div>
+	           						<div className="PPP"><p>{item.Name}</p></div>
 	           						<div className="PriCt">
 	           							<div className="PriCt-Left">￥<span>{item.SalePrice}</span></div>
 	           							<div className="PriCt-Right">评论：<span>{item.CommentCount}</span></div>

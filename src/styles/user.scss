@@ -39,7 +39,9 @@
             background: hsla(0,0%,100%,.4);
             border: 1px solid #009c42;
             border-radius: rem(20px);
-            color:#009c42;
+            a{
+                color:#009c42;
+            }
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -62,7 +64,7 @@
             height: rem(61px);
             overflow: hidden;
             border-bottom: 1px solid #eee;
-            li{
+            a{
                 width: 33%;
                 height: rem(30px);
                 margin: rem(18px) 0 0;

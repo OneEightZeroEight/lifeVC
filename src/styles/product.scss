@@ -116,3 +116,26 @@
 		}
 	}
 }
+.FuDong{
+	position: fixed;
+	left:0;
+	top:rem(96px);
+	font-size: rem(14px);
+	ul li{
+		width:rem(375px);
+		height:rem(41px);
+		a{
+			display: flex;
+			justify-content: space-between;
+		}
+		line-height:rem(41px);
+		
+		border:1px solid #ccc;
+		background: #fff;
+		
+		span{
+			padding-right: rem(10px);
+			padding-left: rem(10px);
+		}
+	}
+}

@@ -18,8 +18,11 @@ React.axios = axios;
 const store = createStore((state = {
     title:"lifeVC",
    	sele:0,
-   	sel:0
-
+    sel:0,
+    ifLearnShow:false,
+    ifLogin:false,
+    status:'login',
+    logType:'password'
 }, action) => {
     switch (action.type) {
         case 'toggleNav':
@@ -31,6 +34,31 @@ const store = createStore((state = {
             return {
                 ...state,
                 sele:action.sele
+            }
+        case 'changeLearn':
+            return {
+                ...state,
+                ifLearnShow:action.ifLearnShow
+            }
+        case 'changeToPassword':
+            return {
+                ...state,
+                logType:action.logType
+            }
+        case 'changeToMobile':
+            return {
+                ...state,
+                logType:action.logType
+            }
+        case 'changeToLog':
+            return {
+                ...state,
+                status:action.status
+            }
+        case 'changeToReg':
+            return {
+                ...state,
+                status:action.status
             }
         default:
             return state
