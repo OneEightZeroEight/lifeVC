@@ -11,9 +11,15 @@ class Cart extends React.Component{
         this.state = {
             sszt:true,
             Bbottom:[],
-            shangpin:[]
+            shangpin:[{ImageUrl:"/upload/AppItemInfoImage/293dc63f3df84fc082e038364c2db21c.jpg",
+                        ItemInfoId:30394,
+                        Name:"不锈钢双层多用锅",
+                        SalePrice:129,
+                        TotalQuantity:2
+                        }]
         }
     }
+
     componentDidMount(){
         this.props.changeSele();
 
