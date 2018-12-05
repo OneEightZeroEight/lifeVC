@@ -9,12 +9,15 @@
     // 固定定位:position:fixed;top:XXX;必需写。才知道固定定位在哪里
     position:fixed;
     top:0;
+    z-index:999;
     color:#fff;
     font-size:rem(18px);
 }
 .fa.fa-chevron-left{
     color:#fff;
+    margin-left:rem(15px);
 }
+.fa.fa-share-square-o{margin-right:rem(45px);}
 #detail{
     margin-top: rem(45px);
     padding-bottom: rem(6px);
@@ -51,3 +54,84 @@ h3,h4{text-align:center;font-size:rem(16px);line-height:rem(22px);margin-top:rem
 .m-txt{color:#cd060f;line-height:rem(40px);}
 
 }
+.numbers{
+    width:rem(375px);
+    height:rem(42px);
+    .shul{
+    display:block;
+    float:left;
+    width:rem(44px);
+    height:rem(27px);
+    font-size:rem(14px);
+    margin-left:rem(16px);
+    line-height:rem(27px);
+    color:rgb(107,107,107);
+    }
+    .wrap{
+        float:left;
+        display:block;
+        width:rem(100px);
+        height:rem(27px);
+       .jian{
+          float:left;
+        width:rem(27px);
+        height:rem(27px);
+        background-color:#EEE;
+       }
+       .add{
+          float:left;
+         width:rem(27px);
+        height:rem(27px);
+        background-color:#EEE;
+       }
+       .qtys{ 
+        float:left;
+        width:rem(37px);
+        height:rem(26px);
+        color:black;
+        font-size:rem(12px);
+        text-align:center;
+        line-height:rem(27px);
+        border:1px solid #ccc;
+    }
+
+    }
+}
+h6{color:rgb(204, 0, 0);font-size:rem(14px);padding-left:rem(50px);padding-top:rem(16px);}
+.mattop{
+    margin:rem(4px) rem(3px);
+    width:rem(375px);
+    height:rem(213.5px);
+    position:relative;
+    .tit{
+        width:rem(375px);
+        height:rem(30px);
+        line-height:rem(30px);
+        border-left:2px solid #89be48;
+        margin-left:rem(16px);
+        text-align:left;
+        font-size:rem(14px);
+    }
+}
+#center{
+    // margin-top: rem(45px);
+    // padding-bottom: rem(6px);
+    background-color: #eee;
+    height: rem(180px);
+    width: rem(375px);
+    p{text-align:center;}
+    img{
+        width: rem(118.5px);
+        height: rem(118.5px);
+        margin-right:rem(5px);
+    }
+    .swiper-slide{
+        width:rem(375px);
+        height:rem(163px);
+        font-size:rem(12px);
+    }
+    .swiper-pagination-bullet-active{
+        background-color: #80b532;
+    }
+}
+.ts{img{width:rem(375px);height:rem(191px);}}
