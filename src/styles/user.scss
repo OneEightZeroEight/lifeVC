@@ -163,9 +163,20 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
             img{
                 width: rem(55px);
                 height: rem(55px);
+            }
+            .imgupload{
+                position: absolute;
+                top: rem(25px);
+                left: rem(80px);
+                position: absolute;
+                width: rem(55px);
+                height: rem(55px);
+                border-radius: 50%;
+                opacity: 0;
             }
             .userMsg{
                 box-sizing: border-box;

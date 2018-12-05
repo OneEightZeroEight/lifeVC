@@ -5,8 +5,6 @@ import List from './components/pages/List/List.jsx';
 import Fuzzy from './components/pages/List/Fuzzy.jsx';
 import Detail from './components/pages/Detail/detail.jsx';
 import Setting from './components/commons/Setting';
-
-
 import LearnMore from './components/pages/Home/LearnMore';
 import './styles/reset.scss';
 // import '../node_modules/animate.css/animate.css';
