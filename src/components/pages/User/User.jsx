@@ -40,20 +40,32 @@ class User extends React.Component{
                 <div className="userStatus">
                     <p className='noLogin'>您还未登录</p>
                     <div className="userBox">
-                        <Link className='userLogin' to='/login/'>登录</Link>
+                        <Link className='userLogin' to='/login/' onClick={this.props.changeToLog}>登录</Link>
                         <Link className='userReg' to='/login/' onClick={this.props.changeToReg}>注册</Link>
                     </div>
                 </div>
                 <div className="userOperate">
                     <ul>
-                        <li><span className='optBg optBg1'></span><span className='optWord'>待支付</span></li>
-                        <li><span className='optBg optBg2'></span><span className='optWord'>待发货</span></li>
-                        <li><span className='optBg optBg3'></span><span className='optWord'>待收货</span></li>
+                        <Link to={
+                            this.props.ifLogin?null:'/login/'
+                        }><span className='optBg optBg1'></span><span className='optWord'>待支付</span></Link>
+                        <Link to={
+                            this.props.ifLogin?null:'/login/'
+                        }><span className='optBg optBg2'></span><span className='optWord'>待发货</span></Link>
+                        <Link to={
+                            this.props.ifLogin?null:'/login/'
+                        }><span className='optBg optBg3'></span><span className='optWord'>待收货</span></Link>
                     </ul>
                     <ul>
-                        <li><span className='optBg optBg4'></span><span className='optWord'>待评论</span></li>
-                        <li><span className='optBg optBg5'></span><span className='optWord'>回复</span></li>
-                        <li><span className='optBg optBg6'></span><span className='optWord'>退换货</span></li>
+                        <Link to={
+                            this.props.ifLogin?null:'/login/'
+                        }><span className='optBg optBg4'></span><span className='optWord'>待评论</span></Link>
+                        <Link to={
+                            this.props.ifLogin?null:'/login/'
+                        }><span className='optBg optBg5'></span><span className='optWord'>回复</span></Link>
+                        <Link to={
+                            this.props.ifLogin?null:'/login/'
+                        }><span className='optBg optBg6'></span><span className='optWord'>退换货</span></Link>
                     </ul>
                 </div>
                 <div className="userBottom">
@@ -62,13 +74,15 @@ class User extends React.Component{
                             return <div className='btmBox' key={index}>
                                 {
                                     item.Menus.map((itm,idx)=>{
-                                        return <div className='userList' key={idx}>
+                                        return <Link className='userList' key={idx} to={
+                                            this.props.ifLogin?null:'/login/'
+                                        }>
                                             <img src={this.state.rootPath + itm.Icon} alt=""/>
                                             <span className="itemTitle">
                                                 {itm.Title}
                                             </span>
                                             <i className="fa fa-angle-right" aria-hidden="true"></i>
-                                        </div>
+                                        </Link>
                                     })
                                 }
                             </div>
@@ -93,6 +107,12 @@ export default connect((state)=>{
             dispatch({
                 type: "changeToReg",
                 status: 'register'
+            })
+        },
+        changeToLog() {
+            dispatch({
+                type: "changeToLog",
+                status: 'login'
             })
         }
     }
