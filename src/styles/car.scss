@@ -16,7 +16,6 @@ i{float:left;
     color:#fff;
 }
 .header-title{
-    margin-top: rem(48px);
     margin: 0 auto;
      line-height:rem(48px);
     font-size:rem(20px);
@@ -33,10 +32,12 @@ i{float:left;
     width: 100%;
     height:rem(51.59px);
     background-color: #f0fae6;
-    margin: 0;
     font-size:rem(12px);
     padding:rem(12px),rem(14px);
+    margin-top: rem(48px);
+
  .login{
+
     width: 100%;
     height:rem(48px);
     display: table-cell;
