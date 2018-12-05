@@ -67,7 +67,7 @@ class Header extends React.Component {
                                     </Link>
                                 })
                             }
-                            <div className='swiper-slide'>了解lifeVC</div>
+                            <div className='swiper-slide' onClick={this.props.changeLearn.bind(this)}>了解lifeVC</div>
                         </div>
                     </div>
                 </div>
@@ -94,6 +94,12 @@ export default connect((state)=>{
             dispatch({
                 type:"toggleNav",
                 sel:index
+            })
+        },
+        changeLearn(){
+            dispatch({
+                type:'changeLearn',
+                ifLearnShow:!this.props.ifLearnShow
             })
         }
     }

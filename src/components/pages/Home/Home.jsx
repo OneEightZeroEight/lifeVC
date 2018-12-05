@@ -5,13 +5,18 @@
     import NewArrive from './NewArrive/NewArrive';
     import Channel from './Channel/Channel';
     import {Route,Switch,Redirect} from 'react-router-dom';
+    import {connect} from 'react-redux'
     class Home extends React.Component{
         componentDidMount(){
             window.sessionStorage.setItem('sele', 0);
         }
         render(){
             return (
-                <div className='home'>
+                <div className='home'
+                    style={{
+                        'display':this.props.ifLearnShow?'none':'block'
+                    }}
+                >
                     <Header></Header>
                     <Switch>
                         <Route path='/footer/home/index/' component={Index}/>
@@ -23,4 +28,10 @@
             )
         }
     }
-    export default Home;
+    export default connect((state)=>{
+        return state
+    },(dispatch=>{
+        return {
+           
+        }
+    }))(Home);

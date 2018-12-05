@@ -18,8 +18,8 @@ React.axios = axios;
 const store = createStore((state = {
     title:"lifeVC",
    	sele:0,
-   	sel:0
-
+    sel:0,
+    ifLearnShow:false
 }, action) => {
     switch (action.type) {
         case 'toggleNav':
@@ -31,6 +31,11 @@ const store = createStore((state = {
             return {
                 ...state,
                 sele:action.sele
+            }
+        case 'changeLearn':
+            return {
+                ...state,
+                ifLearnShow:action.ifLearnShow
             }
         default:
             return state

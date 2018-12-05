@@ -6,7 +6,8 @@ class User extends React.Component{
         super(props);
         this.props = props;
         this.state = {
-            bottomList:[]
+            bottomList:[],
+            rootPath:'http://i.lifevccdn.com'
         }
     }
 	componentDidMount(){
@@ -55,11 +56,23 @@ class User extends React.Component{
                     </ul>
                 </div>
                 <div className="userBottom">
-                    {/* {
+                    {
                         this.state.bottomList.map((item,index)=>{
-                            return <div className=''>
+                            return <div className='btmBox' key={index}>
+                                {
+                                    item.Menus.map((itm,idx)=>{
+                                        return <div className='userList' key={idx}>
+                                            <img src={this.state.rootPath + itm.Icon} alt=""/>
+                                            <span className="itemTitle">
+                                                {itm.Title}
+                                            </span>
+                                            <i className="fa fa-angle-right" aria-hidden="true"></i>
+                                        </div>
+                                    })
+                                }
+                            </div>
                         })
-                    } */}
+                    }
                 </div>
             </div>
         )
