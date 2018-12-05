@@ -40,7 +40,6 @@ class Fuzzy extends React.Component{
         
     }
     chongxin(xin){
-      console.log(xin)
       function compare(property){
           return function(a,b){
               var value1 = a[property];
