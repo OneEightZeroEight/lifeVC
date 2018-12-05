@@ -60,6 +60,16 @@ const store = createStore((state = {
                 ...state,
                 status:action.status
             }
+        case 'changeIfLog':
+            return {
+                ...state,
+                ifLogin:action.ifLogin
+            }
+        case 'changeUnLog':
+            return {
+                ...state,
+                ifLogin:action.ifLogin
+            }
         default:
             return state
     }

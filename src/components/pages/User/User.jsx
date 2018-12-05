@@ -8,12 +8,17 @@ class User extends React.Component{
         this.props = props;
         this.state = {
             bottomList:[],
-            rootPath:'http://i.lifevccdn.com'
+            rootPath:'http://i.lifevccdn.com',
+            ifLogin:window.localStorage.getItem('ifLogin') || false,
+            userId:window.localStorage.getItem('userId') || '',
+            userPassword:window.localStorage.getItem('userPassword') || '',
+            headLike:"http://i1.lifevccdn.com/images/m/Account/mugshot_default@2x.png"
         }
     }
 	componentDidMount(){
         this.props.changeSele();
         this.getBottomData();
+        console.log(this.state);
     }
     getBottomData(){
         React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/contents/usercenter?si=lC5v9sXQoXgBMV1/nIxWta4L5ppi1pzaqS9JV082v8xEg4h7nY6MSTi2ixrCGZEbGlV1/7ZCdJM=&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
@@ -22,7 +27,6 @@ class User extends React.Component{
                 this.setState({
                     bottomList:res.data.InnerData.CenterMenus
                 })
-                console.log(this.state.bottomList);
             }
         })
         .catch((err)=>{
@@ -35,36 +39,55 @@ class User extends React.Component{
                 <div className="userTop">
                     <span></span>
                     <span className='countCenter'>账户中心</span>
-                    <span className='userOptions'>设置</span>
+                    <Link to='/setting/' className='userOptions'>设置</Link>
                 </div>
-                <div className="userStatus">
+                <div className="userStatus"
+                    style={{
+                        'display':this.state.ifLogin?'none':'flex'
+                    }}
+                >
                     <p className='noLogin'>您还未登录</p>
                     <div className="userBox">
                         <Link className='userLogin' to='/login/' onClick={this.props.changeToLog}>登录</Link>
                         <Link className='userReg' to='/login/' onClick={this.props.changeToReg}>注册</Link>
                     </div>
                 </div>
+                <div className="userDidLog"
+                    style={{
+                        'display':this.state.ifLogin?'flex':'none'
+                    }}
+                >
+                    <div className="userBox">
+                        <div className="headLike"><img  src= {this.state.headLike}/></div>
+                        <div className="userMsg">
+                            <p className='username'>{this.state.userId}</p>
+                            <p className='userLevel'><span className='new'>新新会员</span><img src="http://i.lifevccdn.com/Images/m/UserCenter/i_index_uLevelNode100@3x.png" />
+                            <i className="fa fa-angle-right" aria-hidden="true"></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 <div className="userOperate">
                     <ul>
                         <Link to={
-                            this.props.ifLogin?null:'/login/'
+                            this.state.ifLogin?'':'/login/'
                         }><span className='optBg optBg1'></span><span className='optWord'>待支付</span></Link>
                         <Link to={
-                            this.props.ifLogin?null:'/login/'
+                            this.state.ifLogin?'':'/login/'
                         }><span className='optBg optBg2'></span><span className='optWord'>待发货</span></Link>
                         <Link to={
-                            this.props.ifLogin?null:'/login/'
+                            this.state.ifLogin?'':'/login/'
                         }><span className='optBg optBg3'></span><span className='optWord'>待收货</span></Link>
                     </ul>
                     <ul>
                         <Link to={
-                            this.props.ifLogin?null:'/login/'
+                            this.state.ifLogin?'':'/login/'
                         }><span className='optBg optBg4'></span><span className='optWord'>待评论</span></Link>
                         <Link to={
-                            this.props.ifLogin?null:'/login/'
+                            this.state.ifLogin?'':'/login/'
                         }><span className='optBg optBg5'></span><span className='optWord'>回复</span></Link>
                         <Link to={
-                            this.props.ifLogin?null:'/login/'
+                            this.state.ifLogin?'':'/login/'
                         }><span className='optBg optBg6'></span><span className='optWord'>退换货</span></Link>
                     </ul>
                 </div>
@@ -75,7 +98,7 @@ class User extends React.Component{
                                 {
                                     item.Menus.map((itm,idx)=>{
                                         return <Link className='userList' key={idx} to={
-                                            this.props.ifLogin?null:'/login/'
+                                            this.state.ifLogin?'':'/login/'
                                         }>
                                             <img src={this.state.rootPath + itm.Icon} alt=""/>
                                             <span className="itemTitle">

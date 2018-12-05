@@ -16,6 +16,7 @@
             font-size: rem(20px);
         }
         .userOptions{
+            color:#fff;
             font-size: rem(14px);
         }
     }
@@ -144,6 +145,43 @@
                 img{
                     width: rem(30px);
                     height: rem(30px);
+                }
+            }
+        }
+    }
+    .userDidLog{
+        .userBox{
+            width: 100%;
+            height: rem(108px);
+            margin-top: rem(48px);
+            background-image: url(http://i1.lifevccdn.com/images/h5/core/background.png);
+            background-size: 100% 100%;
+            color:#333;
+            font-size: rem(16px);
+            padding:0 rem(80px);
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            img{
+                width: rem(55px);
+                height: rem(55px);
+            }
+            .userMsg{
+                box-sizing: border-box;
+                padding-right: rem(50px);
+                .userLevel{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    img{
+                        width: rem(21px);
+                        height: rem(21px);
+                    }
+                    i{
+                        font-size: rem(24px);
+                        color:#ccc;
+                    }
                 }
             }
         }

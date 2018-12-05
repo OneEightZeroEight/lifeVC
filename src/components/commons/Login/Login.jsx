@@ -6,6 +6,27 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
+        this.state = {
+            userId:'',
+            userPassword :''
+        }
+    }
+    getId(e){
+        this.setState({
+            userId:e.target.value
+        })
+    }
+    getPass(e){
+        this.setState({
+            userPassword:e.target.value
+        })
+    }
+    login(){
+        window.localStorage.setItem('userId',this.state.userId);
+        window.localStorage.setItem('userPassword',this.state.userPassword);
+        this.props.history.push('/footer/user/');
+        this.props.changeIfLog();
+        window.localStorage.setItem('ifLogin',true);
     }
     render() {
         return (
@@ -28,7 +49,7 @@ class Login extends React.Component {
                     >
                         <div className="logInbox">
                             <div className="phoneNum">
-                                <input type="text" className="Num" placeholder='请输入手机号' />
+                                <input type="text" className="Num" placeholder='请输入手机号'  onChange={this.getId.bind(this)} />
                                 <span className='getCheck'
                                     style={{
                                         'display': this.props.logType == 'password' ? 'none' : 'block',
@@ -38,7 +59,7 @@ class Login extends React.Component {
                             <div className="logPassword">
                                 <input type="text" className="password" placeholder={
                                     this.props.logType == 'password' ? '请输入登录密码' : '请输入手机验证码'
-                                } />
+                                } onChange={this.getPass.bind(this)}/>
                                 <span className='forgetPass'
                                     style={{
                                         'display': this.props.logType == 'password' ? 'block' : 'none',
@@ -63,7 +84,7 @@ class Login extends React.Component {
                         <div className="regbox"
                         >
                             <div className="phoneNum">
-                                <input type="text" className="Num" placeholder='请输入手机号' />
+                                <input type="text" className="Num" placeholder='请输入手机号'/>
                             </div>
                             <div className="regPassword">
                                 <input type="text" className="password" placeholder='请输入6-20位密码，包含字母、数字或符号' />
@@ -83,7 +104,7 @@ class Login extends React.Component {
                             'background':this.props.status == 'login' ?'#3aad36':'#8a8a8a'
                         }}
                         onClick={
-                            this.props.status == 'register'?this.props.changeToLog.bind(this):null
+                            this.props.status == 'register'?this.props.changeToLog.bind(this):this.login.bind(this)
                         }
                     >登录</button>
                     <button className="toReg"
@@ -131,6 +152,12 @@ export default connect((state) => {
             dispatch({
                 type: "changeToReg",
                 status: 'register'
+            })
+        },
+        changeIfLog(){
+            dispatch({
+                type:'changeIfLog',
+                ifLogin:true
             })
         }
     }
