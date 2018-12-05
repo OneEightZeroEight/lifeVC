@@ -1,0 +1,133 @@
+@import './reset.scss';
+.login{
+    .loginTop{
+        .loginBack{
+            width: rem(26px);
+            height: rem(26px);
+            display: block;
+            border-radius: 50%;
+            border: 1px solid #3aad36;
+            text-align: center;
+            line-height: rem(26px);
+            font-size: rem(16px);
+            color:#3aad36;
+        }
+        width: 100%;
+        height: rem(120px);
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:0 rem(15px);
+        box-sizing: border-box;
+        img{
+            width: rem(120px);
+        }
+    }
+    .loginContainer{
+        .toConnectBottom{
+            display: inline-block;
+            text-align: center;
+            line-height: rem(28px);
+            font-size: rem(14px);
+            color: #333;
+            a{
+                color:#3aad36;
+                text-decoration: underline;
+            }
+        }
+        width: rem(375px);
+        height: rem(545px);
+        background: url(http://i1.lifevccdn.com/images/m/account/login-big-bg.jpg) no-repeat;
+        background-size: 100% 100%;
+        background-position: bottom;
+        .oldLogin{
+            text-align: center;
+            color: #037049;
+            font-size: rem(20px);
+            line-height: rem(65px);
+            box-sizing: border-box;
+            margin-bottom: rem(32px);
+        }
+        .logInbox div,.regbox div{
+            width: 90%;
+            margin: 0 auto;
+            height: rem(51px);
+            border-bottom: 1px solid #dbdbdb;
+            position: relative;
+            input{
+                font-size:rem(16px);
+                width: 100%;
+                background: transparent;
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: rem(51px);
+                box-sizing: border-box;
+                border:none;
+            }
+            .forgetPass,.getCheck{
+                display: inline-block;
+                text-align: right;
+                font-size: rem(16px);
+                color: #3aad36;
+                text-decoration: none;
+                border: 1px solid #3aad36;
+                border-radius: 4px;
+                text-align: center;
+                padding: rem(5px) rem(10px);
+                position: absolute;
+                top: rem(10px);
+                right: 0;
+            }
+        }
+        .phoneLog{
+            float:right;
+            line-height: rem(50px);
+            font-size: rem(16px);
+            color: #3aad36;
+            padding-right: rem(5px);
+        }
+        .toConnect{
+            float:left;
+            line-height: rem(50px);
+            font-size: rem(16px);
+            color: #333;
+            padding-left: rem(15px);
+            a{
+                color:#3aad36;
+                text-decoration: underline;
+            }
+        }
+        .toLog,.toReg{
+            width: 80%;
+            overflow: hidden;
+            display: block;
+            outline: none;
+            text-align: center;
+            font-size: rem(20px);
+            color: #fff;
+            line-height: rem(38px);
+            letter-spacing: rem(20px);
+            text-indent: rem(20px);
+            box-sizing: border-box;
+            margin: 0 auto rem(10px);
+            background-color: #3aad36;
+            border: 1px solid #3aad36;
+            border-radius: rem(5px);
+        }
+        .toReg{
+            background: #8a8a8a;
+            border: 1px solid #8a8a8a;
+        }
+        .agree{
+            text-align: center;
+            line-height: rem(46px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color:#999;
+            font-size:rem(14px);
+        }
+    }
+}
