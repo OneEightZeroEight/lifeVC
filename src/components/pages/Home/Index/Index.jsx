@@ -8,8 +8,8 @@ class Index extends React.Component {
         this.props = props;
         this.state = {
             rootPath:'http://i.lifevccdn.com',
-            bannerList: [],
-            otherList:[]
+            otherList:[],
+            picList:[]
         }
     }
     componentDidMount() {
@@ -32,18 +32,17 @@ class Index extends React.Component {
         React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/contents/home_v2?o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
             .then((res) => {
                 if (res.statusText === 'OK') {
-                    let banner = [];
                     let picList = res.data.InnerData[0].InnerData;
-                    for (let i = 0; i < picList.length; i++) {
-                        let picUrl = this.state.rootPath + picList[i].ImageUrl;
-                        banner.push(picUrl);
-                    }
+                    // for (let i = 0; i < picList.length; i++) {
+                    //     let picUrl = this.state.rootPath + picList[i].ImageUrl;
+                    //     banner.push(picUrl);
+                    // }
                     let others = res.data.InnerData.slice(1);
                     for(let i = 0;i<others.length;i++){
                         others[i].InnerData.ImageUrl = this.state.rootPath + others[i].InnerData.ImageUrl;
                     }
                     this.setState({ 
-                        bannerList: banner,
+                        picList:picList,
                         otherList:others
                     });
                 }
@@ -59,9 +58,11 @@ class Index extends React.Component {
                     <div className="swiper-container" id='banner'>
                         <div className="swiper-wrapper">
                             {
-                                this.state.bannerList.map((item, index) => {
+                                this.state.picList.map((item, index) => {
                                     return <div className='swiper-slide' key={index}>
-                                    <img src={item} alt="" />
+                                    <a href={item.Uri}>
+                                    <img src={'http://i.lifevccdn.com' + item.ImageUrl} alt="" />
+                                    </a>
                                     </div>
                                 })
                             }

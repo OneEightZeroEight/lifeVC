@@ -294,7 +294,7 @@ h6{color:rgb(204, 0, 0);font-size:rem(14px);
 
 .buttons{width:rem(168px);height:rem(42px);background-color:#009d42;color:#FFF;font-size:rem(18px);border-radius:rem(10px);}
 .guige{
-    margin-top: rem(10px);
+    margin-top: rem(60px);
     background-color: #fff;
     div{
         width:rem(375px);
@@ -306,7 +306,16 @@ h6{color:rgb(204, 0, 0);font-size:rem(14px);
         padding-left: rem(10px);
         box-sizing: border-box;
     }
+}
+.guigeBtm{
+    margin-top: rem(15px);
+    background-color: #fff;
     .noBox{
-        border:none;
+        width:rem(375px);
+        color:#6b6b6b;
+        font-size:rem(14px);
+        line-height: rem(36px);
+        padding-left: rem(10px);
+        box-sizing: border-box;
     }
 }

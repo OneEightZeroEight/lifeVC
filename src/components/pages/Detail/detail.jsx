@@ -11,10 +11,7 @@ class Detail extends React.Component {
             details: [],
             Detail: [],
             Notice: [],
-            // desc: [{ name: "商品详情", bool: true }, { name: "规格参数", bool: true }, { name: "评论", bool: true }],
-            desc: [
-
-            ],
+            desc: [],
             sels: 0,
             name: "",
             price: "",
@@ -28,12 +25,8 @@ class Detail extends React.Component {
             Caption: '',
             prompts: [],
             ifLogin: window.localStorage.getItem('ifLogin') || false,
-            center: [{ ImageUrl: "/upload/AppItemHeaders/503bd2cd7084496194bd9bc410c79d65.jpg", Name: "加拿大原生木浆抽纸(3包装)", SalePrice: 29 },
-            { ImageUrl: "/upload/AppItemHeaders/503bd2cd7084496194bd9bc410c79d65.jpg", Name: "加拿大原生木浆抽纸(3包装)", SalePrice: 29 },
-            { ImageUrl: "/upload/AppItemHeaders/503bd2cd7084496194bd9bc410c79d65.jpg", Name: "加拿大原生木浆抽纸(3包装)", SalePrice: 29 },
-            { ImageUrl: "/upload/AppItemHeaders/41fa8c8986a34716aa1c998d99b319f2.jpg", Name: "加拿大原生木浆抽纸(3包装)", SalePrice: 29 },
-            { ImageUrl: "/upload/AppItemHeaders/503bd2cd7084496194bd9bc410c79d65.jpg", Name: "加拿大原生木浆抽纸(3包装)", SalePrice: 29 },
-            ]
+            center: [],
+            goodId:''
         }
     }
 
@@ -62,6 +55,16 @@ class Detail extends React.Component {
         this.setState({
             sels: 2
         })
+    }
+    addToCart(){
+        let name = this.state.name,nums = this.state.nums, goodId = this.state.goodId,goodPic = 'http://i.lifevc.com' + this.state.details[0].ImageUrl,status = true;
+        let toCartObj = {name,nums,goodId,goodPic,status};
+        if (this.state.activePrice == 0){
+            toCartObj.price = Number(this.state.price);
+        }else{
+            toCartObj.price = Number(this.state.activePrice);
+        }
+        console.log(toCartObj);
     }
     componentWillUnmount() {
         window.onscroll = () => {
@@ -93,7 +96,8 @@ class Detail extends React.Component {
                     saleTag: res.data.InnerData.SaleTags,
                     Caption: res.data.InnerData.Caption,
                     prompts: res.data.InnerData.Prompts,
-                    activePrice: res.data.InnerData.ActivityPrice
+                    activePrice: res.data.InnerData.ActivityPrice,
+                    goodId:res.data.InnerData.ItemInfoId
                 });
 
             })
@@ -315,7 +319,7 @@ class Detail extends React.Component {
                 <div>{
                     (() => {
                         if (this.state.sels == 1) {
-                            return <div className="guige">
+                            return <div className="guigeBtm">
                                 {
                                     this.state.Notice.map((item, index) => {
                                         return <div className='noBox' key={index}>{item}</div>
@@ -400,7 +404,7 @@ class Detail extends React.Component {
                             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                         </Link>
                     </div>
-                    <button className="buttons">加入购物车</button>
+                    <button className="buttons" onClick={this.addToCart.bind(this)}>加入购物车</button>
                 </div>
             </div>
         )

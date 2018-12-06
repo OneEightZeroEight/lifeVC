@@ -52,7 +52,7 @@ constructor(props){
                                 if(item.ActivityPrice != 0){
                                     return <p><span className="price">￥{item.ActivityPrice}</span><span style={{
                                         'color':'#333',
-                                        'text-decoration':'line-through'
+                                        'textDecoration':'line-through'
                                     }}>￥{item.SalePrice}</span><span className="qty">月销{item.SaleQty}
                                     </span></p>
                                 }else{
