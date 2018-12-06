@@ -46,9 +46,21 @@ constructor(props){
                     // 注意:拿到的图片需要进行字符串拼接才可以显示
              return (<li key={index}>
                       <Link to={'/detail/'+item.ItemInfoID}>
-                        <img src={"http://i.lifevccdn.com"+item.ImageUrl} className="tp" alt=""/><p>{item.Name}</p>
-                        <span className="price">￥<em>{item.SalePrice}</em></span><span className="qty">月销<em>{item.SaleQty}</em>
-                        </span>
+                        <img src={"http://i.lifevccdn.com"+item.ImageUrl} className="tp" alt=""/><p className='name'>{item.Name}</p>
+                        {
+                            (()=>{
+                                if(item.ActivityPrice != 0){
+                                    return <p><span className="price">￥{item.ActivityPrice}</span><span style={{
+                                        'color':'#333',
+                                        'textDecoration':'line-through'
+                                    }}>￥{item.SalePrice}</span><span className="qty">月销{item.SaleQty}
+                                    </span></p>
+                                }else{
+                                    return <p><span className="price">￥{item.SalePrice}</span><span className="qty">月销{item.SaleQty}
+                                    </span></p>
+                                }
+                            })()
+                        }
                         </Link>
                     </li>)
                     
