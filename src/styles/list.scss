@@ -13,6 +13,7 @@
 	width:rem(375px);
 	font-size: rem(22px);
 	color:#fff;
+	z-index: 9;
 	.TLeft{
 		a{
 			width:rem(37px);
@@ -97,4 +98,21 @@
 	.PriCt-Right{
 		margin-right: rem(10px);
 	}
+}
+.daztiKong{
+	position: absolute;
+	left:0;
+	top: rem(100px);
+	width: 100%;
+    // height:rem(420px);
+    // line-height: rem(420px);
+    color: #2e2e2e;
+    background-size: 54%!important;
+    font-size:rem(30px);
+	text-align: center;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoCAMAAADc2ZwrAAAA81BMV…V7Fue5gPlaS8P4+2Gqw8N/Xh8PR57m7hJl9KIgDzLwaBzXP9G/cHMHaatgAAAAAElFTkSuQmCC) no-repeat;
+    background-position: 50% rem(12px);
+    p{
+    	padding-top: rem(210px);
+    }
 }
