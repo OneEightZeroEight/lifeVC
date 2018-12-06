@@ -13,15 +13,17 @@ class Cart extends React.Component{
             sooping:true,//有没有商品
             xiugai:true,//点击修改
             zhuangTai:true,//全选选框状态
+            jiage:0,//商品价格
+            qty:0,//商品数量
             xiangPing:[{name:"趣味早餐煎饼锅",
             goodPic:"http://i.lifevccdn.com/upload/AppItemExhibit/e1e41c8ea9614d4c8f74f78967a79d72.jpg",
-            price:"99",nums:1,goodId:28342,status:true},
+            price:"99",nums:1,goodId:22783,status:true},
                     {name:"趣味早餐煎饼锅",
             goodPic:"http://i.lifevccdn.com/upload/AppItemExhibit/e1e41c8ea9614d4c8f74f78967a79d72.jpg",
-            price:"99",nums:1,goodId:28342,status:true},
+            price:"99",nums:1,goodId:22783,status:true},
                     {name:"趣味早餐煎饼锅",
             goodPic:"http://i.lifevccdn.com/upload/AppItemExhibit/e1e41c8ea9614d4c8f74f78967a79d72.jpg",
-            price:"99",nums:1,goodId:28342,status:true}
+            price:"99",nums:1,goodId:22783,status:true}
             ],
             Bbottom:[],//没有登录时底部商品信息
             guangGao:{}// 登录后半折抢购信息
@@ -29,6 +31,7 @@ class Cart extends React.Component{
     }
 
     componentDidMount(){
+
         this.props.changeSele();
         //     window.localStorage.setItem('CarDiBu',JSON.stringify(res.data.RecommendItems));
         let Bbottom = JSON.parse(window.localStorage.getItem('CarDiBu'));
@@ -44,7 +47,10 @@ class Cart extends React.Component{
                 sszt:true
             })
         }
-        console.log(this.state.xiangPing)
+        this.panduan();
+        this.panduan1();
+        this.panduan2();
+
         React.axios.get('http://marketing.lifevc.com/v1/getCart?si=qsSTiCma24QNrqm%2F79krpdZ0mpRbm96Kk%2BA6DNvjV0dM52vH6%2BlALMJGNPJRqqbkZaK3iA2i0hQ%3D&ck=71f002fe_224109620&regionId=15247&pm=8&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
         .then((res)=>{
             let guangGao = res.data.Prompts[0];
@@ -78,6 +84,134 @@ class Cart extends React.Component{
         this.setState({
             xiugai:!this.state.xiugai
         })
+    }
+    //点击减
+    jian(index){
+        if(this.state.xiangPing[index].nums>1){
+            let dalao = this.state.xiangPing;
+            dalao[index].nums=dalao[index].nums-1;
+            this.setState({
+                xiangPing:dalao
+            })
+        }
+        this.panduan1();
+    }
+    //点击加
+    jia(index){
+        let dalao = this.state.xiangPing;
+        dalao[index].nums=dalao[index].nums+1;
+        this.setState({
+            xiangPing:dalao
+        })
+        this.panduan1();
+    }
+    //删除
+    danshan(index){
+        let dalao = this.state.xiangPing;
+        dalao.splice(index,1);
+        this.setState({
+            xiangPing:dalao
+        })
+        this.panduan();
+        this.panduan1();
+        this.panduan2();
+    }
+    //批量删除
+    pilianshan(){
+        let dalao = this.state.xiangPing;
+        for(let i=0;i<this.state.xiangPing.length;i++){
+            if(this.state.xiangPing[i].status){
+                dalao.splice(i,1);
+                this.pilianshan();//递归删除
+            }
+        }
+        this.setState({
+            xiangPing:dalao
+        })
+        this.panduan();
+        this.panduan1();
+        this.panduan2();
+    }
+    //全选
+    quanXuan(){
+        let Zt = [];
+        for(let i=0;i<this.state.xiangPing.length;i++){
+            if(this.state.xiangPing[i].status){
+                Zt.push(this.state.xiangPing[i].status)
+            }
+        }
+        if(this.state.xiangPing.length==Zt.length){
+            let dalao = this.state.xiangPing;
+            for(let i=0;i<this.state.xiangPing.length;i++){
+                dalao[i].status=false;
+            }
+            this.setState({
+                xiangPing:dalao,
+                zhuangTai:false
+            })
+        }else if(this.state.xiangPing.length!=Zt.length){
+            let dalao = this.state.xiangPing;
+            for(let i=0;i<this.state.xiangPing.length;i++){
+                dalao[i].status=true;
+            }
+            this.setState({
+                xiangPing:dalao,
+                zhuangTai:true
+            })
+        }
+        this.panduan1();
+    }
+    //点击选中框
+    danxuan(index){
+        let dalao = this.state.xiangPing;
+        dalao[index].status=!this.state.xiangPing[index].status;
+        this.setState({
+            xiangPing:dalao,
+            zhuangTai:true
+        })
+        this.panduan();
+        this.panduan1();
+    }
+    //判断是否已经全部选中
+    panduan(){
+        let Zt = [];
+        for(let i=0;i<this.state.xiangPing.length;i++){
+            if(this.state.xiangPing[i].status){
+                Zt.push(this.state.xiangPing[i].status)
+            }
+        }
+        if(this.state.xiangPing.length==Zt.length){
+            this.setState({
+                zhuangTai:true
+            })
+        }else if(this.state.xiangPing.length!=Zt.length){
+            this.setState({
+                zhuangTai:false
+            })
+        }
+    }
+    //商品价格，数量
+    panduan1(){
+        let qian=0;
+        let shu =0;
+        for(let i=0;i<this.state.xiangPing.length;i++){
+            if(this.state.xiangPing[i].status){
+                qian+=(this.state.xiangPing[i].nums-0)*(this.state.xiangPing[i].price-0);
+                shu+=this.state.xiangPing[i].nums-0;
+            }
+        }
+        this.setState({
+            jiage:qian,
+            qty:shu
+        })
+    }
+    //判断是否有商品
+    panduan2(){
+        if(this.state.xiangPing.length==0){
+            this.setState({
+                sooping:false
+            })
+        }
     }
     render(){
         return (
@@ -204,7 +338,7 @@ class Cart extends React.Component{
                                     return this.state.xiangPing.map((item, index) => {
                                         return <div className="xSping" key={index}>
                                                     <div className="ip">
-                                                        <input type="checkbox" defaultChecked={item.status} />
+                                                        <input type="checkbox" checked={item.status} onClick={this.danxuan.bind(this,index)} />
                                                     </div> 
                                                     <Link className="ig" to={'/detail/'+item.goodId} >
                                                         <img src={item.goodPic} />
@@ -229,18 +363,16 @@ class Cart extends React.Component{
                                                     {
                                                         (()=>{
                                                             if(!this.state.xiugai){
-                                                                return <div className="Mag">
-                                                                    <p>
-                                                                        <div className="iii">
+                                                                return <div className="Mag"><p>
+                                                                        <div className="iii" onClick={this.danshan.bind(this,index)}>
                                                                             <i className="fa fa-university" aria-hidden="true"></i>
-                                                                        </div>
-                                                                    </p>
+                                                                        </div></p>
                                                                     <p>
-                                                                        <div class="quantity-editor">
-                                                                            <span class="tag-act-wrap"></span>
-                                                                            <span class="decrement">-</span>
-                                                                            <span type="text" class="quantity-num">{item.nums}</span>
-                                                                            <span data-v-5cc9f28f="" class="increment">+</span>
+                                                                        <div className="quantity-editor">
+                                                                            <span className="tag-act-wrap"></span>
+                                                                            <span className="decrement" onClick={this.jian.bind(this,index)} >-</span>
+                                                                            <span type="text" className="quantity-num">{item.nums}</span>
+                                                                            <span className="increment" onClick={this.jia.bind(this,index)}>+</span>
                                                                         </div>
                                                                     </p>
                                                                 </div>
@@ -272,26 +404,28 @@ class Cart extends React.Component{
 
                                 <div className="carts-quanxuan">
                                     <div className="ip">
-                                        <input type="checkbox" defaultChecked={this.state.zhuangTai} />
+                                        <input type="checkbox" checked={this.state.zhuangTai} onClick={this.quanXuan.bind(this)} />
                                     </div>
                                     <div className="carts-quanX">
                                         <span>全选</span>
                                     </div>
                                     <div className="carts-Price">
-                                        <p>合计：￥<span>234</span></p>
-                                        <p className="catr-teS">商品：￥<span>234</span>-优惠：￥<span>0</span></p>
+                                        <p>合计：￥<span>{this.state.jiage}</span></p>
+                                        <p className="catr-teS">商品：￥<span>{this.state.jiage}</span>-优惠：￥<span>0</span></p>
                                     </div>
 
                                     {(()=>{
                                         if(this.state.xiugai){
                                             return <div className="carts-kuang1">
-                                                去结算 (<span>2</span>) 
+                                            <Link to="/footer/user" >
+                                                去结算 (<span>{this.state.qty}</span>)
+                                            </Link> 
                                             </div>
                                         }
                                     })()}
                                     {(()=>{
                                         if(!this.state.xiugai){
-                                            return <div className="carts-kuang2">删除</div>
+                                            return <div className="carts-kuang2" onClick={this.pilianshan.bind(this)}>删除</div>
                                         }
                                     })()}
                                 </div>
