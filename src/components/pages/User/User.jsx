@@ -58,7 +58,7 @@ class User extends React.Component{
                     }}
                 >
                     <div className="userBox">
-                        <div className="headLike"><img  src= {this.state.headLike}/><input readonly="readonly" type="file" accept="image/gif,image/jpeg,image/jpg,image/png" class="imgupload"/></div>
+                        <div className="headLike"><img  src= {this.state.headLike}/><input readOnly="readonly" type="file" accept="image/gif,image/jpeg,image/jpg,image/png" className="imgupload"/></div>
                         <div className="userMsg">
                             <p className='username'>{this.state.userId}</p>
                             <p className='userLevel'><span className='new'>新新会员</span><img src="http://i.lifevccdn.com/Images/m/UserCenter/i_index_uLevelNode100@3x.png" />
