@@ -1,6 +1,7 @@
 @import './reset.scss';
 .user{
     .userTop{
+        z-index:999;
         width: 100%;
         height: rem(48px);
         background: #89be48;

@@ -1,13 +1,13 @@
 @import './reset.scss';
 .detail{
-    padding-bottom:rem(100px);
+    padding-bottom:rem(70px);
 }
 #tops{
     display:flex;
     justify-content:space-between;
     align-items:center;
     width:100%;
-    height:rem(50px);
+    height:rem(48px);
     background-color:#89be48;
     // 固定定位:position:fixed;top:XXX;必需写。才知道固定定位在哪里
     position:fixed;
@@ -15,46 +15,76 @@
     z-index:999;
     color:#fff;
     font-size:rem(18px);
+    box-sizing: border-box;
+    padding:0 rem(15px);
+    i{
+        color:#fff;
+    }
 }
-.fa.fa-chevron-left{
-    color:#fff;
-    margin-left:rem(15px);
-}
-.fa.fa-share-square-o{margin-right:rem(45px);}
 #detail{
     margin-top: rem(45px);
     padding-bottom: rem(6px);
     background-color: #eee;
-     height: rem(250px);
+    height: rem(375px);
     width: 100%;
     img{
         width: 100%;
-        height: rem(250px);
+        height: rem(375px);
     }
     .swiper-pagination-bullet-active{
         background-color: #80b532;
     }
 }
-h3,h4{text-align:center;font-size:rem(16px);line-height:rem(22px);margin-top:rem(3px);}
-.promo-item{
-    width:rem(368px);
-    height:rem(40px);
-    border-top:1px solid #ccc;
-    border-bottom:1px solid #ccc;
+.goodName,.goodPrice{
     text-align:center;
-    font-size:rem(14px);
-.tag-promo {
-    color:#fff;
-    display:block;
-    float:left;
-    width:rem(54px);
-    height:rem(32px);
-    background-color:#cd060f;
-    line-height:rem(32px);
-    margin-top:rem(4px);
-    margin-left:rem(16px);
+    font-size: rem(20px);
+    line-height: rem(30px);
 }
-.m-txt{color:#cd060f;line-height:rem(40px);}
+.goodName{
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    margin-top: rem(15px);
+    span:nth-child(2){
+        color:#999;
+        font-size: rem(16px);
+    }
+}
+.promptsBox,.promo-item{
+    padding: rem(5px);
+    box-sizing: border-box;
+    p{
+        border-top: 1px solid #ccc;
+        line-height: rem(45px);
+        font-size: rem(12px);
+        span:last-child{
+            margin-left: rem(5px);
+        }
+    }
+}
+.saleType{
+   text-align: center;
+   margin-bottom: rem(20px);
+   span{
+       padding:0 rem(5px);
+   }
+}
+.promo-item{
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: rem(10px);
+    padding:0 rem(5px);
+    box-sizing: border-box;
+    line-height: rem(42px);
+    .tag-promo{
+        background-color: #CD060F;
+        color:#fff;
+    }
+    a{
+        color:#CD060F;
+        font-size: rem(12px);
+        margin-left: rem(5px);
+    }
 }
 .numbers{
     width:rem(375px);
@@ -74,6 +104,10 @@ h3,h4{text-align:center;font-size:rem(16px);line-height:rem(22px);margin-top:rem
         display:block;
         width:rem(100px);
         height:rem(27px);
+        border:1px solid #ccc;
+        button{
+            border:none;
+        }
        .jian{
           float:left;
         width:rem(27px);
@@ -107,24 +141,32 @@ h6{color:rgb(204, 0, 0);font-size:rem(14px);
     width:rem(375px);
     height:rem(213.5px);
     position:relative;
-    .tit{
-        width:rem(375px);
+    .titBox{
+        width:rem(365px);
         height:rem(30px);
+        margin-left: rem(10px);
+    }
+    .tit{
         line-height:rem(30px);
-        border-left:2px solid #89be48;
         box-sizing:border-box;
-        // margin-left:rem(16px);
         text-align:left;
         font-size:rem(14px);
+        span{
+            border-left:2px solid #89be48;
+            padding-left: rem(10px);
+        }
     }
 }
 #center{
-    // margin-top: rem(45px);
-    // padding-bottom: rem(6px);
     background-color: #eee;
     height: rem(180px);
     width: rem(375px);
-    p{text-align:center;}
+    p{
+        text-align:center;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
     img{
         width: rem(118.5px);
         height: rem(118.5px);
@@ -140,18 +182,78 @@ h6{color:rgb(204, 0, 0);font-size:rem(14px);
     }
 }
 .ts{img{width:rem(375px);height:rem(191px);}}
-.desc{display:flex;justify-content:space-between;align-items:center;width:rem(375px);height:rem(40px);
+.desc{
+    top:rem(48px);
+    left: 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:rem(375px);
+    height:rem(40px);
+    padding: 0 rem(15px);
+    box-sizing: border-box;
     // position:fixed;top:rem(200px);
-    background-color:#ddd;}
+    span{
+        display: box;
+        padding: rem(4px) rem(12px);
+    }
+    background-color:#fff;
+    margin-top: rem(7px);
+}
 .HeHe{background-color:#89be48;
-    border:2px solid #89be48;
     color:#FFF;
-    border-radius:rem(10px);display:inline-block;}
+    border-radius:rem(10px);}
 .xiangqing{
+    margin-top: rem(40px);
     li{img{width:rem(375px);height:rem(375px);}}
 }
-.p1s{width:rem(370px);height:rem(26px);margin-bottom:rem(10px);display:block;}
-.pinglun,.descss{li{width:rem(375px);height:rem(80px);span{margin-right:rem(9px);}h4{width:rem(360px);height:rem(20px);color:#ccc;font-size:rem(12px);overflow:hidden;}}text-align:left;}
+.pls{
+    width:rem(370px);
+    height:rem(26px);
+    margin-bottom:rem(10px);
+    font-size: rem(16px);
+    display:block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    i{
+        color:#ccc;
+    }
+}
+.pinglun,.descss{
+    margin-top: rem(40px);
+    color:#333;
+    li{
+        width:rem(375px);
+        padding:rem(15px) rem(10px);
+        box-sizing: border-box;
+        .uMsg{
+            line-height: rem(30px);
+            span{
+                margin-right: rem(10px);
+            }
+            span:nth-child(n+3){
+                color:#999;
+            }
+        }
+        .commitContent{
+            line-height: rem(24px);
+            font-size: rem(14px);
+        }
+        .buyWhat{
+            line-height: rem(34px);
+            color:#999;
+        }
+    }
+    text-align:left;
+    .lookMore{
+        text-align: center;
+        border-top: 1px solid #ccc;
+        height: rem(36px);
+        line-height: rem(36px);
+        font-size: rem(16px);
+    }
+}
 // .descss{h4{width:rem(360px);height:rem(16px);color:#ccc;font-size:rem(12px);}}
 .bottoms{
     width:rem(374px);height:rem(49px);
@@ -160,16 +262,60 @@ h6{color:rgb(204, 0, 0);font-size:rem(14px);
     z-index: 99;
     background-color:#f8f8f8;
     border-top:1px solid #ccc;
-    div{width:rem(48px);height:rem(40px);float:left;
-            font-size:rem(16px);
-        i{margin-left:rem(5px);color:#CCC;font-size:rem(22px);}
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0 rem(5px);
+    div{
+        width:rem(48px);
+        height:rem(40px);
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        align-items: center;
+        text-align: center;
+        p{
+            font-size:rem(14px);
+            
+        }
+        color:#333;
+        i{
+            color:#ccc;
+            font-size:rem(22px);
+        }
 
 }
-.car{width:rem(77px);height:rem(40px);border:1px solid #58bc58;text-align:center;line-height:rem(40px);i{color:#58bc58;}position:relative;
+.car{width:rem(77px);height:rem(40px);border:1px solid #58bc58;text-align:center;line-height:rem(40px);i{color:#58bc58;}position:relative;border-radius:rem(10px);
     .addcar{position:absolute;
         top:rem(5px);left:rem(54px);
         background-color:#f59130;border:2px solid #fff;border-radius:50%;display:block;width:rem(20px);height:rem(20px);text-align:center;line-height:rem(20px);}}
 }
 
-.buttons{width:rem(168px);height:rem(42px);background-color:#009d42;color:#FFF;font-size:rem(18px); margin-left:rem(12px);}
-.guige{div{width:rem(375px);height:rem(36px);color:#6b6b6b;font-size:rem(14px);}}
+.buttons{width:rem(168px);height:rem(42px);background-color:#009d42;color:#FFF;font-size:rem(18px);border-radius:rem(10px);}
+.guige{
+    margin-top: rem(60px);
+    background-color: #fff;
+    div{
+        width:rem(375px);
+        height:rem(36px);
+        color:#6b6b6b;
+        font-size:rem(14px);
+        border-top: 1px solid #ccc;
+        line-height: rem(36px);
+        padding-left: rem(10px);
+        box-sizing: border-box;
+    }
+}
+.guigeBtm{
+    margin-top: rem(15px);
+    background-color: #fff;
+    .noBox{
+        width:rem(375px);
+        color:#6b6b6b;
+        font-size:rem(14px);
+        line-height: rem(36px);
+        padding-left: rem(10px);
+        box-sizing: border-box;
+    }
+}

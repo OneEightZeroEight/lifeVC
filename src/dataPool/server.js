@@ -1,6 +1,7 @@
 // 1.连接服务器
 const express=require('express');
 const app=express();
+// 代
 // 2.引入路由模块
 const bodyParser=require('body-parser')
 // const adminRouter=require('./src/router/admin.js')
@@ -20,6 +21,11 @@ app.use("/Users",userRouter)
 // /静态资源目录的使用
 app.use(express.static(path.join(__dirname,'./public')))
 app.use(express.static(path.join(__dirname,'./admin')))
+// 解决跨域
+app.all("*",function(req,res,next){
+    res.header("Access-Control-Allow-Origin","*");
+    next();
+})
 // 1.(1)监听服务器端口号
 app.listen(3001,()=>{
     console.log('server start in port'+3001);

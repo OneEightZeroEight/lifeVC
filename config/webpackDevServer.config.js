@@ -18,7 +18,14 @@ let myprox = {
 "pathRewrite": {
 "^/life" : "/"
 }
-}
+},
+// "/my": {
+// "target": "http://127.0.0.1:3001",
+// "changeOrigin": true,
+// "pathRewrite": {
+// "^/my" : "/"
+// }
+// }
 }
 module.exports = function(proxy=myprox, allowedHost) {
   return {
