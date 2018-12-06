@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import '../../styles/setting.scss';
 import {Link} from 'react-router-dom';
+import { Toast, WhiteSpace, WingBlank, Button } from 'antd-mobile';
 class Setting extends React.Component {
     constructor(props) {
         super(props);
@@ -11,9 +12,15 @@ class Setting extends React.Component {
         }
     }
     unLog(){
-        this.props.changeUnLog();
-        window.localStorage.removeItem('ifLogin');
-        this.props.history.push('/footer/user/');
+        {
+            Toast.success('退出成功',1,()=>{
+                this.props.changeUnLog();
+                window.localStorage.removeItem('ifLogin');
+                window.localStorage.removeItem('userId');
+                window.localStorage.removeItem('userPassword');
+                this.props.history.push('/footer/user/');
+            });
+        }
     }
     render() {
         return (

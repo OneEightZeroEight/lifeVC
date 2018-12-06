@@ -2,6 +2,7 @@ import React from 'react';
 import '../../../styles/login.scss';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
+import { Toast } from 'antd-mobile';
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -37,17 +38,20 @@ class Login extends React.Component {
     login(){
         React.axios.get("http://localhost:3001/Users/login",{params:{us:this.state.userId,ps:this.state.userPassword}})
         .then((res)=>{
-                console.log(res);
                  // if(res.err==0){
                 // if(!/^[a-z][\w\-]{5,19}$/i.test(this.state.userPassword)){ 
                 // alert("密码不符合条件")
                 // if(!/^\b1[3-8]\d{9}\b$/g.test(this.state.userId)){ 
                 // alert("用户名不符合条件")
                 // }
-                window.localStorage.setItem('userId',this.state.userId);
-                window.localStorage.setItem('userPassword',this.state.userPassword);
-                window.localStorage.setItem('ifLogin',true);
-                    this.props.history.push('/footer/user/');
+                Toast.success('登录成功', 2,()=>{
+                    Toast.loading('加载中', 1, () => {
+                        window.localStorage.setItem('userId',this.state.userId);
+                        window.localStorage.setItem('userPassword',this.state.userPassword);
+                        window.localStorage.setItem('ifLogin',true);
+                        this.props.history.push('/footer/user/');
+                    });
+                });
                 // }
         })
         .catch((res)=>{
@@ -58,13 +62,12 @@ class Login extends React.Component {
     regist(){
         React.axios.get("http://localhost:3001/Users/reg",{params:{us:this.state.userIds,ps:this.state.userPasswords}})
         .then((res)=>{
-                // if(res.err==0){
-                 alert("注册成功")
-             // }
-        
+            Toast.success('注册成功', 2,()=>{
+                this.props.changeToLog();
+            });
         })
-        .catch((res)=>{
-            console.log(res)
+        .catch((err)=>{
+            console.log(err)
         })
     }
     

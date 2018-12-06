@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import '../../../styles/user.scss';
+import { Toast } from 'antd-mobile';
 class User extends React.Component{
 	constructor(props) {
         super(props);
@@ -48,7 +49,9 @@ class User extends React.Component{
                 >
                     <p className='noLogin'>您还未登录</p>
                     <div className="userBox">
-                        <Link className='userLogin' to='/login/' onClick={this.props.changeToLog}>登录</Link>
+                        <Link className='userLogin' to='/login/' onClick={
+                                this.props.changeToLog
+                            }>登录</Link>
                         <Link className='userReg' to='/login/' onClick={this.props.changeToReg}>注册</Link>
                     </div>
                 </div>

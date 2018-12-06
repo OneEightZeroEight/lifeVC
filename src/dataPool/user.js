@@ -7,7 +7,6 @@ const User=require('./mongo/model/user.js')
 Router.get('/yz',(req,res)=>{
   res.append("Access-Control-Allow-Origin","*")
   let us=req.query.us;
-  // console.log(us);
   User.find({us:us})
   .then((data)=>{
     if(data.length>=1){

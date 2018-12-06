@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../../../../styles/newArrive.scss';
+import { ListView } from 'antd-mobile';
 class NewArrive extends React.Component {
     constructor(props) {
         super(props);
@@ -10,12 +11,25 @@ class NewArrive extends React.Component {
             weekList:[],
             showList:[],
             nowIndex:0,
+            isEnd:false,
             rootPath:'http://i.lifevccdn.com'
         }
     }
     componentDidMount(){
         this.getList();
         this.props.changeSel();
+        window.onscroll = () => {
+            if(!this.isEnd){
+                if (window.scrollY >= this.refs.newArriveBox.clientHeight -800) {
+                    this.getShowList();
+                }
+            }
+        }
+    }
+    componentWillUnmount() {
+        window.onscroll = () => {
+            return
+        }
     }
     getList(){
         React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/contents/newarrival?code=weekly&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
@@ -45,13 +59,22 @@ class NewArrive extends React.Component {
         })
     }
     getShowList(){
+        let nowIndex = this.state.nowIndex;
+        let newIndex = this.state.nowIndex + 3;
+        let showList = this.state.showList;
+        if(newIndex > JSON.parse(window.sessionStorage.getItem('monthList')).length){
+            this.setState({
+                isEnd:true
+            })
+        }
         this.setState({
-            showList:JSON.parse(window.sessionStorage.getItem('monthList')).slice(0,20)
+            showList:showList.concat(JSON.parse(window.sessionStorage.getItem('monthList')).splice(nowIndex,3)),
+            nowIndex:newIndex
         })
     }
     render() {
         return(
-            <div className='newArrive'>
+            <div className='newArrive' ref='newArriveBox'>
                 <p className='newTitle'>最近一周新品</p>
                 {
                      this.state.weekList.map((item,index)=>{
