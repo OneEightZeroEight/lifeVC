@@ -18,6 +18,7 @@ class Detail extends React.Component {
             sels: 0,
             name: "",
             price: "",
+            activePrice:0,
             nums: 1,
             CommentCount: 0,
             ifFixed: false,
@@ -91,7 +92,8 @@ class Detail extends React.Component {
                     ],
                     saleTag: res.data.InnerData.SaleTags,
                     Caption: res.data.InnerData.Caption,
-                    prompts: res.data.InnerData.Prompts
+                    prompts: res.data.InnerData.Prompts,
+                    activePrice: res.data.InnerData.ActivityPrice
                 });
 
             })
@@ -126,14 +128,16 @@ class Detail extends React.Component {
             })
         }
     }
-
+    backTo(){
+        this.props.history.go(-1);
+    }
     render() {
         return (
             <div className='detail'>
                 <div id="tops">
-                    <Link to="/footer/cart/">
-                        <i className="fa fa-chevron-left" aria-hidden="true"></i>
-                    </Link>
+                    
+                        <i className="fa fa-chevron-left" aria-hidden="true" onClick={this.backTo.bind(this)}></i>
+                    
                     <span className="titles">商品介绍</span>
                     <i className="fa fa-share-square-o" aria-hidden="true"></i>
                 </div>
@@ -156,7 +160,21 @@ class Detail extends React.Component {
                         <span>{this.state.name}</span>
                         <span>{this.state.Caption}</span>
                     </p>
-                    <p className='goodPrice'>￥{this.state.price}</p>
+                    {
+                        (()=>{
+                            if(this.state.activePrice == '0'){
+                                return <p className='goodPrice'>￥{this.state.price}</p>
+                            }else{
+                                return <p className='goodPrice'><span
+                                    style={{
+                                        'color':'#c00'
+                                    }}
+                                >￥{this.state.activePrice}</span><span style={{
+                                    'text-decoration': 'line-through'
+                                }}>￥{this.state.price}</span></p>
+                            }
+                        })()
+                    }
                     <p className="saleType">{
                         (() => {
                             if (this.state.saleTag != []) {
