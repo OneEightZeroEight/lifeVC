@@ -6,10 +6,66 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
-        this.state={
-            Num:"",
-            password:""
+        this.state = {
+            userId:'',
+            userPassword :'',
+            userIds:"",
+            userPasswords:""
+
         }
+    }
+    getId(e){
+        this.setState({
+            userId:e.target.value
+        })
+    }
+    getPass(e){
+        this.setState({
+            userPassword:e.target.value
+        })
+    }
+     getIds(e){
+        this.setState({
+            userIds:e.target.value
+        })
+    }
+     getPasss(e){
+        this.setState({
+            userPasswords:e.target.value
+        })
+    }
+    login(){
+        React.axios.get("http://localhost:3001/Users/login",{params:{us:this.state.userId,ps:this.state.userPassword}})
+        .then((res)=>{
+                console.log(res);
+                 // if(res.err==0){
+                // if(!/^[a-z][\w\-]{5,19}$/i.test(this.state.userPassword)){ 
+                // alert("密码不符合条件")
+                // if(!/^\b1[3-8]\d{9}\b$/g.test(this.state.userId)){ 
+                // alert("用户名不符合条件")
+                // }
+                window.localStorage.setItem('userId',this.state.userId);
+                window.localStorage.setItem('userPassword',this.state.userPassword);
+                window.localStorage.setItem('ifLogin',true);
+                    this.props.history.push('/footer/user/');
+                // }
+        })
+        .catch((res)=>{
+            console.log(res)
+        })
+       
+    }
+    regist(){
+        React.axios.get("http://localhost:3001/Users/reg",{params:{us:this.state.userIds,ps:this.state.userPasswords}})
+        .then((res)=>{
+                // if(res.err==0){
+                 alert("注册成功")
+             // }
+        
+        })
+        .catch((res)=>{
+            console.log(res)
+        })
     }
     
     render() {
@@ -33,7 +89,8 @@ class Login extends React.Component {
                     >
                         <div className="logInbox">
                             <div className="phoneNum">
-                                <input type="text" className="Num" placeholder='请输入手机号' onChange={this.userValue.bind(this)}/>
+
+                                <input type="text" className="Num" placeholder='请输入手机号'  onChange={this.getId.bind(this)} />
                                 <span className='getCheck'
                                     style={{
                                         'display': this.props.logType == 'password' ? 'none' : 'block',
@@ -43,7 +100,9 @@ class Login extends React.Component {
                             <div className="logPassword">
                                 <input type="password" className="password" placeholder={
                                     this.props.logType == 'password' ? '请输入登录密码' : '请输入手机验证码'
-                                } onChange={this.passValue.bind(this)}/>
+
+                                } onChange={this.getPass.bind(this)}/>
+
                                 <span className='forgetPass'
                                     style={{
                                         'display': this.props.logType == 'password' ? 'block' : 'none',
@@ -68,10 +127,11 @@ class Login extends React.Component {
                         <div className="regbox"
                         >
                             <div className="phoneNum">
-                                <input type="text" className="Num" placeholder='请输入手机号' onChange={this.userValue.bind(this)}/>
+
+                                <input type="text" className="Num" placeholder='请输入手机号' onChange={this.getIds.bind(this)}/>
                             </div>
                             <div className="regPassword">
-                                <input type="password" className="password" placeholder='请输入6-20位密码，包含字母、数字或符号' onChange={this.passValue.bind(this)}/>
+                                <input type="password" className="password" placeholder='请输入6-20位密码，包含字母、数字或符号'  onChange={this.getPasss.bind(this)}/>
                             </div>
                             <div className="checkWord">
                                 <input type="text" className="password" placeholder='请输入手机验证码' />
@@ -136,6 +196,12 @@ export default connect((state) => {
             dispatch({
                 type: "changeToReg",
                 status: 'register'
+            })
+        },
+        changeIfLog(){
+            dispatch({
+                type:'changeIfLog',
+                ifLogin:true
             })
         }
     }

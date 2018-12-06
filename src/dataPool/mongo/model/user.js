@@ -4,7 +4,7 @@
  let userSchema=new Schema({
     // _id:{type:Number,required:true},
     us:{type:String,required:true},
-    ps:{type:String,required:true},
+    ps:{type:String,required:true}
  })
  // 将schema 对象转化为数据模型  model
  //var Blog = mongoose.model('Blog', blogSchema);

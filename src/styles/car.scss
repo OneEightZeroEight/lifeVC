@@ -1,20 +1,24 @@
 @import './reset.scss';
 .Top{
     width:100%;
-    height:rem(50px);
+    height:rem(48px);
     background-color:#89be48;
+    position: fixed;
+    left:0;
+    top:0;
+    z-index: 5;
 i{float:left;
     position:absolute;
     top:rem(12px);
-    left:rem(12px);
-    font-size:rem(22px);
+    left:rem(0px);
+    font-size:rem(20px);
     line-height:rem(32px);
     color:#fff;
 }
 .header-title{
     margin: 0 auto;
-     line-height:rem(50px);
-    font-size:rem(22px);
+     line-height:rem(48px);
+    font-size:rem(20px);
     text-align: center;
     color: #fff;
     width: 80%;
@@ -30,7 +34,10 @@ i{float:left;
     background-color: #f0fae6;
     font-size:rem(12px);
     padding:rem(12px),rem(14px);
+    margin-top: rem(48px);
+
  .login{
+
     width: 100%;
     height:rem(48px);
     display: table-cell;
@@ -57,7 +64,7 @@ i{float:left;
     display:block;
     float:left;
     padding-left:14px;
-    font-size:rem(16px);
+    font-size:rem(14px);
     line-height: rem(26px);
      color: #333;
     width:rem(277px);
@@ -65,7 +72,9 @@ i{float:left;
    }
 }
 .change{
-    padding-left:rem(12px);
+    padding:rem(12px);
+    background: #fff;
+    border-bottom: 1px solid #e7e7e7;
 .ipts{
      padding-left:rem(10px);
     width:rem(261px);
@@ -76,6 +85,7 @@ i{float:left;
     border: 1px solid #e7e7e7;
     background: #fff;
     text-align:center;
+    color:#333;
     font-size: rem(14px);
 }
 .exch-btn{
@@ -87,4 +97,60 @@ i{float:left;
     border: 1px solid #6fbd00;
     background: #fff;
 }
+}
+.carts-img{
+    width:rem(375px);
+    height:rem(170px);
+    text-align: center;
+    img{
+        width:rem(160px);
+        height:rem(160px);
+        margin-top: rem(10px);
+        margin-left:rem(30px);
+
+    }
+    p{
+        height:rem(27px);
+        font-size: rem(20px);
+        text-align: center;
+        color: rgb(102, 102, 102);
+    }
+}
+.carts-link{
+    height:rem(40px);
+    margin:0 auto;
+    .carts-guan{
+        width:rem(118px);
+        height:rem(34px);
+        border: 1px solid rgb(137, 190, 72);
+        display: inline-block;
+        border-radius:rem(6px);
+        font-size:rem(18px);
+        letter-spacing: 1px;
+        margin-top: rem(6px);
+        color: rgb(137, 190, 72);
+    }
+}
+.cart-bottom{
+    background: #fff;
+    .cart-assem-title{
+        height:rem(44px);
+        margin-top: rem(80px);
+        p{
+            height:rem(24px);
+            padding: rem(10px);
+            font-size: rem(18px);
+            border-bottom: 1px solid #ccc;
+        }
+    }
+    #center.swiper-container.carts{
+        background: #fff;
+        padding-top: rem(20px);
+    }
+    #center.swiper-container.carts p{
+        text-align: left;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+    }
 }
