@@ -12,12 +12,28 @@ class Channel extends React.Component {
             mainText:'',
             recoList:[],
             rootPath:'http://i.lifevccdn.com',
-            pageId:''
+            pageId:'',
+            showTop:false
         }
     }
     componentDidMount(){
         this.getchanList(this.props);
-
+        window.onscroll = ()=>{
+            if(window.scrollY >= 500){
+                this.setState({
+                    showTop:true
+                })
+            }else{
+                this.setState({
+                    showTop:false
+                })
+            }
+        }
+    }
+    componentWillUnmount(){
+        window.onscroll = ()=>{
+            return
+        }
     }
     componentWillReceiveProps(nextProps){
         this.getchanList(nextProps);
@@ -54,10 +70,19 @@ class Channel extends React.Component {
             console.log(err);
         })
     }
-    
+    backToTop(){
+        window.scrollTo(0,0);
+    }
     render() {
         return(
             <div className='channel'>
+             <div className="toTop"
+                    style={{
+                        'display':this.state.showTop?'block':'none'
+                    }} onClick={this.backToTop.bind(this)}
+                >
+                <i className="fa fa-chevron-up" aria-hidden="true"></i>
+                </div>
                 <div className="chanTop">
                     {
                         this.state.chanTopList.map((item,index)=>{

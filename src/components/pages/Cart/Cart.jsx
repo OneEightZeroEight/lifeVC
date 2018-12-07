@@ -207,6 +207,7 @@ class Cart extends React.Component{
             jiage:qian,
             qty:shu
         })
+        this.props.changegoodsCount(shu);
     }
     //判断是否有商品
     panduan2(){
@@ -216,11 +217,14 @@ class Cart extends React.Component{
             })
         }
     }
+    back(){
+        this.props.history.go(-1);
+    }
     render(){
         return (
             <div className='cart'>
                 <div className="Top">
-                    <Link to="/footer/stroll/"><i className="fa fa-chevron-left" aria-hidden="true"></i></Link>
+                    <span onClick={this.back.bind(this)}><i className="fa fa-chevron-left" aria-hidden="true"></i></span>
                     <p className="header-title">购物车</p>
                     <div>{
                         (()=>{
@@ -368,7 +372,7 @@ class Cart extends React.Component{
                                                             if(!this.state.xiugai){
                                                                 return <div className="Mag"><p>
                                                                         <div className="iii" onClick={this.danshan.bind(this,index)}>
-                                                                            <i className="fa fa-university" aria-hidden="true"></i>
+                                                                            <i className="fa fa-trash-o" aria-hidden="true"></i>
                                                                         </div></p>
                                                                     <p>
                                                                         <div className="quantity-editor">
@@ -414,7 +418,7 @@ class Cart extends React.Component{
                                     </div>
                                     <div className="carts-Price">
                                         <p>合计：￥<span>{this.state.jiage}</span></p>
-                                        <p className="catr-teS">商品：￥<span>{this.state.jiage}</span>-优惠：￥<span>0</span></p>
+                                        <p className="catr-teS">商品：￥<span>{this.state.jiage}</span>&nbsp;- 优惠：￥<span>0</span></p>
                                     </div>
 
                                     {(()=>{
@@ -450,6 +454,12 @@ export default connect((state)=>{
             dispatch({
                 type:"toggleGallery",
                 sele:3
+            })
+        },
+        changegoodsCount(counts){
+            dispatch({
+                type:"changegoodsCount",
+                goodsCount:counts
             })
         }
     }

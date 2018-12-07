@@ -10,8 +10,12 @@ class Stroll extends React.Component {
             pageNo: 0,
             lists: [],
             pageCount: 0,
-            ifLoad: true
+            ifLoad: true,
+            showTop:false
         }
+    }
+    backToTop(){
+        window.scrollTo(0,0);
     }
     getStroList() {
         let page = this.state.pageNo;
@@ -69,11 +73,27 @@ class Stroll extends React.Component {
                     }
                 }
             }
+            if(window.scrollY >= 500){
+                this.setState({
+                    showTop:true
+                })
+            }else{
+                this.setState({
+                    showTop:false
+                })
+            }
         }
     }
     render() {
         return (
             <div className='stroll'>
+                <div className="toTop"
+                    style={{
+                        'display':this.state.showTop?'block':'none'
+                    }} onClick={this.backToTop.bind(this)}
+                >
+                <i className="fa fa-chevron-up" aria-hidden="true"></i>
+                </div>
                 <header id="topbar" className="stop"><div className="header-content">
                     <p className="header-title">{this.state.title}</p></div></header>
                 <ul className="list" ref='list'>

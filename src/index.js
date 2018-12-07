@@ -22,7 +22,8 @@ const store = createStore((state = {
     ifLearnShow:false,
     ifLogin:false,
     status:'login',
-    logType:'password'
+    logType:'password',
+    goodsCount:0
 }, action) => {
     switch (action.type) {
         case 'toggleNav':
@@ -69,6 +70,11 @@ const store = createStore((state = {
             return {
                 ...state,
                 ifLogin:action.ifLogin
+            }
+        case 'changegoodsCount':
+            return {
+                ...state,
+                goodsCount:action.goodsCount
             }
         default:
             return state
