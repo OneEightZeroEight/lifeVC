@@ -232,7 +232,7 @@ class Detail extends React.Component {
                     }
                     <p className="saleType">{
                         (() => {
-                            if (this.state.saleTag != []) {
+                            if (this.state.saleTag != [] && this.state.saleTag != null) {
                                 return this.state.saleTag.map((item, index) => {
                                     return <span key={index}
                                         style={{

@@ -17,17 +17,35 @@ class Xiao extends React.Component {
                 { title: '账户中心', pic: 'fa fa-user', path: '/footer/user' },
 
             ],
-            sele: Number(sessionStorage.getItem('sele')) || 0
+            length: 0,
+            sele: Number(sessionStorage.getItem('sele')) || 0,
         }
     }
-    bianhua(nextProps){
+    bianhua(nextProps) {
         this.setState({
             sele: nextProps.sele
         });
         window.sessionStorage.setItem('sele', nextProps.sele);
     }
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         this.bianhua(nextProps);
+        this.changeCount(nextProps);
+    }
+    componentWillMount() {
+        let shopItem = JSON.parse(window.localStorage.getItem('detailCarts')) || [];
+        let length = 0;
+        shopItem.forEach((item,index)=>{
+            length += item.nums;
+        })
+        this.setState(
+            Object.assign({}, { length })
+        )
+    }
+    changeCount(nextProps){
+        let length = nextProps.goodsCount || 0;
+        this.setState(
+            Object.assign({}, { length })
+        )
     }
     render() {
         return (
@@ -44,25 +62,37 @@ class Xiao extends React.Component {
 
                     })
                 }
+                {
+                    (() => {
+                        if (this.state.length != 0) {
+                            return <span className="shopCount">{this.state.length}</span>
+                        }
+                    })()
+                }
             </footer>
         )
 
     }
 
 }
-export default connect((state)=>{
+export default connect((state) => {
     return state
-},(dispatch=>{
+}, (dispatch => {
     return {
         changeSele(index) {
             this.setState({
                 sele: index
             });
             window.sessionStorage.setItem('sele', index);
-
             dispatch({
-                type:"toggleGallery",
-                sele:index
+                type: "toggleGallery",
+                sele: index
+            })
+        },
+        changegoodsCount(counts){
+            dispatch({
+                type:"changegoodsCount",
+                goodsCount:counts
             })
         }
     }

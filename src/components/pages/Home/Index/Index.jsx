@@ -9,12 +9,29 @@ class Index extends React.Component {
         this.state = {
             rootPath:'http://i.lifevccdn.com',
             otherList:[],
-            picList:[]
+            picList:[],
+            showTop:false
         }
     }
     componentDidMount() {
         this.getMainData();
         this.props.changeSel();
+        window.onscroll = ()=>{
+            if(window.scrollY >= 500){
+                this.setState({
+                    showTop:true
+                })
+            }else{
+                this.setState({
+                    showTop:false
+                })
+            }
+        }
+    }
+    componentWillUnmount(){
+        window.onscroll = ()=>{
+            return
+        }
     }
     componentDidUpdate() {
         var bannerSwiper = new Swiper('#banner', {
@@ -51,9 +68,19 @@ class Index extends React.Component {
                 console.log(err);
             })
     }
+    backToTop(){
+        window.scrollTo(0,0);
+    }
     render() {
         return (
             <div className='index'>
+            <div className="toTop"
+                    style={{
+                        'display':this.state.showTop?'block':'none'
+                    }} onClick={this.backToTop.bind(this)}
+                >
+                <i className="fa fa-chevron-up" aria-hidden="true"></i>
+                </div>
                 <div className="banner">
                     <div className="swiper-container" id='banner'>
                         <div className="swiper-wrapper">
