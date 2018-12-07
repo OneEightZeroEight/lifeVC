@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Swiper from 'swiper';
 import '../../../static/css/font-awesome.css';
 import "../../../styles/detail.scss";
+// import "http://res.wx.qq.com/open/js/jweixin-1.0.0.js";
 class Detail extends React.Component {
     constructor(props) {
         super(props);
@@ -76,28 +77,29 @@ class Detail extends React.Component {
         let ItemInfoId = this.props.match.params.ItemInfoId
         React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/items/itemview?Iteminfoid=' + ItemInfoId + '&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
             .then((res) => {
-                this.setState({
-                    details: res.data.InnerData.Headers,
-                    name: res.data.InnerData.Name,
-                    price: res.data.InnerData.SalePrice,
-                    center: res.data.InnerData.BuyWith,
-                    Detail: res.data.InnerData.Details,
-                    CommentList: res.data.InnerData.CommentList,
-                    Specifications: res.data.InnerData.Specifications,
-                    Notice: res.data.InnerData.Notice,
-                    CommentCount: res.data.InnerData.CommentCount,
-                    desc: [
-                        { title: '商品详情' },
-                        { title: '规格参数' },
-                        { title: '评论', CommentCount: res.data.InnerData.CommentCount }
-                    ],
-                    saleTag: res.data.InnerData.SaleTags,
-                    Caption: res.data.InnerData.Caption,
-                    prompts: res.data.InnerData.Prompts,
-                    activePrice: res.data.InnerData.ActivityPrice,
-                    goodId:res.data.InnerData.ItemInfoId
-                });
-
+                if(res.statusText == 'OK'){
+                    this.setState({
+                        details: res.data.InnerData.Headers,
+                        name: res.data.InnerData.Name,
+                        price: res.data.InnerData.SalePrice,
+                        center: res.data.InnerData.BuyWith,
+                        Detail: res.data.InnerData.Details,
+                        CommentList: res.data.InnerData.CommentList,
+                        Specifications: res.data.InnerData.Specifications,
+                        Notice: res.data.InnerData.Notice,
+                        CommentCount: res.data.InnerData.CommentCount,
+                        desc: [
+                            { title: '商品详情' },
+                            { title: '规格参数' },
+                            { title: '评论', CommentCount: res.data.InnerData.CommentCount }
+                        ],
+                        saleTag: res.data.InnerData.SaleTags,
+                        Caption: res.data.InnerData.Caption,
+                        prompts: res.data.InnerData.Prompts,
+                        activePrice: res.data.InnerData.ActivityPrice,
+                        goodId:res.data.InnerData.ItemInfoId
+                    });
+                }
             })
             .catch((err) => {
                 console.log(err);

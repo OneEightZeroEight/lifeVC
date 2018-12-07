@@ -7,23 +7,19 @@
 	position: fixed;
 	top:0;
 	left:0;
-	text-align: center;
 	height:rem(48px);
-	line-height:rem(48px);
 	width:rem(375px);
-	font-size: rem(22px);
+	font-size: rem(20px);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 0 rem(10px);
 	color:#fff;
 	z-index: 9;
-	.TLeft{
-		a{
-			width:rem(37px);
-		}
-		float:left;
-		.fa.fa-chevron-left{
-			color:#fff;
-			font-size: rem(30px);
-			margin-left: rem(10px);
-		}
+	i{
+		color:#fff;
+		font-size: rem(20px);
 	}
 }
 .qieHuan{
@@ -37,23 +33,22 @@
 	width: rem(375px);
 	text-align: center;
 	margin-bottom: rem(30px);
-	flex:1;
-	.HeiHei{
+	align-items: center;
+	justify-content: space-between;
+	.HeiHei span{
 		color:red;
-		border-bottom:1px solid #ccc;
 	}
 	li{
 		text-align: center;
 		width:rem(120px);
 		height:rem(36px);
-		margin-top: 5px;
 		text-align: center;
 		span{
-			display: block;
-			border-right: 1px solid #f2f2f2;
-			height: rem(16px);
+			// border-right: 1px solid #f2f2f2;
 			color: #666;
 			font-size: rem(16px);
+			line-height: rem(36px);
+			// padding: 0 rem(30px);
 		}
 	}
 }
