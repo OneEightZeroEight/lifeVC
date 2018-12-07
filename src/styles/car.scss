@@ -213,6 +213,7 @@ i{float:left;
 }
 .cars-main{
     background: #fff;
+    padding-bottom: rem(100px);
     .xSping{
         position: relative;
         display: flex;
@@ -229,6 +230,7 @@ i{float:left;
             height:rem(75px);
             padding-top: rem(20px);
             padding-right:rem(20px);
+            padding-left: rem(10px);
         }
 
         .Mag{
@@ -301,7 +303,7 @@ i{float:left;
 .carts-quanxuan{
     width:rem(375px);
     height:rem(50px);
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom:rem(58px);
     display: flex;

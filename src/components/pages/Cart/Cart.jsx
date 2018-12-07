@@ -15,16 +15,7 @@ class Cart extends React.Component{
             zhuangTai:true,//全选选框状态
             jiage:0,//商品价格
             qty:0,//商品数量
-            xiangPing:[{name:"趣味早餐煎饼锅",
-            goodPic:"http://i.lifevccdn.com/upload/AppItemExhibit/e1e41c8ea9614d4c8f74f78967a79d72.jpg",
-            price:"99",nums:1,goodId:22783,status:true},
-                    {name:"趣味早餐煎饼锅",
-            goodPic:"http://i.lifevccdn.com/upload/AppItemExhibit/e1e41c8ea9614d4c8f74f78967a79d72.jpg",
-            price:"99",nums:1,goodId:22783,status:true},
-                    {name:"趣味早餐煎饼锅",
-            goodPic:"http://i.lifevccdn.com/upload/AppItemExhibit/e1e41c8ea9614d4c8f74f78967a79d72.jpg",
-            price:"99",nums:1,goodId:22783,status:true}
-            ],
+            xiangPing:JSON.parse(window.localStorage.getItem('detailCarts'))||[],//商品
             Bbottom:[],//没有登录时底部商品信息
             guangGao:{}// 登录后半折抢购信息
         }
@@ -32,6 +23,13 @@ class Cart extends React.Component{
 
     componentDidMount(){
 
+        let detailCarts= JSON.parse(window.localStorage.getItem('detailCarts'));
+        console.log(detailCarts);
+        // this.setState({
+        //     xiangPing:detailCarts,
+        //     qty:1
+        // })
+        // console.log(this.state);
         this.props.changeSele();
         //     window.localStorage.setItem('CarDiBu',JSON.stringify(res.data.RecommendItems));
         let Bbottom = JSON.parse(window.localStorage.getItem('CarDiBu'));
@@ -47,6 +45,7 @@ class Cart extends React.Component{
                 sszt:true
             })
         }
+        // console.log(this.state.xiangPing,detailCarts)
         this.panduan();
         this.panduan1();
         this.panduan2();
@@ -94,6 +93,7 @@ class Cart extends React.Component{
                 xiangPing:dalao
             })
         }
+        window.localStorage.setItem('detailCarts',JSON.stringify(this.state.xiangPing));
         this.panduan1();
     }
     //点击加
@@ -103,6 +103,7 @@ class Cart extends React.Component{
         this.setState({
             xiangPing:dalao
         })
+        window.localStorage.setItem('detailCarts',JSON.stringify(this.state.xiangPing));
         this.panduan1();
     }
     //删除
@@ -112,6 +113,7 @@ class Cart extends React.Component{
         this.setState({
             xiangPing:dalao
         })
+        window.localStorage.setItem('detailCarts',JSON.stringify(this.state.xiangPing));
         this.panduan();
         this.panduan1();
         this.panduan2();
@@ -128,6 +130,7 @@ class Cart extends React.Component{
         this.setState({
             xiangPing:dalao
         })
+        window.localStorage.setItem('detailCarts',JSON.stringify(this.state.xiangPing));
         this.panduan();
         this.panduan1();
         this.panduan2();
