@@ -22,6 +22,7 @@ class App extends Component {
             <Route path='/setting/' component={Setting}></Route>
             <Route path="/login/" component={Login} />
             <Route path="/Accont/" component={Accont} />
+            <Route path="/Accont/" component={Accont} />
             <Redirect from='/' to='/footer/home/index/'/>
           </Switch>
           <LearnMore></LearnMore>
