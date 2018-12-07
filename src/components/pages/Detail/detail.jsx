@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Swiper from 'swiper';
 import '../../../static/css/font-awesome.css';
 import "../../../styles/detail.scss";
+import {Toast} from 'antd-mobile';
 // import "http://res.wx.qq.com/open/js/jweixin-1.0.0.js";
 class Detail extends React.Component {
     constructor(props) {
@@ -64,7 +65,7 @@ class Detail extends React.Component {
         //存储的数据
        
         if(!window.localStorage.getItem('userId')){
-            alert("请先登录");
+            Toast.fail('请先登录', 2);
         }else{
             let name = this.state.name,nums = this.state.nums, goodId = this.state.goodId,goodPic = 'http://i.lifevc.com' + this.state.details[0].ImageUrl,status = true;
             let yhm = window.localStorage.getItem('userId');

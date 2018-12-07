@@ -18,7 +18,7 @@ class Xiao extends React.Component {
 
             ],
             length: 0,
-            sele: Number(sessionStorage.getItem('sele')) || 0,
+            sele: Number(sessionStorage.getItem('sele')) || 0
         }
     }
     bianhua(nextProps) {
@@ -32,14 +32,16 @@ class Xiao extends React.Component {
         this.changeCount(nextProps);
     }
     componentWillMount() {
-        let shopItem = JSON.parse(window.localStorage.getItem('detailCarts')) || [];
-        let length = 0;
-        shopItem.forEach((item,index)=>{
-            length += item.nums;
-        })
-        this.setState(
-            Object.assign({}, { length })
-        )
+        if(window.localStorage.getItem('userId')){
+            let shopItem = JSON.parse(window.localStorage.getItem('detailCarts')) || [];
+            let length = 0;
+            shopItem.forEach((item,index)=>{
+                length += item.nums;
+            })
+            this.setState(
+                Object.assign({}, { length })
+            )
+        }
     }
     changeCount(nextProps){
         let length = nextProps.goodsCount || 0;
