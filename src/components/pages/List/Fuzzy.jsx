@@ -15,7 +15,9 @@ class Fuzzy extends React.Component{
             	{name:'价格',sort:4}
             ],
             sort:1,
-            name:''
+            name:'',
+            daztiYou:true,
+            daztiKong:false
         }
     }
     componentDidMount(){
@@ -27,12 +29,19 @@ class Fuzzy extends React.Component{
         React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/contents/search?keywords='+keywords+'&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
         .then((res)=>{
           let Bian = res.data.InnerData;
+          if(Bian==null){
             this.setState({
-                list:Bian,
-                Llist:Bian
-            });
-
-            
+              daztiYou:false,
+              daztiKong:true
+            })
+          }else{
+              this.setState({
+                  list:Bian,
+                  Llist:Bian,
+                  daztiYou:true,
+                  daztiKong:false
+              });
+          }
         })
         .catch((err)=>{
             console.log(err);
@@ -95,21 +104,34 @@ class Fuzzy extends React.Component{
            			</div>
            		</div>
 
-              <div>
-                <ul className="qieHuan">
-                  {(()=>{
-                    return this.state.qieHuan.map((item,index)=>{
-                      return (
-                        <li key={index} 
-                        onClick={this.chongxin.bind(this,item.sort)}
-                        className={this.state.sort===item.sort?"HeiHei":""} >
-                          <span>{item.name}</span>
-                        </li>
-                      )
-                    })
-                  })()}
-                  </ul>
-                </div>
+              <div>{(()=>{
+                if(this.state.daztiYou){
+                  return <ul className="qieHuan">
+                    {(()=>{
+                      return this.state.qieHuan.map((item,index)=>{
+                        return (
+                          <li key={index} 
+                          onClick={this.chongxin.bind(this,item.sort)}
+                          className={this.state.sort===item.sort?"HeiHei":""} >
+                            <span>{item.name}</span>
+                          </li>
+                        )
+                      })
+                    })()}
+                    </ul>
+                  }
+              })()}</div>
+
+
+              <div>{(()=>{
+                if(this.state.daztiKong){
+                  return <div className="daztiKong">
+                    <p>暂时没有其他商品<br/>先逛逛其他品类吧</p>
+                  </div>
+                  }
+              })()}</div>
+
+
 
                 <div className="KongKong"></div>
               <div className="XunH">

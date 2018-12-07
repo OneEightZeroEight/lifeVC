@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import '../../../styles/user.scss';
+import { Toast } from 'antd-mobile';
 class User extends React.Component{
 	constructor(props) {
         super(props);
@@ -18,7 +19,6 @@ class User extends React.Component{
 	componentDidMount(){
         this.props.changeSele();
         this.getBottomData();
-        console.log(this.state);
     }
     getBottomData(){
         React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/contents/usercenter?si=lC5v9sXQoXgBMV1/nIxWta4L5ppi1pzaqS9JV082v8xEg4h7nY6MSTi2ixrCGZEbGlV1/7ZCdJM=&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
@@ -48,7 +48,9 @@ class User extends React.Component{
                 >
                     <p className='noLogin'>您还未登录</p>
                     <div className="userBox">
-                        <Link className='userLogin' to='/login/' onClick={this.props.changeToLog}>登录</Link>
+                        <Link className='userLogin' to='/login/' onClick={
+                                this.props.changeToLog
+                            }>登录</Link>
                         <Link className='userReg' to='/login/' onClick={this.props.changeToReg}>注册</Link>
                     </div>
                 </div>

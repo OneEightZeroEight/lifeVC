@@ -65,14 +65,13 @@ class List extends React.Component{
         return (
            <div className="Llist">
            		<div className="Topp1">
-           			<div className="TLeft">
            				<Link to="/footer/all/" >
            					<i className="fa fa-chevron-left" aria-hidden="true"></i>
            				</Link>
-           			</div>
-           			<div className="TRight">
-           				{this.state.List.ItemIndexName}
-           			</div>
+                        <span>
+                            {this.state.List.ItemIndexName}
+                        </span>
+           				<span></span>
            		</div>
 
            		<div>

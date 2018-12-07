@@ -2,6 +2,7 @@ import React from 'react';
 import '../../../styles/login.scss';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
+import { Toast } from 'antd-mobile';
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -35,39 +36,90 @@ class Login extends React.Component {
         })
     }
     login(){
-        React.axios.get("http://localhost:3001/Users/login",{params:{us:this.state.userId,ps:this.state.userPassword}})
-        .then((res)=>{
-                console.log(res);
-                 // if(res.err==0){
-                // if(!/^[a-z][\w\-]{5,19}$/i.test(this.state.userPassword)){ 
-                // alert("密码不符合条件")
-                // if(!/^\b1[3-8]\d{9}\b$/g.test(this.state.userId)){ 
-                // alert("用户名不符合条件")
-                // }
-                window.localStorage.setItem('userId',this.state.userId);
-                window.localStorage.setItem('userPassword',this.state.userPassword);
-                window.localStorage.setItem('ifLogin',true);
-                    this.props.history.push('/footer/user/');
-                // }
-        })
-        .catch((res)=>{
-            console.log(res)
-        })
+        if(this.state.userId == ''){
+            Toast.fail('用户名不能为空', 1);
+        }else if(this.state.userPassword == ''){
+            Toast.fail('密码不能为空', 1);
+        }else{
+            React.axios.get("http://localhost:3001/Users/login",{params:{us:this.state.userId,ps:this.state.userPassword}})
+            .then((res)=>{
+                if(res.data.err == 0){
+                    Toast.success('登录成功', 2,()=>{
+                        Toast.loading('加载中', 1, () => {
+                            window.localStorage.setItem('userId',this.state.userId);
+                            window.localStorage.setItem('userPassword',this.state.userPassword);
+                            window.localStorage.setItem('ifLogin',true);
+                            this.props.history.push('/footer/user/');
+                        });
+                    });
+                }else if(res.data.err == -1){
+                    Toast.fail('用户名不存在', 1);
+                }else{
+                    Toast.fail('密码错误', 1);
+                }
+            })
+            .catch((res)=>{
+                console.log(res)
+            })
+        }
        
     }
     regist(){
-        React.axios.get("http://localhost:3001/Users/reg",{params:{us:this.state.userIds,ps:this.state.userPasswords}})
-        .then((res)=>{
-                // if(res.err==0){
-                 alert("注册成功")
-             // }
-        
-        })
-        .catch((res)=>{
-            console.log(res)
-        })
+        if(this.state.userIds == ''){
+            Toast.fail('用户名不能为空', 1);
+        }else if(this.state.userPasswords == ''){
+            Toast.fail('密码不能为空', 1);
+        }else{
+            if(!/^\b1[3-8]\d{9}\b$/g.test(this.state.userIds)){ 
+                Toast.fail('用户名不符合要求', 2);
+            }else{
+                if(!/^[a-z][\w\-]{5,19}$/i.test(this.state.userPasswords)){ 
+                    Toast.fail('密码不符合要求', 2);
+                }else{
+                    React.axios.get("http://localhost:3001/Users/yz",{params:{us:this.state.userIds}})
+                    .then((res)=>{
+                        if(res.data.err == -1){
+                            Toast.fail('用户名已被注册', 1);
+                        }else{
+                            React.axios.get("http://localhost:3001/Users/reg",{params:{us:this.state.userIds,ps:this.state.userPasswords}})
+                            .then((res)=>{
+                                Toast.success('注册成功', 2,()=>{
+                                    this.props.changeToLog();
+                                });
+                            })
+                            .catch((err)=>{
+                                console.log(err)
+                            })
+                        }
+                    })
+                    .catch((err)=>{
+                        console.log(err);
+                    })
+                }
+            }
+        }
     }
-    
+    // checkUser(){
+    //     if(!/^\b1[3-8]\d{9}\b$/g.test(this.state.userIds)){ 
+    //         Toast.fail('用户名不符合要求', 2);
+    //     }else{
+    //         if(!/^[a-z][\w\-]{5,19}$/i.test(this.state.userPasswords)){ 
+    //             Toast.fail('密码不符合要求', 2);
+    //         }else{
+    //             React.axios.get('http://localhost:3001/User/yz',{params:{
+    //                 us:this.state.userIds
+    //             }})
+    //             .then((res)=>{
+    //                 if(res.data.err == -1){
+    //                     Toast.fail('用户名已被注册', 1);
+    //                 }
+    //             })
+    //             .catch((err)=>{
+    //                 console.log(err);
+    //             })
+    //         }
+    //     }
+    // }
     render() {
         return (
             <div className='login'>
@@ -131,7 +183,7 @@ class Login extends React.Component {
                                 <input type="text" className="Num" placeholder='请输入手机号' onChange={this.getIds.bind(this)}/>
                             </div>
                             <div className="regPassword">
-                                <input type="password" className="password" placeholder='请输入6-20位密码，包含字母、数字或符号'  onChange={this.getPasss.bind(this)}/>
+                                <input type="password" className="password" placeholder='请输入6-20位密码，包含字母、数字或符号'  onChange={this.getPasss.bind(this)} />
                             </div>
                             <div className="checkWord">
                                 <input type="text" className="password" placeholder='请输入手机验证码' />

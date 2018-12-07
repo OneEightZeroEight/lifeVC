@@ -38,7 +38,8 @@ class Product extends React.Component{
     changeEvent(e){
         React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/contents/SearchAutoSuggest?keywords='+e.target.value+'&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
         .then((res)=>{
-            let dalao = res.data.InnerData.split(",");
+            let sbb = res.data.InnerData.replace('%','');
+            let dalao = sbb.split(",");
             let dalao2 = [];
             for(let i=0;i<dalao.length;i++){
                 let dalao1 = dalao[i].split("|");
