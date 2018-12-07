@@ -29,9 +29,11 @@ class Cart extends React.Component{
         if(window.localStorage.getItem('userId')){
             let haooo= JSON.parse(window.localStorage.getItem('detailCarts'));
             let xiangPing =[];
-            for(let i=0;i<haooo.length;i++){
-                if(haooo[i].yhm==window.localStorage.getItem('userId')){
-                    xiangPing.push(haooo[i]);
+            if(haooo != null){
+                for(let i=0;i<haooo.length;i++){
+                    if(haooo[i].yhm==window.localStorage.getItem('userId')){
+                        xiangPing.push(haooo[i]);
+                    }
                 }
             }
             let sszt=false;
@@ -40,8 +42,7 @@ class Cart extends React.Component{
                 () => this.haoshu()//同步
             )
             this.setState(
-                Object.assign({}, { sszt }),
-                () => console.log(this.state)
+                Object.assign({}, { sszt })
             )
         }else{
             let sszt=true;
@@ -231,14 +232,16 @@ class Cart extends React.Component{
     //判断是否有商品
     panduan2(){
         if(!window.localStorage.getItem('userId')){
-            this.setState({
-                sooping:false
-            })
+            let sooping=false;
+            this.setState(
+                Object.assign({}, { sooping })
+            )
         }
         if(this.state.xiangPing.length==0){
-            this.setState({
-                sooping:false
-            })
+            let sooping=false;
+            this.setState(
+                Object.assign({}, { sooping })
+            )
         }
     }
     back(){

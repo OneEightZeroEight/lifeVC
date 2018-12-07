@@ -130,9 +130,12 @@ class Detail extends React.Component {
         if(window.localStorage.getItem('userId')){
             if(JSON.parse(window.localStorage.getItem('detailCarts'))){
                 let kong = JSON.parse(window.localStorage.getItem('detailCarts'));
+                let user = window.localStorage.getItem('userId');
                 let qty=0;
                 for(let i=0;i<kong.length;i++){
-                    qty+=kong[i].nums;
+                    if(kong[i].yhm == user){
+                        qty+=kong[i].nums;
+                    }
                 }
                this.setState({
                     qty:qty
