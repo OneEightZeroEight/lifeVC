@@ -74,10 +74,8 @@ class Detail extends React.Component {
     componentDidMount() {
         //获取传过来的id
         let ItemInfoId = this.props.match.params.ItemInfoId
-        console.log(ItemInfoId)
         React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/items/itemview?Iteminfoid=' + ItemInfoId + '&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
             .then((res) => {
-                console.log(res.data);
                 this.setState({
                     details: res.data.InnerData.Headers,
                     name: res.data.InnerData.Name,
