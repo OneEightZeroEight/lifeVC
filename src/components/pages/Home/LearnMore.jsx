@@ -5,6 +5,9 @@ class LearnMore extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
+        this.state = {
+            nowClass:''
+        }
     }
     render() {
         return (
