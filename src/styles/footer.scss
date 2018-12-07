@@ -1,5 +1,19 @@
 @import './reset.scss';
 .commonFooter{
+    .shopCount{
+        background: #f59130;
+        display: inline-block;
+        color: #fff;
+        font-size: rem(12px);
+        width: rem(20px);
+        height: rem(20px);
+        line-height: rem(20px);
+        text-align: center;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        right: rem(86px);
+    }
     width: rem(375px);
     height: rem(55px);
     background: #fff;

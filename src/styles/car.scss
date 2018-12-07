@@ -7,25 +7,23 @@
     left:0;
     top:0;
     z-index: 5;
-i{float:left;
-    position:absolute;
-    top:rem(12px);
-    left:rem(0px);
+    padding: 0 rem(15px);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+i{
     font-size:rem(20px);
     line-height:rem(32px);
     color:#fff;
 }
 .header-title{
-    margin: 0 auto;
-     line-height:rem(48px);
+    line-height:rem(48px);
     font-size:rem(20px);
     text-align: center;
     color: #fff;
     width: 80%;
-    height:rem(50px);
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    height:rem(48px);
 }
 .header-right{
     position: absolute;
@@ -238,7 +236,7 @@ i{float:left;
             display: flex;
             flex:1;
             flex-direction: column;
-
+            padding-right: rem(8px);
             justify-content: space-between;
             p{
                 width:100%;
@@ -248,21 +246,27 @@ i{float:left;
             }
             .iii{
                 position: absolute;
-                 right: 0;
+                right: rem(20px);
+                color:#333;
+                i{
+                    font-size: rem(20px);
+                }
             }
             .quantity-editor {
-                width: 100%;
                 height: rem(28px);
                 overflow: hidden;
                 display: block;
-                margin: rem(23px) 0 0;
+                margin: rem(23px) 0 0 rem(100px);
                 padding: 0;
                 display: flex;
                 position: relative;
                 padding-right: 0;
+                .tag-act-wrap{
+                    border:none;
+                }
                 span{
                     display: block;
-                    border:1px solid #000;
+                    border:1px solid #6fbd00;
                     text-align: center;
                     line-height: rem(28px);
                 }
@@ -273,7 +277,7 @@ i{float:left;
                     font-size:rem(20px);
                     line-height:rem(26px);
                     right:rem(75px);
-                    
+                    border-right:none;
                 }
                 .quantity-num {
                     width: rem(38px);
@@ -282,6 +286,7 @@ i{float:left;
                 }
                 .increment {
                     width: rem(35px);
+                    border-left:none;
                     border-top-right-radius:rem(4px);
                     border-bottom-right-radius:rem(4px);
                     font-size:rem(20px);
@@ -340,10 +345,12 @@ i{float:left;
         right:0;
         width:rem(110px);
         height:rem(50px);
-        background: green;
+        background: #8ec351;
         line-height: rem(50px);
         text-align: center;
-        color:#fff;
+        a{
+            color:#fff;
+        }
         font-size: rem(18px);
     }
     .carts-kuang2{
@@ -352,7 +359,7 @@ i{float:left;
         right:0;
         width:rem(110px);
         height:rem(50px);
-        background: red;
+        background: #ab2c2b;
         line-height: rem(50px);
         text-align: center;
         color:#fff;

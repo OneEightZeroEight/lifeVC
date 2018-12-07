@@ -1,4 +1,19 @@
 @import './reset.scss';
+.toTop{
+    position: fixed;
+    bottom: rem(100px);
+    right: rem(20px);
+    width: rem(36px);
+    height: rem(36px);
+    opacity: .9;
+    color:#fff;
+    font-size:rem(20px);
+    text-align: center;
+    line-height: rem(30px);
+    background-color: #333;
+    border-radius: 50%;
+    z-index:99999;
+}
 .stop {
     padding: 0;
     width: 100%;

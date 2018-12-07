@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Swiper from 'swiper';
 import '../../../static/css/font-awesome.css';
 import "../../../styles/detail.scss";
+// import "http://res.wx.qq.com/open/js/jweixin-1.0.0.js";
 class Detail extends React.Component {
     constructor(props) {
         super(props);
@@ -135,13 +136,11 @@ class Detail extends React.Component {
                 qty:qty
             })
         }
-        
-
-        
         //获取传过来的id
         let ItemInfoId = this.props.match.params.ItemInfoId
         React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/items/itemview?Iteminfoid=' + ItemInfoId + '&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
-            .then((res) => {
+        .then((res) => {
+            if(res.statusText == 'OK'){
                 this.setState({
                     details: res.data.InnerData.Headers,
                     name: res.data.InnerData.Name,
@@ -163,11 +162,11 @@ class Detail extends React.Component {
                     activePrice: res.data.InnerData.ActivityPrice,
                     goodId:res.data.InnerData.ItemInfoId
                 });
-
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        })
         window.onscroll = () => {
             if (window.scrollY >= this.refs.scrollBox.clientHeight) {
                 this.setState({
@@ -245,7 +244,7 @@ class Detail extends React.Component {
                     }
                     <p className="saleType">{
                         (() => {
-                            if (this.state.saleTag != []) {
+                            if (this.state.saleTag != [] && this.state.saleTag != null) {
                                 return this.state.saleTag.map((item, index) => {
                                     return <span key={index}
                                         style={{

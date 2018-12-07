@@ -12,7 +12,8 @@ class NewArrive extends React.Component {
             showList:[],
             nowIndex:0,
             isEnd:false,
-            rootPath:'http://i.lifevccdn.com'
+            rootPath:'http://i.lifevccdn.com',
+            showTop:false
         }
     }
     componentDidMount(){
@@ -23,6 +24,15 @@ class NewArrive extends React.Component {
                 if (window.scrollY >= this.refs.newArriveBox.clientHeight -800) {
                     this.getShowList();
                 }
+            }
+            if(window.scrollY >= 500){
+                this.setState({
+                    showTop:true
+                })
+            }else{
+                this.setState({
+                    showTop:false
+                })
             }
         }
     }
@@ -72,9 +82,19 @@ class NewArrive extends React.Component {
             nowIndex:newIndex
         })
     }
+    backToTop(){
+        window.scrollTo(0,0);
+    }
     render() {
         return(
             <div className='newArrive' ref='newArriveBox'>
+            <div className="toTop"
+                    style={{
+                        'display':this.state.showTop?'block':'none'
+                    }} onClick={this.backToTop.bind(this)}
+                >
+                <i className="fa fa-chevron-up" aria-hidden="true"></i>
+                </div>
                 <p className='newTitle'>最近一周新品</p>
                 {
                      this.state.weekList.map((item,index)=>{
