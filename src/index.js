@@ -74,20 +74,20 @@ const store = createStore((state = {
             return state
     }
 })
-// axios.interceptors.request.use((config) => {
-//   Toast.loading('', 3,true);
-//     return config;
-// }, (err) => {
-//     return Promise.reject(err)
+axios.interceptors.request.use((config) => {
+  Toast.loading('加载中', 3,true);
+    return config;
+}, (err) => {
+    return Promise.reject(err)
 
-// })
-// axios.interceptors.response.use((response) => {
-//     Toast.hide(); //关闭loading
-//     return response;
-// }, (err) => {
-//     return Promise.reject(err);
+})
+axios.interceptors.response.use((response) => {
+    Toast.hide(); //关闭loading
+    return response;
+}, (err) => {
+    return Promise.reject(err);
 
-// })
+})
 
 ReactDOM.render(
     <Provider store={store}>

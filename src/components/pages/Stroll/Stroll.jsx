@@ -9,11 +9,15 @@ class Stroll extends React.Component {
             title: "闲逛",
             pageNo: 0,
             lists: [],
-            pageCount:0
+            pageCount: 0,
+            ifLoad: true
         }
     }
-    getStroList(){
+    getStroList() {
         let page = this.state.pageNo;
+        this.setState({
+            ifLoad: false
+        })
         React.axios.get("/life/1.0/v_h5_5.1.2_33/Stroll/StrollItemList",
             {
                 params: {
@@ -32,28 +36,40 @@ class Stroll extends React.Component {
                 this.setState({
                     lists: list.concat(Res),
                     pageNo: res.data.InnerData.CurPage,
-                    pageCount:res.data.InnerData.PageCount
+                    pageCount: res.data.InnerData.PageCount,
+                    ifLoad: true
                 });
+                // if(page < this.state.pageNo){
+                //     this.setState({
+
+                //     })
+                // }
             })
             .catch((err) => {
                 console.log(err);
             })
     }
-    componentWillUnmount(){
-        window.onscroll = ()=>{
+    componentWillUnmount() {
+        window.onscroll = () => {
             return
         }
     }
     componentDidMount() {
         this.getStroList();
         this.props.changeSele();
-        // window.onscroll = ()=>{
-        //     if(this.state.pageNo <= this.state.pageCount){
-        //         if(window.scrollY >= this.refs.list.clientHeight - 650){
-        //             this.getStroList();
-        //         }
-        //     }
-        // }
+        window.onscroll = () => {
+            if (this.state.pageNo <= this.state.pageCount) {
+                // this.setState({
+                //     ifLoad:true
+                // });
+                let page = this.state.pageNo;
+                if (window.scrollY >= this.refs.list.clientHeight - 650) {
+                    if (this.state.ifLoad) {
+                        this.getStroList();
+                    }
+                }
+            }
+        }
     }
     render() {
         return (
