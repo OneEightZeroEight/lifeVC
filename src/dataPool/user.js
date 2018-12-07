@@ -2,7 +2,7 @@ const express = require('express');
 const Router = express.Router();
 //数据模型引入
 const User = require('./mongo/model/user.js');
-const email = require('.sendMail.js');
+const email = require('./sendMail.js');
 let check = {};
 // const nodeEmail=require('./nodeEmail.js')
 //失去光标时,用户名验证

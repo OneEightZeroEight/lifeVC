@@ -19,6 +19,7 @@ class Setting extends React.Component {
                 window.localStorage.removeItem('userId');
                 window.localStorage.removeItem('userPassword');
                 this.props.history.push('/footer/user/');
+                window.localStorage.removeItem('detailCarts');
             });
         }
     }
