@@ -26,7 +26,8 @@ class Detail extends React.Component {
             prompts: [],
             ifLogin: window.localStorage.getItem('ifLogin') || false,
             center: [],
-            goodId:''
+            goodId:'',
+            qty:0
         }
     }
 
@@ -58,13 +59,53 @@ class Detail extends React.Component {
     }
     addToCart(){
         let name = this.state.name,nums = this.state.nums, goodId = this.state.goodId,goodPic = 'http://i.lifevc.com' + this.state.details[0].ImageUrl,status = true;
-        let toCartObj = {name,nums,goodId,goodPic,status};
+        let yhm = window.localStorage.getItem('userId');
+        let toCartObj = {name,nums,goodId,goodPic,status,yhm};
         if (this.state.activePrice == 0){
             toCartObj.price = Number(this.state.price);
         }else{
             toCartObj.price = Number(this.state.activePrice);
         }
-        console.log(toCartObj);
+        // localStorage.removeItem('detailCarts')
+        //存储的数据
+       
+        if(yhm==""){
+            alert("请先登录");
+        }else{
+            if(JSON.parse(window.localStorage.getItem('detailCarts'))){
+                let kong = JSON.parse(window.localStorage.getItem('detailCarts'));
+                let haooo=false;
+                let shu =0;
+                for(let i=0;i<kong.length;i++){
+                    if(kong[i].name==toCartObj.name){
+                        haooo=true;
+                        shu = (kong[i].nums-0) + (toCartObj.nums-0);
+                        kong[i].nums=shu;
+                    }
+                }
+                if(!haooo){
+                    kong.push(toCartObj);
+                }
+                // if(kong.indexOf(toCartObj)!=-1){
+                //     kong[kong.indexOf(toCartObj)].nums+=toCartObj.nums;
+                // }else{
+                //     kong.push(toCartObj);
+                // }
+                window.localStorage.setItem('detailCarts',JSON.stringify(kong));
+                let qty=0;
+                for(let i=0;i<kong.length;i++){
+                    qty+=kong[i].nums;
+                }
+               this.setState({
+                    qty:qty
+                })
+            }else{
+                let kong = [];
+                kong.push(toCartObj);
+                window.localStorage.setItem('detailCarts',JSON.stringify(kong));
+            }
+        }
+        
     }
     componentWillUnmount() {
         window.onscroll = () => {
@@ -72,12 +113,21 @@ class Detail extends React.Component {
         }
     }
     componentDidMount() {
+        let kong = JSON.parse(window.localStorage.getItem('detailCarts'));
+        let qty=0;
+        for(let i=0;i<kong.length;i++){
+            qty+=kong[i].nums;
+        }
+       this.setState({
+            qty:qty
+        })
+
+        
         //获取传过来的id
         let ItemInfoId = this.props.match.params.ItemInfoId
-        console.log(ItemInfoId)
         React.axios.get('http://app.lifevc.com/1.0/v_h5_5.1.2_33/items/itemview?Iteminfoid=' + ItemInfoId + '&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 this.setState({
                     details: res.data.InnerData.Headers,
                     name: res.data.InnerData.Name,
@@ -400,7 +450,7 @@ class Detail extends React.Component {
                     </div>
                     <div className="car">
                         <Link to="/footer/cart">
-                            <span className="addcar">{this.state.nums}</span>
+                            <span className="addcar">{this.state.qty}</span>
                             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                         </Link>
                     </div>
