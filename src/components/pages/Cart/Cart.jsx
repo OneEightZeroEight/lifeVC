@@ -420,7 +420,7 @@ class Cart extends React.Component{
                                     {(()=>{
                                         if(this.state.xiugai){
                                             return <div className="carts-kuang1">
-                                            <Link to="/footer/user" >
+                                            <Link to="/Accont" >
                                                 去结算 (<span>{this.state.qty}</span>)
                                             </Link> 
                                             </div>
