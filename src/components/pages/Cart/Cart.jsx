@@ -32,7 +32,7 @@ class Cart extends React.Component{
         // console.log(this.state);
         this.props.changeSele();
         //     window.localStorage.setItem('CarDiBu',JSON.stringify(res.data.RecommendItems));
-        let Bbottom = JSON.parse(window.localStorage.getItem('CarDiBu'));
+        let Bbottom = JSON.parse(window.localStorage.getItem('CarDiBu')) || [];
         //要把数据变成JSON字符串保持内容，要不然获取到的数据为[object] [object]
         if(window.localStorage.getItem('ifLogin')){
             this.setState({

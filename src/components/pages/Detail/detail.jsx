@@ -114,7 +114,7 @@ class Detail extends React.Component {
         }
     }
     componentDidMount() {
-        let kong = JSON.parse(window.localStorage.getItem('detailCarts'));
+        let kong = JSON.parse(window.localStorage.getItem('detailCarts')) || [];
         let qty=0;
         for(let i=0;i<kong.length;i++){
             qty+=kong[i].nums;
