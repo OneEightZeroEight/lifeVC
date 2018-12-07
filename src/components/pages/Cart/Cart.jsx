@@ -15,41 +15,53 @@ class Cart extends React.Component{
             zhuangTai:true,//全选选框状态
             jiage:0,//商品价格
             qty:0,//商品数量
-            xiangPing:JSON.parse(window.localStorage.getItem('detailCarts'))||[],//商品
+            xiangPing:[],//商品
             Bbottom:[],//没有登录时底部商品信息
             guangGao:{}// 登录后半折抢购信息
         }
     }
-
+    haoshu(){
+        this.panduan();
+        this.panduan1();
+        this.panduan2();
+    }
     componentDidMount(){
+        if(window.localStorage.getItem('userId')){
+            let haooo= JSON.parse(window.localStorage.getItem('detailCarts'));
+            let xiangPing =[];
+            for(let i=0;i<haooo.length;i++){
+                if(haooo[i].yhm==window.localStorage.getItem('userId')){
+                    xiangPing.push(haooo[i]);
+                }
+            }
+            let sszt=false;
+            this.setState(
+                Object.assign({}, { xiangPing }),
+                () => this.haoshu()//同步
+            )
+            this.setState(
+                Object.assign({}, { sszt }),
+                () => console.log(this.state)
+            )
+        }else{
+            let sszt=true;
+            this.setState(
+                Object.assign({}, { sszt }),
+                () => this.haoshu()//同步
+            )
+        }
+        
 
-        let detailCarts= JSON.parse(window.localStorage.getItem('detailCarts'));
-        console.log(detailCarts);
-        // this.setState({
-        //     xiangPing:detailCarts,
-        //     qty:1
-        // })
-        // console.log(this.state);
+
         this.props.changeSele();
         //     window.localStorage.setItem('CarDiBu',JSON.stringify(res.data.RecommendItems));
         let Bbottom = JSON.parse(window.localStorage.getItem('CarDiBu'));
         //要把数据变成JSON字符串保持内容，要不然获取到的数据为[object] [object]
-        if(window.localStorage.getItem('ifLogin')){
-            this.setState({
-                Bbottom:Bbottom,
-                sszt:false
-            })
-        }else{
-            this.setState({
-                Bbottom:Bbottom,
-                sszt:true
-            })
-        }
-        // console.log(this.state.xiangPing,detailCarts)
-        this.panduan();
-        this.panduan1();
-        this.panduan2();
 
+        
+        this.setState(
+            Object.assign({}, { Bbottom })
+        )
         React.axios.get('http://marketing.lifevc.com/v1/getCart?si=qsSTiCma24QNrqm%2F79krpdZ0mpRbm96Kk%2BA6DNvjV0dM52vH6%2BlALMJGNPJRqqbkZaK3iA2i0hQ%3D&ck=71f002fe_224109620&regionId=15247&pm=8&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
         .then((res)=>{
             let guangGao = res.data.Prompts[0];
@@ -86,8 +98,9 @@ class Cart extends React.Component{
     }
     //点击减
     jian(index){
+        let dalao;
         if(this.state.xiangPing[index].nums>1){
-            let dalao = this.state.xiangPing;
+            dalao = this.state.xiangPing;
             dalao[index].nums=dalao[index].nums-1;
             this.setState({
                 xiangPing:dalao
@@ -95,6 +108,8 @@ class Cart extends React.Component{
         }
         window.localStorage.setItem('detailCarts',JSON.stringify(this.state.xiangPing));
         this.panduan1();
+         React.axios.get("http://localhost:3001/goods/goodsAdd",{params:{name:dalao[index].name,yhm:dalao[index].yhm,ext:"jian"}})
+        .then((res)=>{})
     }
     //点击加
     jia(index){
@@ -105,6 +120,8 @@ class Cart extends React.Component{
         })
         window.localStorage.setItem('detailCarts',JSON.stringify(this.state.xiangPing));
         this.panduan1();
+        React.axios.get("http://localhost:3001/goods/goodsAdd",{params:{name:dalao[index].name,yhm:dalao[index].yhm,ext:"jia"}})
+        .then((res)=>{})
     }
     //删除
     danshan(index){
@@ -117,6 +134,8 @@ class Cart extends React.Component{
         this.panduan();
         this.panduan1();
         this.panduan2();
+        React.axios.get("http://localhost:3001/goods/goodsDell",{params:{name:dalao[index].name,yhm:dalao[index].yhm}})
+        .then((res)=>{})
     }
     //批量删除
     pilianshan(){
@@ -210,6 +229,11 @@ class Cart extends React.Component{
     }
     //判断是否有商品
     panduan2(){
+        if(!window.localStorage.getItem('userId')){
+            this.setState({
+                sooping:false
+            })
+        }
         if(this.state.xiangPing.length==0){
             this.setState({
                 sooping:false
@@ -420,7 +444,7 @@ class Cart extends React.Component{
                                     {(()=>{
                                         if(this.state.xiugai){
                                             return <div className="carts-kuang1">
-                                            <Link to="/footer/user" >
+                                            <Link to="/Accont" >
                                                 去结算 (<span>{this.state.qty}</span>)
                                             </Link> 
                                             </div>

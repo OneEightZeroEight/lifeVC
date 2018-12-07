@@ -3,12 +3,12 @@
  let Schema = mongoose.Schema;
  let goodsSchema=new Schema({
     name:{type:String,required:true},
-    type:{type:String,required:true},
-    desc:{type:String,required:true},
+    goodId:{type:String,required:true},
+    goodPic:{type:String,required:true},
+    nums:{type:Number,required:true},
+    status:{type:String,required:true},
     price:{type:Number,required:true},
-    imgpath:{type:String,required:true},
-    stock:{type:Number,required:true},
-    grounding:{type:Boolean,default:false},
+    yhm:{type:String,required:true}
     // show:{type:Number,default:false}
 
  })
