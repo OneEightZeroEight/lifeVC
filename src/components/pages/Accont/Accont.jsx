@@ -1,17 +1,28 @@
 import React from 'react';
 import "../../../styles/accont.scss";
 import { Link } from 'react-router-dom';
-import {Toast} from 'antd-mobile';
+import { Toast } from 'antd-mobile';
 class Accont extends React.Component {
   constructor(props) {
     super(props);
     this.props = props;
     this.state = {
-      shoop: JSON.parse(window.localStorage.getItem('detailCarts'))
+      shoop: JSON.parse(window.localStorage.getItem('detailCarts')),
+      qty:0
     }
   }
+  componentDidMount() {
+    let kong = this.state.shoop;
+    let qty = 0;
+    for (let i = 0; i < kong.length; i++) {
+        qty += kong[i].nums;
+    }
+    this.setState({
+      qty: qty
+    })
+  }
   tj() {
-    Toast.success('提交订单成功！',2);
+    Toast.success('提交订单成功！', 2);
   }
   render() {
     return (
@@ -56,14 +67,16 @@ class Accont extends React.Component {
         <div className="show">
           {
             this.state.shoop.map((item, index) => {
-              return <img src={item.goodPic} />
+              return <div>
+                <img src={item.goodPic} /><span>共{this.state.qty}件商品</span>
+              </div>
             })
           }
         </div>
         <div className="aFooter">
           <div className="aleft">
             <span>本单你只需支付</span>
-            <p>￥{this.state.shoop[0].price}</p>
+            <p>￥{this.state.shoop[0].price * this.state.shoop[0].nums}</p>
           </div>
           <button className="aright" onClick={this.tj.bind(this)}>提交订单</button>
         </div>
