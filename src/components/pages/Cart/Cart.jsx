@@ -120,7 +120,7 @@ class Cart extends React.Component{
         }
         window.localStorage.setItem('detailCarts',JSON.stringify(this.state.xiangPing));
         this.panduan1();
-         React.axios.get("http://localhost:3001/goods/goodsAdd",{params:{name:dalao[index].name,yhm:dalao[index].yhm,ext:"jian"}})
+         React.axios.get("http://10.3.136.17:3001/goods/goodsAdd",{params:{name:dalao[index].name,yhm:dalao[index].yhm,ext:"jian"}})
         .then((res)=>{})
     }
     //点击加
@@ -132,7 +132,7 @@ class Cart extends React.Component{
         })
         window.localStorage.setItem('detailCarts',JSON.stringify(this.state.xiangPing));
         this.panduan1();
-        React.axios.get("http://localhost:3001/goods/goodsAdd",{params:{name:dalao[index].name,yhm:dalao[index].yhm,ext:"jia"}})
+        React.axios.get("http://10.3.136.17:3001/goods/goodsAdd",{params:{name:dalao[index].name,yhm:dalao[index].yhm,ext:"jia"}})
         .then((res)=>{})
     }
     //删除
@@ -146,7 +146,7 @@ class Cart extends React.Component{
         this.panduan();
         this.panduan1();
         this.panduan2();
-        React.axios.get("http://localhost:3001/goods/goodsDell",{params:{name:dalao[index].name,yhm:dalao[index].yhm}})
+        React.axios.get("http://10.3.136.17:3001/goods/goodsDell",{params:{name:dalao[index].name,yhm:dalao[index].yhm}})
         .then((res)=>{})
     }
     //批量删除

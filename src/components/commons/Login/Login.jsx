@@ -41,7 +41,7 @@ class Login extends React.Component {
         })
     }
     sendCheck(){
-        React.axios.get("http://localhost:3001/Users/getCheck",{params:{us:this.state.userIds}})
+        React.axios.get("http://10.3.136.17:3001/Users/getCheck",{params:{us:this.state.userIds}})
         .then((res)=>{
             console.log(res);
             if(res.data.error == 0){
@@ -58,7 +58,7 @@ class Login extends React.Component {
         }else if(this.state.userPassword == ''){
             Toast.fail('密码不能为空', 1);
         }else{
-            React.axios.get("http://localhost:3001/Users/login",{params:{us:this.state.userId,ps:this.state.userPassword}})
+            React.axios.get("http://10.3.136.17:3001/Users/login",{params:{us:this.state.userId,ps:this.state.userPassword}})
             .then((res)=>{
                 if(res.data.err == 0){
                     Toast.success('登录成功', 2,()=>{
@@ -95,14 +95,14 @@ class Login extends React.Component {
                 if(!/^[a-z][\w\-]{5,19}$/i.test(this.state.userPasswords)){ 
                     Toast.fail('密码不符合要求', 2);
                 }else{
-                    React.axios.get("http://localhost:3001/Users/yz",{params:{us:this.state.userIds,checkWord:this.state.checkWord}})
+                    React.axios.get("http://10.3.136.17:3001/Users/yz",{params:{us:this.state.userIds,checkWord:this.state.checkWord}})
                     .then((res)=>{
                         if(res.data.err == -1){
                             Toast.fail('用户名已被注册', 1);
                         }else if(res.data.err == -2){
                             Toast.fail('验证码错误', 1);
                         }else{
-                            React.axios.get("http://localhost:3001/Users/reg",{params:{us:this.state.userIds,ps:this.state.userPasswords}})
+                            React.axios.get("http://10.3.136.17:3001/Users/reg",{params:{us:this.state.userIds,ps:this.state.userPasswords}})
                             .then((res)=>{
                                 Toast.success('注册成功', 2,()=>{
                                     this.refs.checkWord.value = '';
