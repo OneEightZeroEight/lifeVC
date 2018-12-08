@@ -36,7 +36,7 @@ class Index extends React.Component {
     componentDidUpdate() {
         var bannerSwiper = new Swiper('#banner', {
             pagination: {
-                el: '.swiper-pagination'
+                el: '#indexBanner'
             },
             autoplay: {
                 delay: 2000,
@@ -94,7 +94,7 @@ class Index extends React.Component {
                                 })
                             }
                         </div>
-                        <div className="swiper-pagination"></div>
+                        <div className="swiper-pagination" id='indexBanner'></div>
                     </div>
                 </div>
                 {

@@ -94,14 +94,7 @@ class Cart extends React.Component{
     }
     componentDidUpdate(){
           // <!-- Initialize Swiper -->
-        var swiper = new Swiper('#detail', {
-            spaceBetween: 30,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-        });
-        var swiper = new Swiper('#center', {
+        var swiper2 = new Swiper('#center', {
             slidesPerView: 3,
             spaceBetween: 30,
             pagination: {

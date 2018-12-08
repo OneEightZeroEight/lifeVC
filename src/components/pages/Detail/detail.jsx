@@ -32,17 +32,17 @@ class Detail extends React.Component {
             qty:0
         }
     }
-
     // componentDidUpdate
     // 组件初始化时不调用，组件更新完成后调用，此时可以获取dom节点.由于初始时数据由ajax请求,初始可能没获取到数据，只有等数据获取到后，才调用
     componentDidUpdate() {
 
         // <!-- Initialize Swiper -->
-        var swiper1 = new Swiper('#detail', {
-            spaceBetween: 30,
+        var detailSwiper = new Swiper('#detail', {
             pagination: {
                 el: '#detailPag'
             },
+            observer:true,//修改swiper自己或子元素时，自动初始化swiper
+            observeParents:true,//修改swiper的父元素时，自动初始化swiper 
         });
         var swiper2 = new Swiper('#center', {
             slidesPerView: 3,
