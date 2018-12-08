@@ -11,8 +11,8 @@ class Login extends React.Component {
             userId:'',
             userPassword :'',
             userIds:"",
-            userPasswords:""
-
+            userPasswords:"",
+            checkWord:''
         }
     }
     getId(e){
@@ -25,6 +25,11 @@ class Login extends React.Component {
             userPassword:e.target.value
         })
     }
+    getCheck(e){
+        this.setState({
+            checkWord:e.target.value
+        })
+    }
      getIds(e){
         this.setState({
             userIds:e.target.value
@@ -33,6 +38,18 @@ class Login extends React.Component {
      getPasss(e){
         this.setState({
             userPasswords:e.target.value
+        })
+    }
+    sendCheck(){
+        React.axios.get("http://localhost:3001/Users/getCheck",{params:{us:this.state.userIds}})
+        .then((res)=>{
+            console.log(res);
+            if(res.data.error == 0){
+                Toast.success('验证码已发送！',2);
+            }
+        })
+        .catch((err)=>{
+            console.log(err);
         })
     }
     login(){
@@ -69,6 +86,8 @@ class Login extends React.Component {
             Toast.fail('用户名不能为空', 1);
         }else if(this.state.userPasswords == ''){
             Toast.fail('密码不能为空', 1);
+        }else if(this.state.checkWord == ''){
+            Toast.fail('验证码错误', 1);
         }else{
             if(!/^\b1[3-8]\d{9}\b$/g.test(this.state.userIds)){ 
                 Toast.fail('用户名不符合要求', 2);
@@ -76,14 +95,19 @@ class Login extends React.Component {
                 if(!/^[a-z][\w\-]{5,19}$/i.test(this.state.userPasswords)){ 
                     Toast.fail('密码不符合要求', 2);
                 }else{
-                    React.axios.get("http://localhost:3001/Users/yz",{params:{us:this.state.userIds}})
+                    React.axios.get("http://localhost:3001/Users/yz",{params:{us:this.state.userIds,checkWord:this.state.checkWord}})
                     .then((res)=>{
                         if(res.data.err == -1){
                             Toast.fail('用户名已被注册', 1);
+                        }else if(res.data.err == -2){
+                            Toast.fail('验证码错误', 1);
                         }else{
                             React.axios.get("http://localhost:3001/Users/reg",{params:{us:this.state.userIds,ps:this.state.userPasswords}})
                             .then((res)=>{
                                 Toast.success('注册成功', 2,()=>{
+                                    this.refs.checkWord.value = '';
+                                    this.refs.pass.value = '';
+                                    this.refs.userNum.value = '';
                                     this.props.changeToLog();
                                 });
                             })
@@ -180,14 +204,14 @@ class Login extends React.Component {
                         >
                             <div className="phoneNum">
 
-                                <input type="text" className="Num" placeholder='请输入手机号' onChange={this.getIds.bind(this)}/>
+                                <input type="text" className="Num" placeholder='请输入手机号' onChange={this.getIds.bind(this)} ref='userNum'/>
                             </div>
                             <div className="regPassword">
-                                <input type="password" className="password" placeholder='请输入6-20位密码，包含字母、数字或符号'  onChange={this.getPasss.bind(this)} />
+                                <input type="password" className="password" placeholder='请输入6-20位密码，包含字母、数字或符号'  onChange={this.getPasss.bind(this)} ref='pass'/>
                             </div>
                             <div className="checkWord">
-                                <input type="text" className="password" placeholder='请输入手机验证码' />
-                                <span className='getCheck'>获取验证码</span>
+                                <input type="text" className="password" placeholder='请输入手机验证码' onChange={this.getCheck.bind(this)} ref='checkWord'/>
+                                <span className='getCheck' onClick={this.sendCheck.bind(this)}>获取验证码</span>
                             </div>
                             <p className='agree'>
                             <input type="checkbox" defaultChecked/><span>阅读并同意《丽芙家居用户协议》和《隐私声明》</span>
