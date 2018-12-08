@@ -12,7 +12,7 @@
     background-color:#89be48;
     .fa.fa-chevron-left{
     color:#fff;
-    font-size:rem(26px);
+    font-size:rem(22px);
      }
     .accont{
      line-height:rem(48px);
@@ -77,7 +77,8 @@
 }
 .method,.fp,.zf{
     box-sizing:border-box;
-    width:rem(374px);height:rem(51px);
+    width:rem(375px);
+    height:rem(51px);
     background:#fff;border-bottom:1px solid #ccc;padding-left:rem(8px);
     line-height:rem(51px);
 
@@ -110,25 +111,47 @@
 .zhifu{padding-left:rem(283px);font-size:rem(30px);color:#ccc;}
 }
 .know{width:rem(375px);height:rem(40px);background-color:#f2f2f2;line-height:rem(40px);padding-left:rem(8px);box-sizing:border-box;a{color:rgb(5, 132, 245);padding-left:rem(5px);}}
-.show{width:rem(375px);height:rem(97px);img{width:rem(77.55px);height:rem(77.55px);}}
+.show{
+    width:rem(375px);
+    height:rem(97px);
+    padding-left: rem(15px);
+    box-sizing:border-box;
+    img{width:rem(77.55px);
+        height:rem(77.55px);
+    }
+}
 .aFooter{
-    width:rem(372px);
+    width:rem(375px);
     height:rem(53px);
     position:fixed;
     bottom:0;
     border:1px solid #ccc;
     z-index:9999px;
-    background:#ccc;
-.aleft{width:rem(255px);height:rem(45.8px);float:left;padding-top:rem(3px);p{color:red;}}
+    background:#fff;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+.aleft{
+    width:rem(255px);
+    height:rem(53px);
+    padding-left: rem(15px);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    p{
+        color:red;
+    }
+}
 .aright{
     width:rem(103.5px);
     height:rem(53px);
     background-color:#89be48;
     text-align:center;
-    float:right;
     color:#fff;
     font-size:rem(16px);
     padding-left:rem(8px);
+    border:none;
 }
 }
 

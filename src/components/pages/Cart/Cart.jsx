@@ -16,7 +16,22 @@ class Cart extends React.Component{
             jiage:0,//商品价格
             qty:0,//商品数量
             xiangPing:[],//商品
-            Bbottom:[],//没有登录时底部商品信息
+            Bbottom:[{ActivityPrice: 0 ,ActivityTag: null, Appeal: "擦完就扔，油污不脏手",Code: "829592160",CommentCount: 3794 ,CountdownTag: null ,CountdownTime: 0, ImageUrl: "/upload/goods/D1802011449449456_d230x230.jpg",IsEmpty: false ,IsPotter: false ,ItemInfoId: 27442 ,MaskImageUrl: null, Name: "厨房油污清洁湿巾(30片装)",PriceTag: "",PriceTags: null ,SalePrice: 10 ,SortIndex: null, Uri: "inner:///item/27442"},
+                    {ActivityPrice: 0 ,ActivityTag: null, Appeal: "双重清洁配方，除菌除味去黄渍",Code: "872748680",CommentCount: 2901 ,CountdownTag: null ,CountdownTime: 0, ImageUrl: "/upload/goods/D1806291544022668_d230x230.jpg",IsEmpty: false ,IsPotter: false ,ItemInfoId: 27204 ,MaskImageUrl: null, Name: "双色除菌除臭洁厕剂（5粒装）",PriceTag: "",PriceTags: null ,SalePrice: 15 ,SortIndex: null, Uri: "inner:///item/27204"},
+                    {ActivityPrice: 0 ,ActivityTag: null, Appeal: "温和清洁，滋养头皮",Code: "838776970",CommentCount: 9552 ,CountdownTag: null ,CountdownTime: 0, ImageUrl: "/upload/goods/D1712221341265132_d230x230.jpg",IsEmpty: false ,IsPotter: false ,ItemInfoId: 27544 ,MaskImageUrl: null, Name: "氨基酸无硅油洗发水/护发素",PriceTag: "",PriceTags: null ,SalePrice: 49 ,SortIndex: null, Uri: "inner:///item/27544"},
+                    {ActivityPrice: 0 ,ActivityTag: null, Appeal: "让你的衣柜瞬间变大1/2",Code: "801213733",CommentCount: 27075, CountdownTag: null ,CountdownTime: 0, ImageUrl: "/upload/goods/D1709111527344118_d230x230.jpg",IsEmpty: false ,IsPotter: false ,ItemInfoId: 25501 ,MaskImageUrl: null, Name: "抽真空防潮收纳袋(中-2只装)",PriceTag: "",PriceTags: null ,SalePrice: 15 ,SortIndex: null, Uri: "inner:///item/25501"},
+                    {ActivityPrice: 0 ,ActivityTag: null, Appeal: "给你一个爱的抱抱",Code: "881290013",CommentCount: 354, CountdownTag: null ,CountdownTime: 0, ImageUrl: "/upload/goods/D1809141910458126_d230x230.jpg",IsEmpty: false ,IsPotter: false ,ItemInfoId: 30073 ,MaskImageUrl: null, Name: "舒柔卡通抱枕",PriceTag: "",PriceTags: null ,SalePrice: 69 ,SortIndex: null, Uri: "inner:///item/30073"},
+                    {ActivityPrice: 0 ,ActivityTag: null, Appeal: "含日本进口保湿因子",Code: "856203700",CommentCount: 3058 ,CountdownTag: null ,CountdownTime: 0, ImageUrl: "/upload/goods/D1801091817575460_d230x230.jpg",IsEmpty: false ,IsPotter: false ,ItemInfoId: 25611 ,MaskImageUrl: null, Name: "轻奢超柔抽纸(含保湿因子)",PriceTag: "",PriceTags: null ,SalePrice: 19 ,SortIndex: null, Uri: "inner:///item/25611"},
+                    {ActivityPrice: 0 ,ActivityTag: null, Appeal: "进口竹炭软刷毛，洁齿护龈更健康",Code: "825177531",CommentCount: 4146 ,CountdownTag: null ,CountdownTime: 0, ImageUrl: "/upload/goods/D1709291536099584_d230x230.jpg",IsEmpty: false ,IsPotter: false ,ItemInfoId: 23992 ,MaskImageUrl: null, Name: "竹炭超细软毛牙刷",PriceTag: "",PriceTags: null ,SalePrice: 9 ,SortIndex: null, Uri: "inner:///item/23992"},
+                    {ActivityPrice: 0 ,ActivityTag: null, Appeal: "牙齿不够白？试试酵素牙膏吧",Code: "866997430",CommentCount: 6416 ,CountdownTag: null ,CountdownTime: 0, ImageUrl: "/upload/goods/D1712292008232144_d230x230.jpg",IsEmpty: false ,IsPotter: false ,ItemInfoId: 26847 ,MaskImageUrl: null, Name: "酵素洁齿牙膏",PriceTag: "",PriceTags: null ,SalePrice: 19 ,SortIndex: null, Uri: "inner:///item/26847"},
+                    {ActivityPrice: 0 ,ActivityTag: null, Appeal: "用过添加氨基酸的沐浴露吗？",Code: "878021090",CommentCount: 3275 ,CountdownTag: null ,CountdownTime: 0, ImageUrl: "/upload/goods/D1712190959351339_d230x230.jpg",IsEmpty: false ,IsPotter: false ,ItemInfoId: 28002 ,MaskImageUrl: null, Name: "氨基酸沐浴露(润泽保湿)",PriceTag: "",PriceTags: null ,SalePrice: 49 ,SortIndex: null, Uri: "inner:///item/28002"},
+                    {ActivityPrice: 0 ,ActivityTag: null, Appeal: "可降解，一起来保护环境",Code: "892726590",CommentCount: 21318, CountdownTag: null ,CountdownTime: 0, ImageUrl: "/upload/goods/D1612292034178130_d230x230.gif",IsEmpty: false ,IsPotter: false ,ItemInfoId: 19640 ,MaskImageUrl: null, Name: "可降解环保垃圾袋(自动收口式)",PriceTag: "",PriceTags: null ,SalePrice: 9 ,SortIndex: null, Uri: "inner:///item/19640"},
+                    {ActivityPrice: 0 ,ActivityTag: null, Appeal: "刷完后舔一下，牙齿变滑了",Code: "817346171",CommentCount: 4381 ,CountdownTag: null ,CountdownTime: 0, ImageUrl: "/upload/goods/D1708251714357038_d230x230.jpg",IsEmpty: false ,IsPotter: false ,ItemInfoId: 25399 ,MaskImageUrl: null, Name: "超声波电动牙刷刷头替换装(2个)",PriceTag: "",PriceTags: null ,SalePrice: 29 ,SortIndex: null, Uri: "inner:///item/25399"},
+                    {ActivityPrice: 0 ,ActivityTag: null, Appeal: "冬天，PP不再冷冰冰",Code: "858529131",CommentCount: 472, CountdownTag: null ,CountdownTime: 0, ImageUrl: "/upload/goods/D1809071705532416_d230x230.jpg",IsEmpty: false ,IsPotter: false ,ItemInfoId: 29935 ,MaskImageUrl: null, Name: "法兰绒加厚卫生马桶垫",PriceTag: "",PriceTags: null ,SalePrice: 19 ,SortIndex: null, Uri: "inner:///item/29935"},
+                    {ActivityPrice: 0 ,ActivityTag: null, Appeal: "蒸馒头，不会粘",Code: "2412413697",CommentCount: 33964, CountdownTag: null ,CountdownTime: 0, ImageUrl: "/upload/goods/D1507221016189640_d230x230.jpg",IsEmpty: false ,IsPotter: false ,ItemInfoId: 15518 ,MaskImageUrl: null, Name: "蒸笼无纺布(30片装)",PriceTag: "",PriceTags: null ,SalePrice: 10 ,SortIndex: null, Uri: "inner:///item/15518"},
+                    {ActivityPrice: 0 ,ActivityTag: null, Appeal: "可降解，一起来保护环境",Code: "827127320",CommentCount: 26010, CountdownTag: null ,CountdownTime: 0, ImageUrl: "/upload/goods/D1704141723322525_d230x230.jpg",IsEmpty: false ,IsPotter: false ,ItemInfoId: 22170 ,MaskImageUrl: null, Name: "可降解环保垃圾袋(可拎式)",PriceTag: "",PriceTags: null ,SalePrice: 9 ,SortIndex: null, Uri: "inner:///item/22170"}
+
+                    ],//没有登录时底部商品信息
             guangGao:{}// 登录后半折抢购信息
         }
     }
@@ -56,13 +71,16 @@ class Cart extends React.Component{
 
         this.props.changeSele();
         //     window.localStorage.setItem('CarDiBu',JSON.stringify(res.data.RecommendItems));
-        let Bbottom = JSON.parse(window.localStorage.getItem('CarDiBu')) || [];
-        //要把数据变成JSON字符串保持内容，要不然获取到的数据为[object] [object]
 
-        
-        this.setState(
-            Object.assign({}, { Bbottom })
-        )
+        // if(JSON.parse(window.localStorage.getItem('CarDiBu'))){
+        //     let Bbottom = JSON.parse(window.localStorage.getItem('CarDiBu'));
+        //     //要把数据变成JSON字符串保持内容，要不然获取到的数据为[object] [object]
+
+            
+        //     this.setState(
+        //         Object.assign({}, { Bbottom })
+        //     )
+        // }
         React.axios.get('http://marketing.lifevc.com/v1/getCart?si=qsSTiCma24QNrqm%2F79krpdZ0mpRbm96Kk%2BA6DNvjV0dM52vH6%2BlALMJGNPJRqqbkZaK3iA2i0hQ%3D&ck=71f002fe_224109620&regionId=15247&pm=8&o=http%3A%2F%2Fm.lifevc.com&NewCartVersion=true')
         .then((res)=>{
             let guangGao = res.data.Prompts[0];
