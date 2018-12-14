@@ -2,6 +2,7 @@ import React from 'react';
 import "../../../styles/GoFree.scss"
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import $ from  'jquery'
 class Stroll extends React.Component {
     constructor(props) {
         super(props)
@@ -22,14 +23,43 @@ class Stroll extends React.Component {
         this.setState({
             ifLoad: false
         })
-        React.axios.get("/life/1.0/v_h5_5.1.2_33/Stroll/StrollItemList",
+        var data = {
+                    pageNo: this.state.pageNo + 1,
+                    o:'http://m.lifevc.com',
+                    NewCartVersion: true
+                };
+        // fetch("http://newapi.lifevc.com/1.0/v_h5_5.1.2_33/Stroll/StrollItemList?pageNo="+this.state.pageNo + 1+"&o=http://m.lifevc.com&NewCartVersion=true", {
+        //     credentials: 'include',
+        //     herders: {
+        //           'Access-Control-Request-Method': '*'
+        //     },
+        //    mode: 'no-cors'
+        // }) 
+        // .then((res,req)=> {
+        //     console.log(res) 
+        // }) 
+        // $.ajax({
+        //     url:"http://newapi.lifevc.com/1.0/v_h5_5.1.2_33/Stroll/StrollItemList",
+        //     data:data,
+        //     dataType:"JSONP",
+        //     // jsonp: "callbackSaveAddress",
+        //     // jsonpCallback:"success_jsonp",
+        //     // contentType: "application/json;charset=utf-8",
+        //     success: function (res) {
+        //         console.log(res);
+        //     }
+        // })
+         React.axios.get("/life/1.0/v_h5_5.1.2_33/Stroll/StrollItemList",
             {
                 params: {
                     pageNo: this.state.pageNo + 1,
+                    o:'http://m.lifevc.com',
+                    NewCartVersion: true
                 }
             }
         )
             .then((res) => {
+                console.log(res)
                 let Res = res.data.InnerData.StrollList;
                 let list = this.state.lists;
                 for (let i = 0; i < Res.length; i++) {

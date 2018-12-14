@@ -81,8 +81,17 @@ const store = createStore((state = {
     }
 })
 axios.interceptors.request.use((config) => {//路由拦截
-  Toast.loading('加载中', 3,true);
+    Toast.loading('加载中', 3,true);
+    // if(config){
+    //     var timer = setTimeout(()=>{
+    //         Toast.hide();
+    //         Toast.fail('加载失败', 1);
+    //         clearTimeout(timer);
+    //     },10000)
+    // }
+    
     return config;
+    
 }, (err) => {
     return Promise.reject(err)
 
