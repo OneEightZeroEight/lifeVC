@@ -1,1 +1,1 @@
-http://6.5.21.43:5000
+ https://oneeightzeroeight.github.io/lifeVC/build
