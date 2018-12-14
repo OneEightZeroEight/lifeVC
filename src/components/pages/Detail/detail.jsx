@@ -75,7 +75,7 @@ class Detail extends React.Component {
             }else{
                 toCartObj.price = Number(this.state.activePrice);
             }
-            React.axios.get("http://localhost:3001/goods/goodsAdd",{params:toCartObj})
+            React.axios.get("http://10.3.136.17:3001/goods/goodsAdd",{params:toCartObj})
             .then((res)=>{
                 if(res.data.err == 0){
                     if(JSON.parse(window.localStorage.getItem('detailCarts'))){
@@ -106,6 +106,7 @@ class Detail extends React.Component {
                             qty:qty
                         })
                        Toast.success('成功加入购物车', 1);
+
                     }else{
                         let kong = [];
                         kong.push(toCartObj);

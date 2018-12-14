@@ -8,17 +8,23 @@ class Accont extends React.Component {
     this.props = props;
     this.state = {
       shoop: JSON.parse(window.localStorage.getItem('detailCarts')),
-      qty:0
+      qty:0,
+      pic:'',
+      allCount:0
     }
   }
   componentDidMount() {
     let kong = this.state.shoop;
     let qty = 0;
+    let allCount = 0;
     for (let i = 0; i < kong.length; i++) {
         qty += kong[i].nums;
+        allCount += kong[i].nums * kong[i].price;
     }
     this.setState({
-      qty: qty
+      qty: qty,
+      pic:kong[0].goodPic,
+      allCount:allCount
     })
   }
   tj() {
@@ -65,18 +71,15 @@ class Accont extends React.Component {
           </div>
         </div>
         <div className="show">
-          {
-            this.state.shoop.map((item, index) => {
-              return <div>
-                <img src={item.goodPic} /><span>共{this.state.qty}件商品</span>
+
+              <div>
+                <img src={this.state.pic} /><span>共{this.state.qty}件商品</span>
               </div>
-            })
-          }
         </div>
         <div className="aFooter">
           <div className="aleft">
             <span>本单你只需支付</span>
-            <p>￥{this.state.shoop[0].price * this.state.shoop[0].nums}</p>
+            <p>￥{this.state.allCount}</p>
           </div>
           <button className="aright" onClick={this.tj.bind(this)}>提交订单</button>
         </div>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../../../../styles/newArrive.scss';
 import { ListView } from 'antd-mobile';
+import {Toast} from 'antd-mobile';
 class NewArrive extends React.Component {
     constructor(props) {
         super(props);
@@ -69,20 +70,22 @@ class NewArrive extends React.Component {
         })
     }
     getShowList(){
-        let nowIndex = this.state.nowIndex;
-        let newIndex = this.state.nowIndex + 3;
-        let showList = this.state.showList;
-        if(JSON.parse(window.sessionStorage.getItem('monthList') != null)){
-            if(newIndex > JSON.parse(window.sessionStorage.getItem('monthList')).length){
+        Toast.loading('加载中',2,()=>{
+            let nowIndex = this.state.nowIndex;
+            let newIndex = this.state.nowIndex + 3;
+            let showList = this.state.showList;
+            if(JSON.parse(window.sessionStorage.getItem('monthList') != null)){
+                if(newIndex > JSON.parse(window.sessionStorage.getItem('monthList')).length){
+                    this.setState({
+                        isEnd:true
+                    })
+                }
                 this.setState({
-                    isEnd:true
+                    showList:showList.concat(JSON.parse(window.sessionStorage.getItem('monthList')).splice(nowIndex,3)),
+                    nowIndex:newIndex
                 })
             }
-            this.setState({
-                showList:showList.concat(JSON.parse(window.sessionStorage.getItem('monthList')).splice(nowIndex,3)),
-                nowIndex:newIndex
-            })
-        }
+        })
     }
     backToTop(){
         window.scrollTo(0,0);
