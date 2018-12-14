@@ -80,7 +80,7 @@ const store = createStore((state = {
             return state
     }
 })
-axios.interceptors.request.use((config) => {
+axios.interceptors.request.use((config) => {//路由拦截
   Toast.loading('加载中', 3,true);
     return config;
 }, (err) => {

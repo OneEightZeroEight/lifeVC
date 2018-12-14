@@ -105,6 +105,7 @@ class Detail extends React.Component {
                        this.setState({
                             qty:qty
                         })
+                       Toast.success('成功加入购物车', 1);
                     }else{
                         let kong = [];
                         kong.push(toCartObj);
@@ -112,6 +113,7 @@ class Detail extends React.Component {
                         this.setState({
                             qty:toCartObj.nums
                         })
+                        Toast.success('成功加入购物车', 1);
                     }
                 }else{
                     alert("错误");

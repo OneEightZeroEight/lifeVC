@@ -6,7 +6,8 @@ function sendMessage(option){
     this.url = 'sms-api.luosimao.com';
     this.path = '/v1/send.json';
     this.username = 'api';
-    this.key = 'key-a60ec996cd0aa22a7b83690195e807e3';
+    // this.key = 'key-a60ec996cd0aa22a7b83690195e807e3';//账号!!!改这个
+    this.key = 'key-9ae2ca263b44d834224f91ceeecd4535';//账号!!!改这个
 }
 //luosimao
 sendMessage.prototype.sendMessage = function(mobile,code,callback){
